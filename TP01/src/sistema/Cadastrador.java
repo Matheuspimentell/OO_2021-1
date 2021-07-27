@@ -6,14 +6,25 @@ import java.util.Scanner;
 public class Cadastrador {
     public static void main(String[] args){
         Scanner ler = new Scanner(System.in);
+        //Declaração de variáveis
         int opcao;
-        int numeroClientes;
+        int numeroClientes, numeroProdutos;
+        //pré cadastro do primeiro cliente
         Cliente[] dados = new Cliente[1];
         dados[0] = new Cliente();
         dados[0].nome = "Diego Silva";
         dados[0].endereco = "Rua das Palmeiras, Casa 90";
         dados[0].telefone = "61 999999999";
+        //pré cadastro do primeiro produto
+        Produto[] estoque = new Produto[1];
+        estoque[0] = new Produto();
+        estoque[0].nome = "Vaso de flores";
+        estoque[0].descricao = "Vaso de flores com uma imagem de nossa senhora aparecida.";
+        estoque[0].valor = 25.99;
+        estoque[0].pctLucro = 14.3;
+        estoque[0].qtdEstoque = 4;
         do{
+            //Impressão do menu na tela
             System.out.print("\t========== Sistema de vendas ==========\n");
             System.out.print("\n\t1. Cadastrar Cliente\n");
             System.out.print("\t2. Busca por Cliente\n");
@@ -25,6 +36,7 @@ public class Cadastrador {
             System.out.print("\t=======================================\n");
             System.out.print("\tInforme a opção desejada: ");
             opcao = ler.nextInt();
+
             switch(opcao){
                 case 1->{
                     //Cadastro de cliente
@@ -34,7 +46,7 @@ public class Cadastrador {
                     //Criar Array de novos clientes para inserção correta dos dados
                     Cliente[] novos;
                     //Copiar o conteúdo do banco de dados para o Array de novos clientes
-                    novos = Arrays.copyOf(dados, numeroClientes+(dados.length));
+                    novos = Arrays.copyOf(dados, (numeroClientes + dados.length));
                     for (int i = 0; i < numeroClientes; i++){
                         //Preenchimento do novo Array com os dados desejados
                         novos[i + dados.length] = new Cliente();
@@ -47,8 +59,10 @@ public class Cadastrador {
                         novos[i + dados.length].telefone = ler.nextLine();
                         System.out.print("\t---------------------------------------\n");
                     }
+                    System.out.print("\tPressione enter para retornar ao menu...\n");
+                    ler.nextLine();
                     System.out.print("\t=======================================\n\n");
-                    //Copiando os dados novos gerados para o banco de dados geral
+                    //Copiando os novos dados gerados para o banco de dados geral
                     dados = Arrays.copyOf(novos, novos.length);
                 }
                 case 2->{
@@ -77,9 +91,43 @@ public class Cadastrador {
                 }
                 case 3->{
                     //Cadastro de produto
+                    System.out.print("\n\tInforme o número de produtos que deseja cadastrar: ");
+                    numeroProdutos = ler.nextInt();
+                    ler.nextLine();
+                    //Criar array de novos produtos
+                    Produto[] novos;
+                    //Copiar o conteúdo dos produtos já cadastrados para o array de novos produtos
+                    novos = Arrays.copyOf(estoque, (numeroProdutos + estoque.length));
+                    for (int k = 0; k < numeroProdutos; k++){
+                        novos[k+ estoque.length] = new Produto();
+                        System.out.print("\n\t---------------------------------------\n");
+                        System.out.print("\tInforme o nome do " + (k+1) + "° produto: ");
+                        novos[k + estoque.length].nome = ler.nextLine();
+                        System.out.print("\tInforme a descrição do " + (k+1) + "° produto: ");
+                        novos[k + estoque.length].descricao = ler.nextLine();
+                        System.out.print("\tInforme o valor do " + (k+1) + "° produto: ");
+                        novos[k + estoque.length].valor = ler.nextDouble();
+                        System.out.print("\tInforme a porcentagem de lucro do " + (k+1) + "° produto: ");
+                        novos[k + estoque.length].pctLucro = ler.nextDouble();
+                        System.out.print("\tInforme a quantidade em estoque do " + (k+1) + "° produto: ");
+                        novos[k + estoque.length].qtdEstoque = ler.nextInt();
+                        System.out.print("\t---------------------------------------\n");
+                    }
+                    System.out.print("\tPressione enter para retornar ao menu...\n");
+                    ler.nextLine();
+                    System.out.print("\t=======================================\n\n");
+                    //Copiando os novos dados gerados para o banco de estoques geral
+                    estoque = Arrays.copyOf(novos, novos.length);
                 }
                 case 4->{
                     //Busca pelo nome do produto
+                    for(int l = 0; l < estoque.length; l++){
+                        System.out.println("\n\tNome do " + (l+1) + "° Produto: " + estoque[l].nome);
+                        System.out.println("\n\tDescrição do " + (l+1) + "° Produto: " + estoque[l].descricao);
+                        System.out.println("\n\tValor do " + (l+1) + "° Produto: " + estoque[l].valor);
+                        System.out.println("\n\tPorcentagem de lucro do " + (l+1) + "° Produto: " + estoque[l].pctLucro);
+                        System.out.println("\n\tQuantidade em estoque do " + (l+1) + "° Produto: " + estoque[l].qtdEstoque);
+                    }
                 }
                 case 5->{
                     //Registro de venda
