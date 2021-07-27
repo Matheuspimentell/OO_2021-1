@@ -67,13 +67,13 @@ public class Cadastrador {
                 }
                 case 2->{
                     //Busca pelo nome do cliente
-                    String buscaNome;
+                    String buscaCliente;
                     System.out.print("\n\t=======================================\n\n");
                     System.out.print("\tDigite o nome do cliente que deseja procurar: ");
                     ler.nextLine();
-                    buscaNome = ler.nextLine();
+                    buscaCliente = ler.nextLine();
                     for (int j = 0; j < dados.length; j++) {
-                        if (dados[j].nome.equals(buscaNome)) {
+                        if (dados[j].nome.equals(buscaCliente)) {
                             System.out.print("\n\tCliente encontrado.");
                             System.out.print("\n\t========== Dados do Cliente ===========\n");
                             System.out.println("\tNome: " + dados[j].nome + "\n");
@@ -111,9 +111,10 @@ public class Cadastrador {
                         novos[k + estoque.length].pctLucro = ler.nextDouble();
                         System.out.print("\tInforme a quantidade em estoque do " + (k+1) + "° produto: ");
                         novos[k + estoque.length].qtdEstoque = ler.nextInt();
+                        ler.nextLine();
                         System.out.print("\t---------------------------------------\n");
                     }
-                    System.out.print("\tPressione enter para retornar ao menu...\n");
+                    System.out.print("\tPressione enter para retornar ao menu...");
                     ler.nextLine();
                     System.out.print("\t=======================================\n\n");
                     //Copiando os novos dados gerados para o banco de estoques geral
@@ -121,13 +122,27 @@ public class Cadastrador {
                 }
                 case 4->{
                     //Busca pelo nome do produto
+                    String buscaProduto;
+                    ler.nextLine();
+                    System.out.print("\n\t=======================================\n\n");
+                    System.out.print("\tDigite o nome do produto que deseja procurar: ");
+                    buscaProduto = ler.nextLine();
                     for(int l = 0; l < estoque.length; l++){
-                        System.out.println("\n\tNome do " + (l+1) + "° Produto: " + estoque[l].nome);
-                        System.out.println("\n\tDescrição do " + (l+1) + "° Produto: " + estoque[l].descricao);
-                        System.out.println("\n\tValor do " + (l+1) + "° Produto: " + estoque[l].valor);
-                        System.out.println("\n\tPorcentagem de lucro do " + (l+1) + "° Produto: " + estoque[l].pctLucro);
-                        System.out.println("\n\tQuantidade em estoque do " + (l+1) + "° Produto: " + estoque[l].qtdEstoque);
+                        if(estoque[l].nome.equals(buscaProduto)){
+                            System.out.println("\n\tNome do Produto: " + estoque[l].nome);
+                            System.out.println("\n\tDescrição do Produto: " + estoque[l].descricao);
+                            System.out.println("\n\tValor do Produto: " + estoque[l].valor);
+                            System.out.println("\n\tPorcentagem de lucro do Produto: " + estoque[l].pctLucro);
+                            System.out.println("\n\tQuantidade em estoque do Produto: " + estoque[l].qtdEstoque);
+                            System.out.print("\t---------------------------------------\n");
+                            System.out.print("\tPressione enter para retornar ao menu...");
+                            ler.nextLine();
+                            break;
+                        } else if (l == (estoque.length - 1)){
+                            System.out.print("\n\tProduto não cadastrado.\n");
+                        }
                     }
+                    System.out.print("\t=======================================\n\n");
                 }
                 case 5->{
                     //Registro de venda
