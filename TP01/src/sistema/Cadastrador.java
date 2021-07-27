@@ -10,9 +10,9 @@ public class Cadastrador {
         int numeroClientes;
         Cliente[] dados = new Cliente[1];
         dados[0] = new Cliente();
-        dados[0].nome = "Matheus Pimentel Leal";
-        dados[0].endereco = "Asa sul, Brasília";
-        dados[0].telefone = "61 995767733";
+        dados[0].nome = "Diego Silva";
+        dados[0].endereco = "Rua das Palmeiras, Casa 90";
+        dados[0].telefone = "61 999999999";
         do{
             System.out.print("\t========== Sistema de vendas ==========\n");
             System.out.print("\n\t1. Cadastrar Cliente\n");
@@ -31,30 +31,49 @@ public class Cadastrador {
                     System.out.print("\n\tInforme o número de clientes que deseja cadastrar: ");
                     numeroClientes = ler.nextInt();
                     ler.nextLine();
+                    //Criar Array de novos clientes para inserção correta dos dados
                     Cliente[] novos;
+                    //Copiar o conteúdo do banco de dados para o Array de novos clientes
                     novos = Arrays.copyOf(dados, numeroClientes+(dados.length));
                     for (int i = 0; i < numeroClientes; i++){
+                        //Preenchimento do novo Array com os dados desejados
                         novos[i + dados.length] = new Cliente();
+                        System.out.print("\n\t---------------------------------------\n");
                         System.out.print("\tInforme o nome do " + (i+1) + "° cliente: ");
                         novos[i + dados.length].nome = ler.nextLine();
                         System.out.print("\tInforme o endereco do " + (i+1) + "° cliente: ");
                         novos[i + dados.length].endereco = ler.nextLine();
                         System.out.print("\tInforme o telefone do " + (i+1) + "° cliente: ");
                         novos[i + dados.length].telefone = ler.nextLine();
-                        System.out.print("\n\n");
+                        System.out.print("\t---------------------------------------\n");
                     }
                     System.out.print("\t=======================================\n\n");
+                    //Copiando os dados novos gerados para o banco de dados geral
                     dados = Arrays.copyOf(novos, novos.length);
                 }
                 case 2->{
                     //Busca pelo nome do cliente
+                    String buscaNome;
                     System.out.print("\n\t=======================================\n\n");
-                    for (int j = 0; j < dados.length; j++){
-                        System.out.print("\tNome do " + (j+1) + "° cliente: " + dados[j].nome + "\n");
-                        System.out.print("\tEndereço do " + (j+1) + "° cliente: " + dados[j].endereco + "\n");
-                        System.out.print("\tTelefone do " + (j+1) + "° cliente: " + dados[j].telefone + "\n");
-                        System.out.print("\t=======================================\n\n");
+                    System.out.print("\tDigite o nome do cliente que deseja procurar: ");
+                    ler.nextLine();
+                    buscaNome = ler.nextLine();
+                    for (int j = 0; j < dados.length; j++) {
+                        if (dados[j].nome.equals(buscaNome)) {
+                            System.out.print("\n\tCliente encontrado.");
+                            System.out.print("\n\t========== Dados do Cliente ===========\n");
+                            System.out.println("\tNome: " + dados[j].nome + "\n");
+                            System.out.println("\tEndereço: " + dados[j].endereco + "\n");
+                            System.out.println("\tTelefone: " + dados[j].telefone);
+                            System.out.print("\t---------------------------------------\n");
+                            System.out.print("\tPressione enter para retornar ao menu...\n");
+                            ler.nextLine();
+                            break;
+                        } else if ((j == (dados.length - 1))) {
+                            System.out.print("\n\tCliente não cadastrado.\n");
+                        }
                     }
+                    System.out.print("\t=======================================\n\n");
                 }
                 case 3->{
                     //Cadastro de produto
@@ -67,6 +86,14 @@ public class Cadastrador {
                 }
                 case 6->{
                     //Amostragem do estoque
+                }
+                case 0-> {
+                    System.out.print("\n\tSaindo do sistema...\n");
+                    System.out.print("\t=======================================\n\n");
+                }
+                default -> {
+                    System.out.print("\t\n Opção inválida, favor informar uma opção válida.\n");
+                    System.out.print("\t=======================================\n\n");
                 }
             }
         } while(opcao != 0);
