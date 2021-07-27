@@ -1,5 +1,6 @@
 package sistema;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Cadastrador {
@@ -30,21 +31,30 @@ public class Cadastrador {
                     System.out.print("\n\tInforme o número de clientes que deseja cadastrar: ");
                     numeroClientes = ler.nextInt();
                     ler.nextLine();
-                    Cliente[] novos = new Cliente[numeroClientes];
+                    Cliente[] novos;
+                    novos = Arrays.copyOf(dados, numeroClientes+(dados.length));
                     for (int i = 0; i < numeroClientes; i++){
-                        novos[i] = new Cliente();
+                        novos[i + dados.length] = new Cliente();
                         System.out.print("\tInforme o nome do " + (i+1) + "° cliente: ");
-                        novos[i].nome = ler.nextLine();
+                        novos[i + dados.length].nome = ler.nextLine();
                         System.out.print("\tInforme o endereco do " + (i+1) + "° cliente: ");
-                        novos[i].endereco = ler.nextLine();
+                        novos[i + dados.length].endereco = ler.nextLine();
                         System.out.print("\tInforme o telefone do " + (i+1) + "° cliente: ");
-                        novos[i].telefone = ler.nextLine();
+                        novos[i + dados.length].telefone = ler.nextLine();
                         System.out.print("\n\n");
                     }
-                    System.out.print("\t=======================================\n");
+                    System.out.print("\t=======================================\n\n");
+                    dados = Arrays.copyOf(novos, novos.length);
                 }
                 case 2->{
                     //Busca pelo nome do cliente
+                    System.out.print("\n\t=======================================\n\n");
+                    for (int j = 0; j < dados.length; j++){
+                        System.out.print("\tNome do " + (j+1) + "° cliente: " + dados[j].nome + "\n");
+                        System.out.print("\tEndereço do " + (j+1) + "° cliente: " + dados[j].endereco + "\n");
+                        System.out.print("\tTelefone do " + (j+1) + "° cliente: " + dados[j].telefone + "\n");
+                        System.out.print("\t=======================================\n\n");
+                    }
                 }
                 case 3->{
                     //Cadastro de produto
