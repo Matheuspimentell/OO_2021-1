@@ -176,6 +176,20 @@ public class Cadastrador {
                 }
                 case 6->{
                     //Amostragem do estoque
+                    ler.nextLine();
+                    System.out.print("\n\t=======================================\n");
+                    for(int t = 0; t < estoque.length; t++){
+                        if(estoque[t].qtdEstoque > 0){
+                            System.out.println("\tNome do Produto: " + estoque[t].nome);
+                            System.out.println("\tDescrição do Produto: " + estoque[t].descricao);
+                            System.out.println("\tValor do Produto: " + estoque[t].valor);
+                            System.out.println("\tPorcentagem de lucro do Produto: " + estoque[t].pctLucro);
+                            System.out.println("\tQuantidade em estoque do Produto: " + estoque[t].qtdEstoque);
+                            System.out.print("\t---------------------------------------\n");
+                        }
+                    }
+                    System.out.print("\tPressione enter para retornar ao menu...");
+                    ler.nextLine();
                 }
                 case 0-> {
                     System.out.print("\n\tSaindo do sistema...\n");
