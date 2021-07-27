@@ -155,24 +155,23 @@ public class Cadastrador {
                     nomeProduto = ler.nextLine();
                     for(int b = 0; b < estoque.length; b++){
                         if(estoque[b].nome.equals(nomeProduto)){
-                            System.out.println("\tQuantidade do produto em estoque: " + estoque[b].qtdEstoque);
-                            System.out.print("\n\tQuantas unidades deseja vender ? ");
+                            System.out.println("\n\tQuantidade do produto em estoque: " + estoque[b].qtdEstoque);
+                            System.out.print("\tQuantas unidades deseja vender ? ");
                             unidades = ler.nextInt();
-                            ler.nextLine();
                             if(unidades > estoque[b].qtdEstoque){
                                 System.out.print("\tNão é possível vender mais unidades do que existe em estoque.\n");
                             } else {
                                 valorTotal = unidades * estoque[b].valor;
                                 estoque[b].qtdEstoque -= unidades;
-                                System.out.println("\tVenda de " + unidades + " unidades registrada com sucesso.");
-                                System.out.println("\n\tValor total da venda: R$" + valorTotal);
-                                ler.nextLine();
+                                System.out.println("\n\tVenda de " + unidades + " unidades registrada com sucesso.");
+                                System.out.println("\tValor total da venda: R$" + valorTotal);
                             }
                             break;
                         }
                     }
+                    ler.nextLine();
                     System.out.print("\t---------------------------------------\n");
-                    System.out.print("\tPressione enter para retornar ao menu...\n");
+                    System.out.print("\tPressione enter para retornar ao menu...");
                     ler.nextLine();
                 }
                 case 6->{
