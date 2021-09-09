@@ -3,10 +3,10 @@ package Sistema;
 import java.util.Scanner;
 
 public class Brinquedo {
-    Scanner scan = new Scanner(System.in);
-    String nome, marca, categoria;
-    double precoUnitario;
-    int idadeIndicada, quantidade, codigoIdentificador;
+    private Scanner scan = new Scanner(System.in);
+    private String nome, marca, categoria;
+    private double precoUnitario;
+    private int idadeIndicada, quantidade, codigoIdentificador;
 
     public String toString(){
         return "Nome do brinquedo: " +this.nome+ "\n"+
@@ -53,7 +53,35 @@ public class Brinquedo {
     }
 
     public void Editar(){
-
+        System.out.println("Dados anteriores");
+        this.Visualizar();
+        //Nome
+        System.out.print("Digite o novo nome do brinquedo: ");
+        String n = scan.nextLine();
+        this.setNome(n);
+        //Marca
+        System.out.print("Digite a nova marca do brinquedo: ");
+        String m = scan.nextLine();
+        this.setMarca(m);
+        //Categoria
+        System.out.print("Digite a nova categoria do brinquedo: ");
+        String c = scan.nextLine();
+        this.setCategoria(c);
+        //Preço unitário
+        System.out.print("Digite o novo preco unitario do brinquedo: ");
+        double p = scan.nextDouble();
+        scan.nextLine();
+        this.setPreco(p);
+        //Idade indicativa
+        System.out.print("Digite a nova idade indicada para o uso do brinquedo: ");
+        int i = scan.nextInt();
+        scan.nextLine();
+        this.setIdade(i);
+        //Código identificador
+        System.out.print("Digite o novo código identificador do brinquedo: ");
+        int cid = scan.nextInt();
+        scan.nextLine();
+        this.setCid(cid);
     }
 
     public void Deletar(){

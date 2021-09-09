@@ -4,7 +4,7 @@ public class Loja extends Pessoa{
 
     private String cnpj;
     private Funcionario[] funcionarios;
-    //Adicionar atributo estoque
+    private Estoque estoque = new Estoque();
 
     public String toString(){
         return "Nome da loja: " +this.nome+ "\n" +
