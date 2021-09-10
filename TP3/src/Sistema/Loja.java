@@ -3,8 +3,10 @@ package Sistema;
 public class Loja extends Pessoa{
 
     private String cnpj;
-    private Funcionario[] funcionarios;
-    private Brinquedo[] estoque;
+    private Funcionario[] funcionarios; //Array de funcionarios
+    private int totalFuncionarios = 0; //Numero total de funcionarios na loja
+    private Brinquedo[] estoque; //Array de brinquedos
+    private int totalItens = 0; //Numero total de itens unicos no estoque
 
     public String toString(){
         return "Nome da loja: " +this.nome+ "\n" +
@@ -63,14 +65,20 @@ public class Loja extends Pessoa{
         //Procurar como deletar
     }
 
+    public void CadastrarFuncionario(){
+
+    }
+
+    //Mostrar todos os funcionários cadastrados
     public void VisualizarFuncionarios(){
-        System.out.println("==== Dados dos funcionarios ====");
         System.out.println(funcionarios);
         System.out.println("================================");
     }
 
+    //Mostrar todos os itens no estoque
     public void VisualizarEstoque(){
-
+        System.out.println(estoque);
+        System.out.println("================================");
     }
 
     //Getters e Setters

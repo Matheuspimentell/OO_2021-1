@@ -9,7 +9,8 @@ public class Brinquedo {
     private int idadeIndicada, quantidade, codigoIdentificador;
 
     public String toString(){
-        return "Nome do brinquedo: " +this.nome+ "\n"+
+        return  "=================================================\n"+
+                "Nome do brinquedo: " +this.nome+ "\n"+
                 "Marca: " +this.marca+ "\n"+
                 "Categoria:" +this.categoria+ "\n"+
                 "Preco unitario: " +this.precoUnitario+ "\n"+

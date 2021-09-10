@@ -1,12 +1,15 @@
 package Sistema;
 
+import java.util.ArrayList;
+
 public class Funcionario extends Pessoa{
 
     private int codigoIdentificador;
     private String cargo;
 
     public String toString(){
-        return "Nome do funcionario: " +this.nome+ "\n" +
+        return  "===============================================\n"
+                +"Nome do funcionario: " +this.nome+ "\n" +
                 "Endereco do funcionario: " +this.endereco+ "\n" +
                 "Telefone do funcionario: " +this.telefone+ "\n" +
                 "ID do funcionario: " +this.codigoIdentificador+ "\n" +
