@@ -9,5 +9,4 @@ abstract class Pessoa {
     abstract public void Cadastrar();
     abstract public void Editar();
     abstract public void Visualizar();
-    abstract public void Deletar();
 }

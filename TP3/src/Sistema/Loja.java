@@ -1,5 +1,7 @@
 package Sistema;
 
+import java.util.Arrays;
+
 public class Loja extends Pessoa{
 
     private String cnpj;
@@ -60,7 +62,6 @@ public class Loja extends Pessoa{
         this.setCnpj(c);
     }
 
-    @Override
     public void Deletar() {
         //Procurar como deletar
     }

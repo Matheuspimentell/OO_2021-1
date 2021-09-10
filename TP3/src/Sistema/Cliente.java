@@ -1,5 +1,7 @@
 package Sistema;
 
+import java.util.Arrays;
+
 public class Cliente extends Pessoa{
     private String cpf;
 
@@ -58,9 +60,9 @@ public class Cliente extends Pessoa{
         System.out.println(this);
     }
 
-    @Override
-    public void Deletar() {
-        //Procurar como deletar
+    public Cliente[] Deletar(Cliente[] clientes, String c) {
+        //Procurar pelo cpf do cliente e retirá-lo do array
+        return clientes;
     }
 
     //Getters e Setters

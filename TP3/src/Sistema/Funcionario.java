@@ -1,6 +1,6 @@
 package Sistema;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Funcionario extends Pessoa{
 
@@ -69,9 +69,10 @@ public class Funcionario extends Pessoa{
         this.setCargo(car);
     }
 
-    @Override
-    public void Deletar() {
-        //Procurar como deletar
+
+    public Funcionario[] Deletar(Funcionario[] funcionarios, String c) {
+        //Procurar pelo codigo do funcionario e retirá-lo do array
+        return funcionarios;
     }
 
     //Getter e Setters
