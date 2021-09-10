@@ -1,7 +1,6 @@
 package Sistema;
 
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Brinquedo {
     private Scanner scan = new Scanner(System.in);
@@ -86,9 +85,9 @@ public class Brinquedo {
         this.setCid(cid);
     }
 
-    public Brinquedo[] Deletar(Brinquedo[] brinquedos, String n){
-        //Procurar pelo nome do brinquedo e retirá-lo do array
-        return brinquedos;
+    public void Deletar(){
+        //Procurar como deletar
+        System.out.println("Método ainda não implementado");
     }
 
     //Getters e Setters

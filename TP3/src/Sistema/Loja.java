@@ -1,7 +1,5 @@
 package Sistema;
 
-import java.util.Arrays;
-
 public class Loja extends Pessoa{
 
     private String cnpj;
@@ -62,24 +60,10 @@ public class Loja extends Pessoa{
         this.setCnpj(c);
     }
 
+    @Override
     public void Deletar() {
         //Procurar como deletar
-    }
-
-    public void CadastrarFuncionario(){
-
-    }
-
-    //Mostrar todos os funcionários cadastrados
-    public void VisualizarFuncionarios(){
-        System.out.println(funcionarios);
-        System.out.println("================================");
-    }
-
-    //Mostrar todos os itens no estoque
-    public void VisualizarEstoque(){
-        System.out.println(estoque);
-        System.out.println("================================");
+        System.out.println("Método ainda não implementado");
     }
 
     //Getters e Setters
@@ -113,5 +97,29 @@ public class Loja extends Pessoa{
 
     public void setCnpj(String c){
         this.cnpj = c;
+    }
+
+    //Cadastro de 1 funcionário
+    public void setFuncionarios(){
+        funcionarios[totalFuncionarios] = new Funcionario(); //aloca espaco para 1 funcionario
+        funcionarios[totalFuncionarios].Cadastrar(); //Chamada para a função de cadastro de funcionário
+        totalFuncionarios++; //Incrementar a variável totalFuncionários
+    }
+
+    //Mostrar todos os funcionários cadastrados
+    public Funcionario[] getFuncionarios(){
+        return this.funcionarios;
+    }
+
+    //Cadastro de 1 brinquedo no estoque
+    public void setEstoque(){
+        estoque[totalItens] = new Brinquedo();
+        estoque[totalItens].Cadastrar();
+        totalItens++;
+    }
+
+    //Mostrar todos os itens no estoque
+    public Brinquedo[] getEstoque(){
+        return this.estoque;
     }
 }
