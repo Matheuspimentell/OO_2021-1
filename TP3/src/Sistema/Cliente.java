@@ -63,10 +63,7 @@ public class Cliente extends Pessoa{
         //Procurar como deletar
     }
 
-    public void BuscarCliente(String name){
-
-    }
-
+    //Getters e Setters
     public String getNome(){
         return this.nome;
     }

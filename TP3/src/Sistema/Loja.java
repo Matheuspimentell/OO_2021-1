@@ -4,7 +4,7 @@ public class Loja extends Pessoa{
 
     private String cnpj;
     private Funcionario[] funcionarios;
-    private Estoque estoque = new Estoque();
+    private Brinquedo[] estoque;
 
     public String toString(){
         return "Nome da loja: " +this.nome+ "\n" +
@@ -63,6 +63,15 @@ public class Loja extends Pessoa{
         //Procurar como deletar
     }
 
+    public void VisualizarFuncionarios(){
+
+    }
+
+    public void VisualizarEstoque(){
+
+    }
+
+    //Getters e Setters
     public String getNome(){
         return this.nome;
     }

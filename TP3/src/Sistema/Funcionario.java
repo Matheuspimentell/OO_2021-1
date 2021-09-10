@@ -71,6 +71,7 @@ public class Funcionario extends Pessoa{
         //Procurar como deletar
     }
 
+    //Getter e Setters
     public String getNome(){
         return this.nome;
     }
