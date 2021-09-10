@@ -64,7 +64,9 @@ public class Loja extends Pessoa{
     }
 
     public void VisualizarFuncionarios(){
-
+        System.out.println("==== Dados dos funcionarios ====");
+        System.out.println(funcionarios);
+        System.out.println("================================");
     }
 
     public void VisualizarEstoque(){

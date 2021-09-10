@@ -21,8 +21,4 @@ public class Sistema {
     public void GerarNotaFiscal(){
         //Impressão da nota fiscal
     }
-
-    public void VisualizarClientes(){
-
-    }
 }
