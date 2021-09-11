@@ -65,14 +65,17 @@ public class Cliente extends Pessoa{
     }
 
     //Getters e Setters
+    @Override
     public String getNome(){
         return this.nome;
     }
 
+    @Override
     public String getEndereco(){
         return this.endereco;
     }
 
+    @Override
     public String getTelefone(){
         return this.telefone;
     }
@@ -81,14 +84,17 @@ public class Cliente extends Pessoa{
         return this.cpf;
     }
 
+    @Override
     public void setNome(String n){
         this.nome = n;
     }
 
+    @Override
     public void setEndereco(String e){
         this.endereco = e;
     }
 
+    @Override
     public void setTelefone(String t){
         this.telefone = t;
     }
