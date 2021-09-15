@@ -58,12 +58,6 @@ public class Cliente extends Pessoa{
         System.out.println(this);
     }
 
-    @Override
-    public void Deletar() {
-        //Procurar como deletar
-        System.out.println("Método ainda não implementado");
-    }
-
     //Getters e Setters
     @Override
     public String getNome(){

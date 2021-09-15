@@ -2,7 +2,7 @@ package Sistema;
 
 public class Funcionario extends Pessoa{
 
-    private int codigoIdentificador;
+    private int matricula;
     private String cargo;
 
     public String toString(){
@@ -10,7 +10,7 @@ public class Funcionario extends Pessoa{
                 +"Nome do funcionario: " +this.nome+ "\n" +
                 "Endereco do funcionario: " +this.endereco+ "\n" +
                 "Telefone do funcionario: " +this.telefone+ "\n" +
-                "ID do funcionario: " +this.codigoIdentificador+ "\n" +
+                "ID do funcionario: " +this.matricula+ "\n" +
                 "Cargo do funcionario: " +this.cargo+ "\n";
     }
 
@@ -23,14 +23,14 @@ public class Funcionario extends Pessoa{
         System.out.print("Digite o telefone do funcionario: ");
         String t = scan.nextLine();
         System.out.print("Digite o ID do funcionario: ");
-        int cid = scan.nextInt();
+        int m = scan.nextInt();
         scan.nextLine();
         System.out.print("Digite o cargo do funcionario: ");
         String car = scan.nextLine();
         this.nome = n;
         this.endereco = e;
         this.telefone = t;
-        this.codigoIdentificador = cid;
+        this.matricula = m;
         this.cargo = car;
     }
 
@@ -58,56 +58,56 @@ public class Funcionario extends Pessoa{
         this.setTelefone(t);
         //Codigo identificador
         System.out.print("Digite o novo ID do funcionario: ");
-        int cid = scan.nextInt();
+        int m = scan.nextInt();
         scan.nextLine();
-        this.setCid(cid);
+        this.setMatricula(m);
         //Cargo
         System.out.print("Digite o novo cargo do funcionario: ");
         String car = scan.nextLine();
         this.setCargo(car);
     }
 
-    @Override
-    public void Deletar() {
-        //Procurar como deletar
-        System.out.println("Método ainda não implementado");
-    }
-
     //Getter e Setters
+    @Override
     public String getNome(){
         return this.nome;
     }
 
+    @Override
     public String getEndereco(){
         return this.endereco;
     }
 
+    @Override
     public String getTelefone(){
         return this.telefone;
     }
 
-    public int getCid(){
-        return this.codigoIdentificador;
+    public int getMatricula(){
+        return this.matricula;
     }
 
     public String getCargo(){
         return this.cargo;
     }
 
+    @Override
     public void setNome(String n){
         this.nome = n;
     }
 
+    @Override
     public void setEndereco(String e){
         this.endereco = e;
     }
 
+    @Override
     public void setTelefone(String t){
         this.telefone = t;
     }
 
-    public void setCid(int cid){
-        this.codigoIdentificador = cid;
+    public void setMatricula(int m){
+        this.matricula = m;
     }
 
     public void setCargo(String car){

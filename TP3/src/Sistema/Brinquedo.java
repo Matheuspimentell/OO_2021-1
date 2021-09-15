@@ -6,7 +6,7 @@ public class Brinquedo {
     private Scanner scan = new Scanner(System.in);
     private String nome, marca, categoria;
     private double precoUnitario;
-    private int idadeIndicada, quantidade, codigoIdentificador;
+    private int idadeIndicada, quantidade, id;
 
     public String toString(){
         return  "=================================================\n"+
@@ -16,7 +16,7 @@ public class Brinquedo {
                 "Preco unitario: " +this.precoUnitario+ "\n"+
                 "Idade indicativa: " +this.idadeIndicada+ "\n"+
                 "Quantidade em estoque: " +this.quantidade+ "\n"+
-                "Codigo identificador: " +this.codigoIdentificador+ "\n";
+                "Codigo identificador: " +this.id+ "\n";
     }
 
     public void Cadastrar(){
@@ -85,11 +85,6 @@ public class Brinquedo {
         this.setCid(cid);
     }
 
-    public void Deletar(){
-        //Procurar como deletar
-        System.out.println("Método ainda não implementado");
-    }
-
     //Getters e Setters
     public String getNome(){
         return this.nome;
@@ -116,7 +111,7 @@ public class Brinquedo {
     }
 
     public double getCid(){
-        return this.codigoIdentificador;
+        return this.id;
     }
 
     public void setNome(String n){
@@ -144,6 +139,6 @@ public class Brinquedo {
     }
 
     public void setCid(int cid){
-        this.codigoIdentificador = cid;
+        this.id = cid;
     }
 }

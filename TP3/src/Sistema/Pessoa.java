@@ -8,9 +8,9 @@ abstract class Pessoa {
 
     //Métodos CRUD para aplicação nas classes filhas
     abstract public void Cadastrar();
-    abstract public void Editar();
+    abstract public void Editar(); 
     abstract public void Visualizar();
-    abstract public void Deletar(); //Deletar tem que ser na classe que vai controlar os dados do objeto
+    //Para deletar o objeto, tem que ser na classe que vai controlar os dados do objeto
 
     //Setters
     abstract public void setNome(String n);

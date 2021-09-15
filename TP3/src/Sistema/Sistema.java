@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Sistema {
     private Scanner scan = new Scanner(System.in);
     private Cliente[] clientes; //Array de clientes
-    private int totalClientes; //Numero total de clientes cadastrados
+    private int totalClientes = 0; //Numero total de clientes cadastrados
     private Loja loja; //Inicializador de uma loja
 
     public void CadastrarVenda(){
@@ -16,6 +16,8 @@ public class Sistema {
         // Caso não hajam mais produtos, gerar nota fical GerarNotaFiscal(carrinho de compras);
         System.out.println("Método ainda não implementado");
     }
+    
+    //Deletar Clientes
 
     public void BuscarCliente(String c){
         int i = 0;
@@ -34,7 +36,7 @@ public class Sistema {
 
     //Getters e Setters
     public Cliente[] getClientes(){
-        return this.clientes;
+        return this.clientes; //Substituir por um laço
     }
 
     public int getTotalClientes(){
@@ -45,17 +47,15 @@ public class Sistema {
         return this.loja;
     }
 
-    public void setClientes(){
-        this.clientes = new Cliente[10]; //Cria espaço para 10 clientes
-        this.setTotalClientes();
-    }
-
-    public void setTotalClientes(){
-        this.totalClientes = this.clientes.length;
+    public void setCliente(){
+        this.clientes[totalClientes] = new Cliente(); //Cria espaço para 1 cliente
+        this.clientes[totalClientes].Cadastrar(); //Chamada para a função de cadastro de clientes
+        totalClientes++;
     }
 
     public void setLoja(){
-        this.loja = new Loja();
+        this.loja = new Loja(); //Cria espaço para 1 loja
+        this.loja.Cadastrar(); //Cadastra 1 loja
     }
 }
 
