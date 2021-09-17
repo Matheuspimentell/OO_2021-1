@@ -1,5 +1,7 @@
 package Sistema;
 
+import java.util.ArrayList;
+
 public class Teste {
     public static void main(String[] args){
         Sistema sys = new Sistema();
@@ -32,8 +34,6 @@ public class Teste {
         novoB.setCargo("Vendedor");
 
         sys.getLoja().setFuncionario(novoB);
-
-        sys.getLoja().getFuncionarios(); // Imprime todos os funcionarios
 
         sys.getLoja().DeletarFuncionario();
 

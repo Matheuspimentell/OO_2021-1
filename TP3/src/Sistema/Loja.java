@@ -29,7 +29,9 @@ public class Loja extends Pessoa{
         this.endereco = e;
         this.telefone = t;
         this.cnpj = c;
+        //Set lista de Funcionarios
         funcionarios = new ArrayList<Funcionario>();
+        //Set Estoque
         estoque = new ArrayList<Brinquedo>();
     }
 
@@ -63,7 +65,7 @@ public class Loja extends Pessoa{
 
     //Função para deletar funcioários
     public void DeletarFuncionario(){
-        System.out.println("Digite o ID do funcionario que deseja excluir");
+        System.out.println("Digite o ID do funcionario que deseja excluir: ");
         int m = scan.nextInt();
         scan.nextLine();
         //Variável que indica a posição à ser excluída
@@ -75,10 +77,38 @@ public class Loja extends Pessoa{
             }
         }
         //Verificar se chegamos ao final da lista
-        if(i!=this.funcionarios.size()){
+        if(i != this.funcionarios.size()){
             this.funcionarios.remove(i);
         } else {
             System.out.println("Código identificador não encontrado.");
+        }
+    }
+
+    //Função para visualizar 1 funcionario
+    public void BuscarFuncionario(){
+        System.out.println("Digite o ID do funcionario que deseja busca:");
+        int m = scan.nextInt();
+        scan.nextLine();
+        //Variável que indica a posição à ser excluída
+        int i = 0;
+        //Percorrer toda a lista de funcionários
+        for(;i<this.funcionarios.size();i++){
+            if(m == this.funcionarios.get(i).getMatricula()){
+                break;
+            }
+        }
+        //Verificar se chegamos ao final da lista
+        if(i != this.funcionarios.size()){
+            System.out.println(this.funcionarios.get(i));
+        } else {
+            System.out.println("Código identificador não encontrado.");
+        }
+    }
+
+    //Visualizar todos os funcionarios
+    public void VisualizarFuncionarios(){
+        for (int i = 0; i < this.funcionarios.size(); i++){
+            System.out.println(this.funcionarios.get(i));
         }
     }
 
@@ -96,10 +126,38 @@ public class Loja extends Pessoa{
             }
         }
         //Verificar se chegamos ao final da lista
-        if(i!=this.estoque.size()){
+        if(i != this.estoque.size()){
             this.estoque.remove(i);
         } else {
             System.out.println("Código identificador não encontrado.");
+        }
+    }
+
+    //Função para visualizar 1 brinquedo
+    public void BuscarBrinquedo(){
+        System.out.println("Digite o Código Identificador do brinquedo que deseja excluir");
+        int cid = scan.nextInt();
+        scan.nextLine();
+        //Variável que indica a posição à ser excluída
+        int i = 0;
+        //Percorrer toda a lista de funcionários
+        for(;i<this.estoque.size();i++){
+            if(cid == this.estoque.get(i).getCid()){
+                break;
+            }
+        }
+        //Verificar se chegamos ao final da lista
+        if(i!=this.estoque.size()){
+            System.out.println(this.estoque.get(i));
+        } else {
+            System.out.println("Brinquedo não encontrado.");
+        }
+    }
+
+    //Visualizar o estoque inteiro
+    public void VisualizarEstoque(){
+        for (int i = 0; i < this.estoque.size(); i++){
+            System.out.println(this.estoque.get(i));
         }
     }
 
@@ -123,6 +181,16 @@ public class Loja extends Pessoa{
         return this.cnpj;
     }
 
+    public ArrayList<Funcionario> getFuncionarios(){
+        //Retornar o ArrayList de funcionários da loja
+        return this.funcionarios;
+    }
+
+    public ArrayList<Brinquedo> getEstoque(){
+        //Retornar o ArrayList dos brinquedos
+        return this.estoque;
+    }
+
     @Override
     public void setNome(String n){
         this.nome = n;
@@ -144,27 +212,13 @@ public class Loja extends Pessoa{
 
     //Cadastro de 1 funcionário
     public void setFuncionario(Funcionario novo){
+        //Adiciona 1 funcionário na loja
         this.funcionarios.add(novo);
     }
 
-    //Mostrar todos os funcionários cadastrados
-    public void getFuncionarios(){
-        //Substituir por um laço
-        for (int i=0 ; i<this.funcionarios.size(); i++){
-            System.out.println(this.funcionarios.get(i));
-        }
-    }
-
     //Cadastro de 1 brinquedo no estoque
-    public void setEstoque(Brinquedo novo){
+    public void setBrinquedo(Brinquedo novo){
+        //Adiciona 1 brinquedo no estoque
         this.estoque.add(novo);
-    }
-
-    //Mostrar todos os itens no estoque
-    public void getEstoque(){
-        //Substituir por um laço
-        for (int i=0 ; i<this.estoque.size(); i++){
-            System.out.println(this.estoque.get(i));
-        }
     }
 }

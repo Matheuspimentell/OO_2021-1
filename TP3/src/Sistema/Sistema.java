@@ -1,56 +1,80 @@
 package Sistema;
 
-import java.util.Objects;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Sistema {
     private Scanner scan = new Scanner(System.in);
-    private Cliente[] clientes; //Array de clientes
-    private int totalClientes = 0; //Numero total de clientes cadastrados
+    private ArrayList<Cliente> clientes = new ArrayList<Cliente>(); //ArrayList de clientes
     private Loja loja; //Inicializador de uma loja
 
-    public void CadastrarVenda(){
+    public void CadastrarVenda(Cliente comprador, Funcionario vendedor){
+        //Carrinho de compras do cliente
+        ArrayList<Brinquedo> carrinhoCompras = new ArrayList<Brinquedo>();
         // Buscar produtos e gerar nota fiscal
         // Buscar cliente nome ou cpf clientes.BuscarClientes("05372170107");
         // Pedir nome dos produtos carrinhoCompras[1] = loja.BuscarBrinquedo("Boneca Barbie de verão");
         // Caso não hajam mais produtos, gerar nota fical GerarNotaFiscal(carrinho de compras);
         System.out.println("Método ainda não implementado");
     }
-    
-    //Deletar Clientes
 
-    public void BuscarCliente(String c){
-        int i = 0;
-        for (i = 0; i < this.clientes.length; i++){
-            if (Objects.equals(this.clientes[i].getCpf(), c)){
-                break;
-            }
-        }
-        System.out.println(this.clientes[i]); //imprime os dados do cliente
-    }
-
-    public void GerarNotaFiscal(){
+    public void GerarNotaFiscal(Cliente comprador, Funcionario vendedor){
         //Impressão da nota fiscal
         System.out.println("Método ainda não implementado");
     }
-
-    //Getters e Setters
-    public Cliente[] getClientes(){
-        return this.clientes; //Substituir por um laço
+    
+    //Deleta 1 cliente do ArrayList de clientes
+    public void DeletarCliente(){
+        System.out.println("Digite o CPF do cliente que deseja deletar: ");
+        String c = scan.nextLine();
+        int i = 0;
+        //Procurar dentro do array de clientes
+        for(;i < this.clientes.size(); i++){
+            if(this.clientes.get(i).getCpf() == c){
+                break;
+            }
+        }
+        if(i != this.clientes.size()){
+            this.clientes.remove(i);
+        } else {
+            System.out.println("Cliente não encontrado.");
+        }
     }
 
-    public int getTotalClientes(){
-        return this.totalClientes;
+    //Mostra 1 cliente
+    public void BuscarCliente(){
+        System.out.println("Digite o CPF do cliente que deseja procurar: ");
+        String c = scan.nextLine();
+        int i = 0;
+        //Procurar dentro do array de clientes
+        for(;i < this.clientes.size(); i++){
+            if(this.clientes.get(i).getCpf() == c){
+                break;
+            }
+        }
+        //Se não tiver chegado ao final do arrayList de clientes
+        if(i != this.clientes.size()){
+            //Imprimir os dados do cliente
+            System.out.println(this.clientes.get(i));
+        } else {
+            System.out.println("Cliente não encontrado.");
+        }
+    }
+
+    //Getters e Setters
+
+    //Retorna o Array de clientes.
+    public ArrayList<Cliente> getClientes(){
+        return this.clientes;
     }
 
     public Loja getLoja(){
         return this.loja;
     }
 
-    public void setCliente(){
-        this.clientes[totalClientes] = new Cliente(); //Cria espaço para 1 cliente
-        this.clientes[totalClientes].Cadastrar(); //Chamada para a função de cadastro de clientes
-        totalClientes++;
+    public void setCliente(Cliente novo){
+        //Cadastrar 1 cliente
+        this.clientes.add(novo);
     }
 
     public void setLoja(){
