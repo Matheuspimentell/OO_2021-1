@@ -65,7 +65,7 @@ public class Loja extends Pessoa{
 
     //Função para deletar funcioários
     public void DeletarFuncionario(){
-        System.out.println("Digite o ID do funcionario que deseja excluir: ");
+        System.out.print("Digite o ID do funcionario que deseja excluir: ");
         int m = scan.nextInt();
         scan.nextLine();
         //Variável que indica a posição à ser excluída
@@ -86,7 +86,7 @@ public class Loja extends Pessoa{
 
     //Função para visualizar 1 funcionario
     public void BuscarFuncionario(){
-        System.out.println("Digite o ID do funcionario que deseja busca:");
+        System.out.print("Digite o ID do funcionario que deseja buscar: ");
         int m = scan.nextInt();
         scan.nextLine();
         //Variável que indica a posição à ser excluída
@@ -114,7 +114,7 @@ public class Loja extends Pessoa{
 
     //Função para deletar brinquedos no estoque
     public void DeletarBrinquedo(){
-        System.out.println("Digite o Código Identificador do brinquedo que deseja excluir");
+        System.out.print("Digite o Código Identificador do brinquedo que deseja excluir: ");
         int cid = scan.nextInt();
         scan.nextLine();
         //Variável que indica a posição à ser excluída
@@ -134,8 +134,8 @@ public class Loja extends Pessoa{
     }
 
     //Função para visualizar 1 brinquedo
-    public void BuscarBrinquedo(){
-        System.out.println("Digite o Código Identificador do brinquedo que deseja excluir");
+    public Brinquedo BuscarBrinquedo(){
+        System.out.print("Digite o Código Identificador do brinquedo que deseja buscar: ");
         int cid = scan.nextInt();
         scan.nextLine();
         //Variável que indica a posição à ser excluída
@@ -148,9 +148,10 @@ public class Loja extends Pessoa{
         }
         //Verificar se chegamos ao final da lista
         if(i!=this.estoque.size()){
-            System.out.println(this.estoque.get(i));
+            return this.estoque.get(i);
         } else {
             System.out.println("Brinquedo não encontrado.");
+            return null;
         }
     }
 

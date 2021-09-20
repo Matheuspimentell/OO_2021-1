@@ -12,7 +12,7 @@ public class Brinquedo {
         return  "=================================================\n"+
                 "Nome do brinquedo: " +this.nome+ "\n"+
                 "Marca: " +this.marca+ "\n"+
-                "Categoria:" +this.categoria+ "\n"+
+                "Categoria: " +this.categoria+ "\n"+
                 "Preco unitario: " +this.precoUnitario+ "\n"+
                 "Idade indicativa: " +this.idadeIndicada+ "\n"+
                 "Quantidade em estoque: " +this.quantidade+ "\n"+

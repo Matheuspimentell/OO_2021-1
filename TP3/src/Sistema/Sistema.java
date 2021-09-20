@@ -10,12 +10,20 @@ public class Sistema {
 
     public void CadastrarVenda(Cliente comprador, Funcionario vendedor){
         //Carrinho de compras do cliente
-        ArrayList<Brinquedo> carrinhoCompras = new ArrayList<Brinquedo>();
-        // Buscar produtos e gerar nota fiscal
-        // Buscar cliente nome ou cpf clientes.BuscarClientes("05372170107");
-        // Pedir nome dos produtos carrinhoCompras[1] = loja.BuscarBrinquedo("Boneca Barbie de verão");
-        // Caso não hajam mais produtos, gerar nota fical GerarNotaFiscal(carrinho de compras);
-        System.out.println("Método ainda não implementado");
+        String opcao;
+        //Enquanto a opção for Sim, adicionar um novo item ao carrinho
+        do{
+            ArrayList<Brinquedo> carrinhoCompras = new ArrayList<Brinquedo>();
+            Brinquedo novo = this.loja.BuscarBrinquedo(); //Procura o brinquedo a ser adicionado
+            if(novo == null){
+                System.out.println("Brinquedo não encontrado."); //Imprime mensagem de erro
+            } else {
+                carrinhoCompras.add(novo); //Adiciona o brinquedo ao carrinho de compras
+            }
+            System.out.print("Deseja adicionar mais itens ao carrinho (S/N)? ");
+            opcao = scan.next();
+        } while (opcao != "n" || opcao != "N");
+        //Gerar nota fical GerarNotaFiscal(carrinho de compras);
     }
 
     public void GerarNotaFiscal(Cliente comprador, Funcionario vendedor){

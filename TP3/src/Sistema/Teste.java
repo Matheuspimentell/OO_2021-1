@@ -17,26 +17,25 @@ public class Teste {
 
         sys.getLoja().setFuncionario(novo); //Cadastra o cleiton
 
-        Funcionario novoA = new Funcionario();
-        novoA.setNome("Cleiton Jr");
-        novoA.setEndereco("Taguatinga");
-        novoA.setTelefone("61 999999999");
-        novoA.setMatricula(101);
-        novoA.setCargo("Assistente de RH");
+        Cliente novoCliente = new Cliente();
+        novoCliente.setNome("Amaury");
+        novoCliente.setEndereco("Asa Norte");
+        novoCliente.setTelefone("61 99999 9999");
+        novoCliente.setCpf("000.000.000-00");
+        
+        sys.setCliente(novoCliente); //Cadastra o Amaury
 
-        sys.getLoja().setFuncionario(novoA);
+        Brinquedo novoBrinquedo = new Brinquedo();
+        novoBrinquedo.setNome("teste");
+        novoBrinquedo.setMarca("Mattel");
+        novoBrinquedo.setCategoria("testando");
+        novoBrinquedo.setPreco(29.99);
+        novoBrinquedo.setIdade(10);
+        novoBrinquedo.setQuantidade(35);
+        novoBrinquedo.setCid(000);
 
-        Funcionario novoB = new Funcionario();
-        novoB.setNome("Cleiton Neto");
-        novoB.setEndereco("Taguatinga");
-        novoB.setTelefone("61 999999999");
-        novoB.setMatricula(102);
-        novoB.setCargo("Vendedor");
+        sys.getLoja().setBrinquedo(novoBrinquedo); //Cadastra o brinquedo teste
 
-        sys.getLoja().setFuncionario(novoB);
-
-        sys.getLoja().DeletarFuncionario();
-
-        sys.getLoja().getFuncionarios(); //Imprime denovo
+        sys.CadastrarVenda(novoCliente, novo); //Testa se foi realmente adicionado
     }
 }
