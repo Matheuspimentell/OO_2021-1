@@ -9,26 +9,64 @@ public class Sistema {
     private Loja loja; //Inicializador de uma loja
 
     public void CadastrarVenda(Cliente comprador, Funcionario vendedor){
-        //Carrinho de compras do cliente
         String opcao;
+        //Carrinho de compras do cliente
+        ArrayList<Brinquedo> carrinhoCompras = new ArrayList<Brinquedo>();
+        ArrayList<Integer> qtd = new  ArrayList<Integer>();
         //Enquanto a opção for Sim, adicionar um novo item ao carrinho
-        do{
-            ArrayList<Brinquedo> carrinhoCompras = new ArrayList<Brinquedo>();
+        do {
             Brinquedo novo = this.loja.BuscarBrinquedo(); //Procura o brinquedo a ser adicionado
             if(novo == null){
                 System.out.println("Brinquedo não encontrado."); //Imprime mensagem de erro
             } else {
+                //Pedir quantidade do item
+                System.out.println("Qual a quantidade do item que deseja adicionar ?");
+                int quant = scan.nextInt();
+                scan.nextLine();
+                qtd.add(quant);
                 carrinhoCompras.add(novo); //Adiciona o brinquedo ao carrinho de compras
             }
             System.out.print("Deseja adicionar mais itens ao carrinho (S/N)? ");
-            opcao = scan.next();
+            opcao = scan.nextLine();
         } while (opcao != "n" || opcao != "N");
         //Gerar nota fical GerarNotaFiscal(carrinho de compras);
     }
 
-    public void GerarNotaFiscal(Cliente comprador, Funcionario vendedor){
-        //Impressão da nota fiscal
-        System.out.println("Método ainda não implementado");
+    public String GerarNotaFiscal(ArrayList<Brinquedo> carrinhoCompras, String cpf, String nomeVendedor){
+        //Modelo da nota fiscal:
+        /*
+                  Ciatoy Brinquedos LTDA.
+
+        St. D Sul - Taguatinga, Brasília - DF, 70239-070
+        CNPJ: 68.785.981/0001-63
+        _________________________________________________
+
+                   Cupom fiscal eletrônico
+        _________________________________________________
+
+        CPF do consumidor: 941.368.470-76
+
+        Nome do vendedor: Cleiton da Silva Jr.
+        _________________________________________________
+        #|COD|DESC|QTD|VL UN R$|VL TI R$|
+        -------------------------------------------------
+        001 Carrinho HotWheels 4 * 19,90 (79,60)
+        002 Barbie Trein. Cachorr. 2 * 98,90 (197,80) 
+        -------------------------------------------------
+        Valor total =                              277,40
+        */
+        return this.loja.getNome() + "\n\n" +
+               this.loja.getEndereco() + "\n" +
+               this.loja.getCnpj() + "\n" +
+               "_________________________________________________\n\n" + 
+               "Cupom fiscal eletrônico\n" + 
+               "_________________________________________________\n\n" +
+               "CPF do consumidor: " + cpf + "\n\n" +
+               "Nome do vendedor: " + nomeVendedor + "\n" +
+               "_________________________________________________\n" +
+               "#|COD|DESC|QTD|VL UN R$|VL TI R$|\n" +
+               "-------------------------------------------------\n" +
+               "";
     }
     
     //Deleta 1 cliente do ArrayList de clientes
@@ -90,5 +128,3 @@ public class Sistema {
         this.loja.Cadastrar(); //Cadastra 1 loja
     }
 }
-
-
