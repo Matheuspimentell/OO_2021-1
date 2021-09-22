@@ -8,6 +8,19 @@ public class Brinquedo {
     private double precoUnitario;
     private int idadeIndicada, quantidade, id;
 
+    //Alteração do construtor {new} de brinquedo
+    public Brinquedo(String nome, String marca, String categoria,
+                        double precoUnit, int idadeInd, int quant, int id){
+        this.nome = nome;
+        this.marca = marca;
+        this.categoria = categoria;
+        this.precoUnitario = precoUnit;
+        this.idadeIndicada = idadeInd;
+        this.quantidade = quant;
+        this.id = id;
+    }
+
+
     public String toString(){
         return  "=================================================\n"+
                 "Nome do brinquedo: " +this.nome+ "\n"+

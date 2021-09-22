@@ -2,15 +2,24 @@ package Sistema;
 
 public class Funcionario extends Pessoa{
 
-    private int matricula;
+    private int id;
     private String cargo;
+
+    //Alteração do construtor {new} de Funcionário
+    public Funcionario(String nome, String endereco, String telefone, int id, String cargo){
+        this.nome = nome;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.id = id;
+        this.cargo = cargo;
+    }
 
     public String toString(){
         return  "===============================================\n"+
                 "Nome do funcionario: " +this.nome+ "\n" +
                 "Endereco do funcionario: " +this.endereco+ "\n" +
                 "Telefone do funcionario: " +this.telefone+ "\n" +
-                "ID do funcionario: " +this.matricula+ "\n" +
+                "ID do funcionario: " +this.id+ "\n" +
                 "Cargo do funcionario: " +this.cargo+ "\n";
     }
 
@@ -30,7 +39,7 @@ public class Funcionario extends Pessoa{
         this.nome = n;
         this.endereco = e;
         this.telefone = t;
-        this.matricula = m;
+        this.id = m;
         this.cargo = car;
     }
 
@@ -60,7 +69,7 @@ public class Funcionario extends Pessoa{
         System.out.print("Digite o novo ID do funcionario: ");
         int m = scan.nextInt();
         scan.nextLine();
-        this.setMatricula(m);
+        this.setid(m);
         //Cargo
         System.out.print("Digite o novo cargo do funcionario: ");
         String car = scan.nextLine();
@@ -83,8 +92,8 @@ public class Funcionario extends Pessoa{
         return this.telefone;
     }
 
-    public int getMatricula(){
-        return this.matricula;
+    public int getid(){
+        return this.id;
     }
 
     public String getCargo(){
@@ -106,8 +115,8 @@ public class Funcionario extends Pessoa{
         this.telefone = t;
     }
 
-    public void setMatricula(int m){
-        this.matricula = m;
+    public void setid(int m){
+        this.id = m;
     }
 
     public void setCargo(String car){

@@ -5,8 +5,19 @@ import java.util.ArrayList;
 public class Loja extends Pessoa{
 
     private String cnpj;
-    private ArrayList<Funcionario> funcionarios; //Array de funcionarios
-    private ArrayList<Brinquedo> estoque; //Array de brinquedos
+    private ArrayList<Funcionario> funcionarios; //ArrayList de funcionarios
+    private ArrayList<Brinquedo> estoque; //ArrayList de brinquedos
+
+    //Alteração do construtor {new} de Loja
+    public Loja(String nome, String endereco, String telefone, String cnpj){
+        this.nome = nome;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.cnpj = cnpj;
+        this.estoque = new ArrayList<Brinquedo>();
+        this.funcionarios = new ArrayList<Funcionario>();
+    }
+
 
     public String toString(){
         return "Nome da loja: " +this.nome+ "\n" +
@@ -72,7 +83,7 @@ public class Loja extends Pessoa{
         int i = 0;
         //Percorrer toda a lista de funcionários
         for(;i<this.funcionarios.size();i++){
-            if(m == this.funcionarios.get(i).getMatricula()){
+            if(m == this.funcionarios.get(i).getid()){
                 break;
             }
         }
@@ -93,7 +104,7 @@ public class Loja extends Pessoa{
         int i = 0;
         //Percorrer toda a lista de funcionários
         for(;i<this.funcionarios.size();i++){
-            if(m == this.funcionarios.get(i).getMatricula()){
+            if(m == this.funcionarios.get(i).getid()){
                 break;
             }
         }

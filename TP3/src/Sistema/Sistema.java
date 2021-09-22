@@ -123,8 +123,7 @@ public class Sistema {
         this.clientes.add(novo);
     }
 
-    public void setLoja(){
-        this.loja = new Loja(); //Cria espaço para 1 loja
-        this.loja.Cadastrar(); //Cadastra 1 loja
+    public void setLoja(String nome, String endereco, String telefone, String cnpj){
+        this.loja = new Loja(nome, endereco, telefone, cnpj); //Cria espaço para 1 loja
     }
 }
