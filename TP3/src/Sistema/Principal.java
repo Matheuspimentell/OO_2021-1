@@ -3,20 +3,20 @@ package Sistema;
 public class Principal {
 
     public static void main(String[] args){
-        Cliente cliente = new Cliente("Matheus Pimentel Leal", "053.721.701-07");
-        System.out.println("Funcao Editar 1:");
-        cliente.Editar();
-        System.out.println("Funcao Visualizar 1:");
-        cliente.Visualizar();
-        System.out.println("Funcao Cadastrar 1:");
-        cliente.Cadastrar();
-        System.out.println("Funcao Editar 2:");
-        cliente.Editar();
-        System.out.println("Funcao Visualizar 2:");
-        cliente.Visualizar();
-        System.out.println("Funcao Cadastrar 2:");
-        cliente.Cadastrar();
-        System.out.println("Dados finais:");
-        System.out.println(cliente);
+        Funcionario funcionario = new Funcionario("Cleiton", 0001, "Gerente de vendas");
+        System.out.println("Visualizar 1:");
+        funcionario.Visualizar();
+        System.out.println("Editar 1:");
+        funcionario.Editar();
+        System.out.println("Visualizar 2:");
+        funcionario.Visualizar();
+        System.out.println("Cadastrar 1:");
+        funcionario.Cadastrar();
+        System.out.println("Editar 2:");
+        funcionario.Editar();
+        System.out.println("Cadastrar 2:");
+        funcionario.Cadastrar();
+        System.out.println("Dados finais do funcionario:");
+        System.out.println(funcionario);
     }
 }

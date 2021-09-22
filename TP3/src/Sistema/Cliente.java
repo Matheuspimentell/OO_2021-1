@@ -28,19 +28,19 @@ public class Cliente extends Pessoa{
             if(this.endereco == null){
                 System.out.print("Digite o endereco do cliente: ");
                 String e = scan.nextLine();
-                this.setEndereco(e);
+                this.endereco = e;
                 System.out.println("-----------------------------------------------------");
             }
             //Telefone
             if(this.telefone ==  null){
                 System.out.print("Digite o telefone do cliente: ");
                 String t = scan.nextLine();
-                this.setTelefone(t);
+                this.telefone = t;
                 System.out.println("-----------------------------------------------------");
             }
         //Caso contrário
         } else {
-            System.out.println("O cliente em questão já possui um cadastro completo.");
+            System.out.println("O cliente em questao ja possui um cadastro completo.");
             System.out.println("-----------------------------------------------------");
         }
     }
@@ -55,23 +55,23 @@ public class Cliente extends Pessoa{
         //Nome
         System.out.print("Digite o novo nome do cliente: ");
         String n = scan.nextLine();
-        this.setNome(n);
+        this.nome = n;
         //Endereco
         if(this.endereco != null){
             System.out.print("Digite o novo endereco do cliente: ");
             String e = scan.nextLine();
-            this.setEndereco(e);
+            this.endereco = e;
         }
         //Telefone
         if(this.telefone != null){
             System.out.print("Digite o novo telefone do cliente: ");
             String t = scan.nextLine();
-            this.setTelefone(t);
+            this.telefone = t;
         }
         //CPF
         System.out.print("Digite o novo CPF do cliente: ");
         String c = scan.nextLine();
-        this.setCpf(c);
+        this.cpf = c;
     }
 
     //Imprime apenas os dados cadastrados
@@ -87,41 +87,35 @@ public class Cliente extends Pessoa{
         }
     }
 
-    //Getters e Setters
+    //Getters
     @Override
     public String getNome(){
         return this.nome;
     }
-
     @Override
     public String getEndereco(){
         return this.endereco;
     }
-
     @Override
     public String getTelefone(){
         return this.telefone;
     }
-
     public String getCpf(){
         return this.cpf;
     }
-
+    //Setters
     @Override
     public void setNome(String n){
         this.nome = n;
     }
-
     @Override
     public void setEndereco(String e){
         this.endereco = e;
     }
-
     @Override
     public void setTelefone(String t){
         this.telefone = t;
     }
-
     public void setCpf(String c){
         this.cpf = c;
     }
