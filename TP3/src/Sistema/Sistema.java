@@ -124,6 +124,6 @@ public class Sistema {
     }
 
     public void setLoja(String nome, String endereco, String telefone, String cnpj){
-        this.loja = new Loja(nome, endereco, telefone, cnpj); //Cria espaço para 1 loja
+        this.loja = new Loja(nome, endereco, cnpj); //Cria espaço para 1 loja
     }
 }
