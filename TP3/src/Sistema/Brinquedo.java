@@ -20,8 +20,7 @@ public class Brinquedo {
         this.quantidade = quant;
         this.id = id;
     }
-
-    //Função de visualização pode ser esta.
+    //Visualizar o Brinquedo
     public String toString(){
         return  "Nome do brinquedo: " +this.nome+ "\n"+
                 "Marca: " +this.marca+ "\n"+
@@ -31,43 +30,6 @@ public class Brinquedo {
                 "Quantidade em estoque: " +this.quantidade+ "\n"+
                 "Codigo identificador: " +this.id+ "\n";
     }
-
-    //Não existe necessidade da função Cadastrar
-    public void Cadastrar(){
-        //Nome
-        System.out.print("Digite o nome do brinquedo: ");
-        String n = scan.nextLine();
-        this.setNome(n);
-        //Marca
-        System.out.print("Digite a marca do brinquedo: ");
-        String m = scan.nextLine();
-        this.setMarca(m);
-        //Categoria
-        System.out.print("Digite a categoria do brinquedo: ");
-        String c = scan.nextLine();
-        this.setCategoria(c);
-        //Preço unitário
-        System.out.print("Digite o preco unitario do brinquedo: ");
-        double p = scan.nextDouble();
-        scan.nextLine();
-        this.setPreco(p);
-        //Idade indicativa
-        System.out.print("Digite a idade indicada para o uso do brinquedo: ");
-        int i = scan.nextInt();
-        scan.nextLine();
-        this.setIdade(i);
-        //Código identificador
-        System.out.print("Digite o código identificador do brinquedo: ");
-        int cid = scan.nextInt();
-        scan.nextLine();
-        this.setCid(cid);
-    }
-
-    //Versão 2 da função Visualizar
-    public void Visualizar(){
-        System.out.println(this);
-    }
-
     //Edição dos dados cadastrados
     public void Editar(){
         //Dados anteriores

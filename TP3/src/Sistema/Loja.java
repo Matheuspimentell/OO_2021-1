@@ -38,7 +38,7 @@ public class Loja extends Pessoa{
             System.out.println("A loja já está com o cadastro completo.");
         }
     }
-
+    //Mostra apenas os dados cadastrados
     @Override
     public void Visualizar() {
         System.out.println("Nome da loja: " + this.nome);
@@ -48,7 +48,7 @@ public class Loja extends Pessoa{
             System.out.println("Telefone da loja: " + this.telefone);
         }
     }
-
+    //Edita os dados cadastrados
     @Override
     public void Editar() {
         //Imprimir os dados anteriores
@@ -74,111 +74,98 @@ public class Loja extends Pessoa{
             this.telefone = telefone;
         }
     }
-
-    //Função para deletar funcioários
+    //Método para deletar um funcionário
     public void DeletarFuncionario(){
         System.out.print("Digite o ID do funcionario que deseja excluir: ");
         int id = scan.nextInt();
         scan.nextLine();
-        //Variável que indica a posição à ser excluída
-        int i = 0;
-        //Percorrer toda a lista de funcionários
-        for(;i<this.funcionarios.size();i++){
-            if(id == this.funcionarios.get(i).getid()){
+        boolean removeu = false;
+        for(Funcionario funcionario : this.funcionarios){
+            if(funcionario.getId() == id){
+                this.funcionarios.remove(funcionario);
+                removeu = true;
+                System.out.println("Funcionario excluido:");
+                funcionario.Visualizar();
                 break;
             }
         }
-        //Verificar se chegamos ao final da lista
-        if(i != this.funcionarios.size()){
-            this.funcionarios.remove(i);
-        } else {
-            System.out.println("Código identificador não encontrado.");
+        if(removeu == false){
+            System.out.println("Funcionario nao encontrado.");
         }
     }
-
-    //Função para buscar e visualizar 1 funcionário no banco de funcionários
-    public Funcionario BuscarFuncionario(){
+    //Método para buscar e visualizar 1 funcionário no banco de funcionários
+    public void BuscarFuncionario(){
         System.out.print("Digite o ID do funcionario que deseja buscar: ");
-        int m = scan.nextInt();
+        int id = scan.nextInt();
         scan.nextLine();
-        int i = 0; //Variável que indica a posição à ser excluída
         //Percorrer toda a lista de funcionários
-        for(;i<this.funcionarios.size();i++){
-            if(m == this.funcionarios.get(i).getid()){
-                break;
+        for(Funcionario funcionario : this.funcionarios){
+            if(funcionario.getId() == id){
+                //Caso o funcionario tenha sido encontrado, mostrá-lo e sair do método
+                System.out.println("Funcionario encontrado:");
+                funcionario.Visualizar();
+                return;
             }
         }
-        //Verificar se chegamos ao final da lista
-        if(i != this.funcionarios.size()){
-            //Mostrar os dados cadastrados do funcionario
-            return this.funcionarios.get(i);
-        } else {
-            System.out.println("Código identificador não encontrado.");
-            return null;
-        }
+        //Caso o funcionario não tenha sido encontrado
+        System.out.println("Funcionario não encontrado.");
     }
-
     //Visualizar todos os funcionarios
     public void VisualizarFuncionarios(){
         if(this.funcionarios != null){
-            for (int i = 0; i < this.funcionarios.size(); i++){
-                //Mostrar os dados cadastrados de cada funcionario
-                this.funcionarios.get(i).Visualizar();
+            for(Funcionario funcionario : this.funcionarios){
+                funcionario.Visualizar();
             }
         } else {
             System.out.println("Não ha funcionarios cadastrados.");
         }
     }
-
-    //Função para deletar brinquedos no estoque
+    //Método para deletar brinquedos no estoque
     public void DeletarBrinquedo(){
         System.out.print("Digite o Código Identificador do brinquedo que deseja excluir: ");
         int cid = scan.nextInt();
         scan.nextLine();
-        //Variável que indica a posição à ser excluída
-        int i = 0;
-        //Percorrer todo o estoque
-        for(;i<this.estoque.size();i++){
-            if(cid == this.estoque.get(i).getCid()){
+        boolean removeu = false;
+        for(Brinquedo brinquedo : this.estoque){
+            if(brinquedo.getCid() == cid){
+                this.estoque.remove(brinquedo);
+                System.out.println("Brinquedo excluído:");
+                System.out.println(brinquedo);
+                removeu = true;
                 break;
             }
         }
-        //Verificar se chegamos ao final do estoque
-        if(i != this.estoque.size()){
-            this.estoque.remove(i);
-        } else {
-            System.out.println("Código identificador não encontrado.");
+        if(removeu == false){
+            System.out.println("Brinquedo não encontrado.");
         }
     }
-
-    //Função para visualizar 1 brinquedo
-    public Brinquedo BuscarBrinquedo(){
+    //Método para visualizar 1 brinquedo
+    public void BuscarBrinquedo(){
         System.out.print("Digite o Código Identificador do brinquedo que deseja buscar: ");
         int cid = scan.nextInt();
         scan.nextLine();
-        //Variável que indica a posição à ser excluída
-        int i = 0;
-        //Percorrer toda o estoque
-        for(;i<this.estoque.size();i++){
-            if(cid == this.estoque.get(i).getCid()){
-                break;
+        //Percorrer todo o estoque
+        for(Brinquedo brinquedo : this.estoque){
+            if(brinquedo.getCid() == cid){
+                //Caso o brinquedo seja encontrado, mostrá-lo e sair do método
+                System.out.println("Brinquedo encontrado:");
+                System.out.println(brinquedo);
+                return;
             }
         }
-        //Verificar se chegamos ao final da lista
-        if(i!=this.estoque.size()){
-            return this.estoque.get(i);
-        } else {
-            System.out.println("Brinquedo não encontrado.");
-            return null;
-        }
+        //Caso o brinquedo não tenha sido encontrado
+        System.out.println("Brinquedo não encontrado.");
     }
-
     //Visualizar o estoque inteiro
     public void VisualizarEstoque(){
+        //Caso existam brinquedos cadastrados
         if(this.estoque != null){
-            for (int i = 0; i < this.estoque.size(); i++){
-                System.out.println(this.estoque.get(i));
+            System.out.println("-----------------------------------------------------");
+            for (Brinquedo brinquedo : this.estoque){
+                System.out.println(brinquedo);
+                System.out.println("-----------------------------------------------------");
             }
+        //Caso contrário
         } else {
             System.out.println("Não ha itens em estoque.");
         }

@@ -96,7 +96,7 @@ public class Funcionario extends Pessoa{
     public String getNome(){
         return this.nome;
     }
-    public int getid(){
+    public int getId(){
         return this.id;
     }
     public String getCargo(){
@@ -115,7 +115,7 @@ public class Funcionario extends Pessoa{
     public void setNome(String nome){
         this.nome = nome;
     }
-    public void setid(int id){
+    public void setId(int id){
         this.id = id;
     }
     public void setCargo(String cargo){
