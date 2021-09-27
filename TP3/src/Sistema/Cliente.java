@@ -1,13 +1,17 @@
 package Sistema;
 
+import java.util.ArrayList;
+
 public class Cliente extends Pessoa{
     private String cpf;
+    private ArrayList<Brinquedo> carrinho;
 
     //Alteração do construtor {new} de Cliente
     public Cliente(String nome, String cpf){
         //únicos atributos ESTRITAMENTE NECESSÁRIOS de Cliente
         this.nome = nome;
         this.cpf = cpf;
+        this.carrinho = new ArrayList<Brinquedo>();
     }
 
     public String toString(){
@@ -87,6 +91,17 @@ public class Cliente extends Pessoa{
         }
     }
 
+    //Adiciona um item e sua quantidade comprada ao carrinho de compras do cliente
+    public void AdicionaItem(Brinquedo brinquedo, int quantidade){
+        this.carrinho.add(brinquedo);
+        //Alterar a quantidade para a quantidade comprada do item
+        for(Brinquedo itemNovo : this.carrinho){
+            if(itemNovo.getId() == brinquedo.getId()){
+                itemNovo.setQuantidade(quantidade);
+            }
+        }
+    }
+
     //Getters
     @Override
     public String getNome(){
@@ -103,20 +118,26 @@ public class Cliente extends Pessoa{
     public String getCpf(){
         return this.cpf;
     }
+    public ArrayList<Brinquedo> getCarrinho(){
+        return this.carrinho;
+    }
     //Setters
     @Override
-    public void setNome(String n){
-        this.nome = n;
+    public void setNome(String nome){
+        this.nome = nome;
     }
     @Override
-    public void setEndereco(String e){
-        this.endereco = e;
+    public void setEndereco(String endereco){
+        this.endereco = endereco;
     }
     @Override
-    public void setTelefone(String t){
-        this.telefone = t;
+    public void setTelefone(String telefone){
+        this.telefone = telefone;
     }
-    public void setCpf(String c){
-        this.cpf = c;
+    public void setCpf(String cpf){
+        this.cpf = cpf;
+    }
+    public void setCarrinho(ArrayList<Brinquedo> carrinho){
+        this.carrinho = carrinho;
     }
 }

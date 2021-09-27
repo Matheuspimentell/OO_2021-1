@@ -127,7 +127,7 @@ public class Loja extends Pessoa{
         scan.nextLine();
         boolean removeu = false;
         for(Brinquedo brinquedo : this.estoque){
-            if(brinquedo.getCid() == cid){
+            if(brinquedo.getId() == cid){
                 this.estoque.remove(brinquedo);
                 System.out.println("Brinquedo excluído:");
                 System.out.println(brinquedo);
@@ -146,7 +146,7 @@ public class Loja extends Pessoa{
         scan.nextLine();
         //Percorrer todo o estoque
         for(Brinquedo brinquedo : this.estoque){
-            if(brinquedo.getCid() == cid){
+            if(brinquedo.getId() == cid){
                 //Caso o brinquedo seja encontrado, mostrá-lo e sair do método
                 System.out.println("Brinquedo encontrado:");
                 System.out.println(brinquedo);

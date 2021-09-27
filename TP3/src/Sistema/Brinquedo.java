@@ -84,7 +84,7 @@ public class Brinquedo {
     public int getQuantidade(){
         return this.quantidade;
     }
-    public double getCid(){
+    public double getId(){
         return this.id;
     }
     //Setters
@@ -106,7 +106,7 @@ public class Brinquedo {
     public void setQuantidade(int q){
         this.quantidade = q;
     }
-    public void setCid(int cid){
-        this.id = cid;
+    public void setId(int id){
+        this.id = id;
     }
 }
