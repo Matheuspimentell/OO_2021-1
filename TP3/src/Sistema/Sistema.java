@@ -17,6 +17,7 @@ public class Sistema {
         for (Cliente cliente : this.clientes){
             if(cliente.getCpf() == cpf){
                 encontrou = true;
+                
                 //Impressão da nota fiscal
                 cliente.getCarrinho();
                 //Zerar o carrinho
@@ -25,7 +26,6 @@ public class Sistema {
         if(encontrou == false){
             System.out.println("Cliente não encontrado.");
         }
-        //Imprimir um teste de nota fiscal
     }
     //Visualizar todos os clientes cadastrados
     public void VisualizarClientes(){

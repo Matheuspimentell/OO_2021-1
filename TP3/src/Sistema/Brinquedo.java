@@ -2,7 +2,7 @@ package Sistema;
 
 import java.util.Scanner;
 
-public class Brinquedo {
+public class Brinquedo implements Cloneable{
     private Scanner scan = new Scanner(System.in);
     private String nome, marca, categoria;
     private double precoUnitario;
@@ -20,6 +20,11 @@ public class Brinquedo {
         this.quantidade = quant;
         this.id = id;
     }
+    //Clonar Brinquedo
+    @Override
+    public Brinquedo clone() throws CloneNotSupportedException{
+        return (Brinquedo) super.clone();
+    }
     //Visualizar o Brinquedo
     public String toString(){
         return  "Nome do brinquedo: " +this.nome+ "\n"+
@@ -27,7 +32,7 @@ public class Brinquedo {
                 "Categoria: " +this.categoria+ "\n"+
                 "Preco unitario: " +this.precoUnitario+ "\n"+
                 "Idade indicativa: " +this.idadeIndicada+ "\n"+
-                "Quantidade em estoque: " +this.quantidade+ "\n"+
+                "Quantidade: " +this.quantidade+ "\n"+
                 "Codigo identificador: " +this.id+ "\n";
     }
     //Edição dos dados cadastrados
@@ -84,7 +89,7 @@ public class Brinquedo {
     public int getQuantidade(){
         return this.quantidade;
     }
-    public double getId(){
+    public int getId(){
         return this.id;
     }
     //Setters

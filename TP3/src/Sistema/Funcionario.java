@@ -22,8 +22,7 @@ public class Funcionario extends Pessoa{
     }
 
     //Completa o cadastro do funcionario
-    @Override
-    public void Cadastrar() {
+    public void CompletaCadastro() {
         //Caso ainda existam dados nulos
         if(this.endereco == null || this.telefone == null){
             //Endereço

@@ -22,8 +22,7 @@ public class Cliente extends Pessoa{
     }
 
     //Completa o cadastro do cliente
-    @Override
-    public void Cadastrar() {
+    public void CompletaCadastro() {
         //Caso ainda existam dados nulos
         if(this.endereco == null || this.telefone == null){
             System.out.println("Completar o cadastro do cliente: " + this.nome);
@@ -60,6 +59,10 @@ public class Cliente extends Pessoa{
         System.out.print("Digite o novo nome do cliente: ");
         String n = scan.nextLine();
         this.nome = n;
+        //CPF
+        System.out.print("Digite o novo CPF do cliente: ");
+        String c = scan.nextLine();
+        this.cpf = c;
         //Endereco
         if(this.endereco != null){
             System.out.print("Digite o novo endereco do cliente: ");
@@ -72,10 +75,6 @@ public class Cliente extends Pessoa{
             String t = scan.nextLine();
             this.telefone = t;
         }
-        //CPF
-        System.out.print("Digite o novo CPF do cliente: ");
-        String c = scan.nextLine();
-        this.cpf = c;
     }
 
     //Imprime apenas os dados cadastrados
@@ -93,13 +92,8 @@ public class Cliente extends Pessoa{
 
     //Adiciona um item e sua quantidade comprada ao carrinho de compras do cliente
     public void AdicionaItem(Brinquedo brinquedo, int quantidade){
-        this.carrinho.add(brinquedo);
-        //Alterar a quantidade para a quantidade comprada do item
-        for(Brinquedo itemNovo : this.carrinho){
-            if(itemNovo.getId() == brinquedo.getId()){
-                itemNovo.setQuantidade(quantidade);
-            }
-        }
+        brinquedo.setQuantidade(quantidade); //Adiciona a quantidade correta do brinquedo
+        this.carrinho.add(brinquedo); //Adiciona o brinquedo ao carrinho
     }
 
     //Getters
