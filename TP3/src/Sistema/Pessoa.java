@@ -7,7 +7,6 @@ abstract class Pessoa {
     protected Scanner scan = new Scanner(System.in); //Declaraçao do scanner
 
     //Métodos CRUD para aplicação nas classes filhas
-    abstract public void Cadastrar();
     abstract public void Editar(); 
     abstract public void Visualizar();
     //Para deletar o objeto, tem que ser na classe que vai controlar os dados do objeto
