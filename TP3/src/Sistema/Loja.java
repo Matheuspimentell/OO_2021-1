@@ -212,13 +212,13 @@ public class Loja extends Pessoa{
         this.cnpj = c;
     }
     //Cadastro de 1 funcionário
-    public void setFuncionario(Funcionario novo){
+    public void setFuncionario(Funcionario funcionario){
         //Adiciona 1 funcionário na loja
-        this.funcionarios.add(novo);
+        this.funcionarios.add(funcionario);
     }
     //Cadastro de 1 brinquedo no estoque
-    public void setBrinquedo(Brinquedo novo){
+    public void setBrinquedo(Brinquedo brinquedo){
         //Adiciona 1 brinquedo no estoque
-        this.estoque.add(novo);
+        this.estoque.add(brinquedo);
     }
 }

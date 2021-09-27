@@ -7,6 +7,34 @@ public class Sistema {
     private Scanner scan = new Scanner(System.in);
     private ArrayList<Cliente> clientes = new ArrayList<Cliente>(); //ArrayList de clientes
     private Loja loja = new Loja("Toy Store", "Taguatinga", "87.499.017/0001-13"); //Declaração da loja
+    
+    public void CadastrarVenda(String cpfCliente, String nomeFuncionario){
+        //Cadastrar a venda de UM item com os dados recebidos
+        ArrayList<Brinquedo> carrinhoCompras = new ArrayList<Brinquedo>();
+        ArrayList<Integer> quantidades = new ArrayList<Integer>();
+        System.out.println("Digite o codigo identificador do brinquedo à ser adicionado ao carrinho:");
+        int codigo = scan.nextInt();
+        scan.nextLine();
+        //Procura o brinquedo em estoque
+        for (Brinquedo brinquedo : this.loja.getEstoque()){
+            if(codigo == brinquedo.getCid()){
+                System.out.println("Digite a quantidade de itens vendidos: ");
+                int quantidade = scan.nextInt();
+                scan.nextLine();
+                if(quantidade > brinquedo.getQuantidade()){
+                    System.out.println("Quantidade maior do que quantidade em estoque!");
+                } else {
+                    //Tira a quantidade vendida de estoque
+                    brinquedo.setQuantidade(brinquedo.getQuantidade() - quantidade);
+                    //Adiciona a quantidade do brinquedo à ser adicionado
+                    quantidades.add(quantidade);
+                    //Adiciona o Brinquedo no carrinho de compras
+                    carrinhoCompras.add(brinquedo);
+                }
+            }
+        }
+        //Imprimir um teste de nota fiscal
+    }
     //Visualizar todos os clientes cadastrados
     public void VisualizarClientes(){
         System.out.println("-----------------------------------------------------");
