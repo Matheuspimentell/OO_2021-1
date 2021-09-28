@@ -34,7 +34,7 @@ public class Loja extends Pessoa{
             this.telefone = telefone;
         //Caso contrário
         } else {
-            System.out.println("A loja já está com o cadastro completo.");
+            System.out.println("A loja ja esta com o cadastro completo.");
         }
     }
     //Mostra apenas os dados cadastrados
@@ -153,7 +153,7 @@ public class Loja extends Pessoa{
             }
         }
         //Caso o brinquedo não tenha sido encontrado
-        System.out.println("Brinquedo não encontrado.");
+        System.out.println("Brinquedo nao encontrado.");
     }
     //Visualizar o estoque inteiro
     public void VisualizarEstoque(){
@@ -166,7 +166,7 @@ public class Loja extends Pessoa{
             }
         //Caso contrário
         } else {
-            System.out.println("Não ha itens em estoque.");
+            System.out.println("Nao ha itens em estoque.");
         }
     }
 

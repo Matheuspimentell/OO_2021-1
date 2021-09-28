@@ -1,6 +1,7 @@
 package Sistema;
 
 import java.util.Scanner;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Sistema {
@@ -9,22 +10,35 @@ public class Sistema {
     private Loja loja = new Loja("Toy Store", "Taguatinga", "87.499.017/0001-13"); //Declaração da loja
     
     //Cadastra a venda de um carrinho de compras de UM cliente
-    public void CadastrarVenda(){
+    public void CadastrarVenda(Funcionario vendedor){
         //Buscar cliente pelo CPF
         System.out.println("Digite o CPF do comprador:");
         String cpf = scan.nextLine();
         boolean encontrou = false;
         for (Cliente cliente : this.clientes){
-            if(cliente.getCpf() == cpf){
+            if(cliente.getCpf().equals(cpf)){
                 encontrou = true;
-                
                 //Impressão da nota fiscal
-                cliente.getCarrinho();
+                System.out.println("Cupom fiscal da compra:\n\n");
+                System.out.println("\t\t  " + this.loja.getNome() + "\n" +
+                                   this.loja.getEndereco() + "\n" +
+                                   "CNPJ: " + this.loja.getCnpj() + "\n" +
+                                   "_________________________________________________\n\n" + 
+                                   "\t  Cupom fiscal eletronico\n" + 
+                                   "_________________________________________________\n" + 
+                                   "CPF do consumidor: " + cliente.getCpf() + "\n\n" + 
+                                   "Nome do vendedor: " + vendedor.getNome() + "\n" +
+                                   "_________________________________________________\n" + 
+                                   "#|COD|DESC|QTD|VL UN R$|VL TI R$|\n" + 
+                                   "-------------------------------------------------");
+                cliente.VisualizarCarrinho();
+                System.out.println("-------------------------------------------------\n" + 
+                                   "Valor total = \t\t\t" + cliente.getTotalCompras());
                 //Zerar o carrinho
             }
         }
         if(encontrou == false){
-            System.out.println("Cliente não encontrado.");
+            System.out.println("Cliente nao encontrado.");
         }
     }
     //Visualizar todos os clientes cadastrados
@@ -48,7 +62,7 @@ public class Sistema {
             }
         }
         //Caso o cliente não tenha sido encontrado
-        System.out.println("Cliente não encontrado.");
+        System.out.println("Cliente nao encontrado.");
     }
     //Deletar um cliente
     public void DeletarCliente(){
@@ -58,14 +72,14 @@ public class Sistema {
         for(Cliente cliente : this.clientes){
             if(cliente.getCpf() == cpf){
                 clientes.remove(cliente);
-                System.out.println("Cliente excluído: ");
+                System.out.println("Cliente excluido: ");
                 cliente.Visualizar();
                 removeu = true;
                 break;
             }
         }
         if(removeu == false){
-            System.out.println("Cliente não encontrado.");
+            System.out.println("Cliente nao encontrado.");
         }
     }
 

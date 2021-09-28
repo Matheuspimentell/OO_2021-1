@@ -20,11 +20,13 @@ public class Brinquedo implements Cloneable{
         this.quantidade = quant;
         this.id = id;
     }
+    
     //Clonar Brinquedo
     @Override
     public Brinquedo clone() throws CloneNotSupportedException{
         return (Brinquedo) super.clone();
     }
+
     //Visualizar o Brinquedo
     public String toString(){
         return  "Nome do brinquedo: " +this.nome+ "\n"+
@@ -35,6 +37,7 @@ public class Brinquedo implements Cloneable{
                 "Quantidade: " +this.quantidade+ "\n"+
                 "Codigo identificador: " +this.id+ "\n";
     }
+
     //Edição dos dados cadastrados
     public void Editar(){
         //Dados anteriores
@@ -64,7 +67,7 @@ public class Brinquedo implements Cloneable{
         scan.nextLine();
         this.idadeIndicada = idade;
         //Código identificador
-        System.out.print("Digite o novo código identificador do brinquedo: ");
+        System.out.print("Digite o novo codigo identificador do brinquedo: ");
         int id = scan.nextInt();
         scan.nextLine();
         this.id = id;

@@ -95,6 +95,15 @@ public class Cliente extends Pessoa{
         brinquedo.setQuantidade(quantidade); //Adiciona a quantidade correta do brinquedo
         this.carrinho.add(brinquedo); //Adiciona o brinquedo ao carrinho
     }
+    
+    //Imprime todos os brinquedos no carrinho de compras
+    public void VisualizarCarrinho(){
+        for(Brinquedo brinquedo : this.carrinho){
+            System.out.println(brinquedo.getId() + " " + brinquedo.getNome() +
+                               " " + brinquedo.getQuantidade() + " * " + brinquedo.getPreco() +
+                               " (" + brinquedo.getQuantidade()*brinquedo.getPreco() + ")");
+        }
+    }
 
     //Getters
     @Override
@@ -114,6 +123,13 @@ public class Cliente extends Pessoa{
     }
     public ArrayList<Brinquedo> getCarrinho(){
         return this.carrinho;
+    }
+    public double getTotalCompras(){
+        double valorTotal = 0;
+        for(Brinquedo brinquedo : this.carrinho){
+            valorTotal = valorTotal + (brinquedo.getQuantidade()*brinquedo.getPreco());
+        }
+        return valorTotal;
     }
     //Setters
     @Override
