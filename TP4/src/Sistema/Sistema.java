@@ -1,7 +1,6 @@
 package Sistema;
 
 import java.util.Scanner;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Sistema {
