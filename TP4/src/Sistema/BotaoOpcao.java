@@ -12,6 +12,10 @@ public class BotaoOpcao extends JButton{
         this.setHorizontalTextPosition(JButton.CENTER);
         this.setVerticalTextPosition(JButton.CENTER);
         this.setBorder(BorderFactory.createRaisedBevelBorder());
-        this.setEnabled(true);
+        if(texto != ""){
+            this.setVisible(true);
+        } else {
+            this.setVisible(false);
+        }
     }
 }
