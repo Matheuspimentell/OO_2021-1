@@ -28,6 +28,7 @@ public class BarraMenu extends JPanel{
         textoMenu.setPreferredSize(new Dimension(160, 35));
         textoMenu.setText("Menu");
         textoMenu.setFont(new Font("Arial", Font.BOLD, 16));
+        textoMenu.setForeground(new Color(0xEA2E27));
         textoMenu.setHorizontalTextPosition(JLabel.CENTER);
 
         //----------Botão de seleção das opções do Sistema-------------------
