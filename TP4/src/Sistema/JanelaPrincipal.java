@@ -1,9 +1,5 @@
 package Sistema;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
@@ -11,6 +7,10 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 
 public class JanelaPrincipal extends JFrame implements ActionListener{
     BarraSuperior barraSuperior;
@@ -20,13 +20,15 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
     BotaoOpcao opcao4;
     BotaoOpcao opcao5;
     BotaoOpcao opcao6;
+    Border selecionada = BorderFactory.createBevelBorder(BevelBorder.LOWERED);
+    Border disponivel = BorderFactory.createBevelBorder(BevelBorder.RAISED);
     
     public JanelaPrincipal(){
         barraSuperior = new BarraSuperior(); //Instancia o componente da barra superior
 
         //---------------------------Botões de opção----------------------------------
-        opcao1 = new BotaoOpcao("<html>Visualizar dados<br />da Loja</html>"); //Cria um botão com texto
-        opcao2 = new BotaoOpcao("<html>Cadastrar<br />Venda</html>"); //Cria um botão com texto
+        opcao1 = new BotaoOpcao("<html>Visualizar dados<br />da loja</html>"); //Cria um botão com texto
+        opcao2 = new BotaoOpcao("<html>Cadastrar<br />venda</html>"); //Cria um botão com texto
         opcao3 = new BotaoOpcao("");
         opcao3.setVisible(false); //Desabilita e torna invisível um botão
         opcao4 = new BotaoOpcao("");
@@ -36,7 +38,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
         opcao6 = new BotaoOpcao("");
         opcao6.setVisible(false); //Desabilita e torna invisível um botão
         barraSuperior.barraMenu.botaoSistema.setEnabled(false); //Desabilita e torna invisível o botão Sistema
-        barraSuperior.barraMenu.botaoSistema.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED)); //Deixa o botão selecionado
+        barraSuperior.barraMenu.botaoSistema.setBorder(selecionada); //Deixa o botão selecionado
 
                         //---------------Action Listeners------------------
         barraSuperior.barraMenu.botaoSistema.addActionListener(this);
@@ -118,45 +120,119 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             opcao5.setVisible(false);
             opcao6.setVisible(false);
             barraSuperior.barraMenu.botaoLoja.setEnabled(false);
-            barraSuperior.barraMenu.botaoLoja.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+            barraSuperior.barraMenu.botaoLoja.setBorder(selecionada);
             barraSuperior.barraMenu.botaoSistema.setEnabled(true);
-            barraSuperior.barraMenu.botaoSistema.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+            barraSuperior.barraMenu.botaoSistema.setBorder(disponivel);
             barraSuperior.barraMenu.botaoClientes.setEnabled(true);
-            barraSuperior.barraMenu.botaoClientes.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+            barraSuperior.barraMenu.botaoClientes.setBorder(disponivel);
         }
 
         //--------------------Caso se esteja na opção cliente------------------
         if(e.getSource() ==  barraSuperior.barraMenu.botaoClientes){
             opcao1.setText("<html>Visualizar<br />clientes</html>");
             opcao1.setVisible(true);
-            opcao2.setText("<html>Carrinhos de<br />Compras</html>");
+            opcao2.setText("<html>Carrinhos de<br />compras</html>");
             opcao2.setVisible(true);
             opcao3.setVisible(false);
             opcao4.setVisible(false);
             opcao5.setVisible(false);
             opcao6.setVisible(false);
             barraSuperior.barraMenu.botaoLoja.setEnabled(true);
-            barraSuperior.barraMenu.botaoLoja.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+            barraSuperior.barraMenu.botaoLoja.setBorder(disponivel);
             barraSuperior.barraMenu.botaoSistema.setEnabled(true);
-            barraSuperior.barraMenu.botaoSistema.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+            barraSuperior.barraMenu.botaoSistema.setBorder(disponivel);
             barraSuperior.barraMenu.botaoClientes.setEnabled(false);
-            barraSuperior.barraMenu.botaoClientes.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+            barraSuperior.barraMenu.botaoClientes.setBorder(selecionada);
         }
 
         //--------------------Caso se esteja na opção Sistema------------------
         if(e.getSource() ==  barraSuperior.barraMenu.botaoSistema){
-            opcao1.setText("<html>Visualizar dados<br />da Loja</html>");
-            opcao2.setText("<html>Cadastrar<br />Venda</html>");
+            opcao1.setText("<html>Visualizar dados<br />da loja</html>");
+            opcao2.setText("<html>Cadastrar<br />venda</html>");
             opcao3.setVisible(false);
             opcao4.setVisible(false);
             opcao5.setVisible(false);
             opcao6.setVisible(false);
             barraSuperior.barraMenu.botaoLoja.setEnabled(true);
-            barraSuperior.barraMenu.botaoLoja.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+            barraSuperior.barraMenu.botaoLoja.setBorder(disponivel);
             barraSuperior.barraMenu.botaoSistema.setEnabled(false);
-            barraSuperior.barraMenu.botaoSistema.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+            barraSuperior.barraMenu.botaoSistema.setBorder(selecionada);
             barraSuperior.barraMenu.botaoClientes.setEnabled(true);
-            barraSuperior.barraMenu.botaoClientes.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+            barraSuperior.barraMenu.botaoClientes.setBorder(disponivel);
         }
+        
+        //------------------Caso alguma opção do meio seja selecionada------------------
+        if(e.getSource() == opcao1){
+            //Checar qual opção foi selecionada
+            if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
+                new JanelaCadastro("Sistema");
+            }
+            if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
+                new JanelaCadastro("Loja");
+            }
+            if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
+                new JanelaCadastro("Clientes");
+            }
+        }
+        if(e.getSource() == opcao2){
+            //Checar qual opção foi selecionada
+            if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
+                new JanelaCadastro("Sistema");
+            }
+            if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
+                new JanelaCadastro("Loja");
+            }
+            if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
+                new JanelaCadastro("Clientes");
+            }
+        }
+        if(e.getSource() == opcao3){
+            //Checar qual opção foi selecionada
+            if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
+                new JanelaCadastro("Sistema");
+            }
+            if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
+                new JanelaCadastro("Loja");
+            }
+            if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
+                new JanelaCadastro("Clientes");
+            }
+        }
+        if(e.getSource() == opcao4){
+            //Checar qual opção foi selecionada
+            if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
+                new JanelaCadastro("Sistema");
+            }
+            if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
+                new JanelaCadastro("Loja");
+            }
+            if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
+                new JanelaCadastro("Clientes");
+            }
+        }
+        // if(e.getSource() == opcao5){
+        //     //Checar qual opção foi selecionada
+        //     if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
+        //         new JanelaCadastro("Sistema");
+        //     }
+        //     if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
+        //         new JanelaCadastro("Loja");
+        //     }
+        //     if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
+        //         new JanelaCadastro("Clientes");
+        //     }
+        // }
+        // if(e.getSource() == opcao6){
+        //     //Checar qual opção foi selecionada
+        //     if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
+        //         new JanelaCadastro("Sistema");
+        //     }
+        //     if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
+        //         new JanelaCadastro("Loja");
+        //     }
+        //     if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
+        //         new JanelaCadastro("Clientes");
+        //     }
+        // }
     }
 }
