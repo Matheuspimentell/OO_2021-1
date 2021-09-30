@@ -3,6 +3,7 @@ package Sistema;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -13,17 +14,8 @@ public class JanelaVisualizacao extends JDialog{
 
     JanelaVisualizacao(String titulo, Sistema sistema){
         SYS = sistema;
-        String[] colunasClientes = {"Nome", "CPF", "Endereço", "Telefone"};
-        Object[][] dadosClientes = {{"Matheus", "053.721.701-07", "Asa Sul", "61 99576-7733"}
-        ,{"Luana", "000.000.000-01", "", ""}
-        ,{"Cleiton", "000.002.003-04", "Jacarepaguá", "28 98761-8531"}
-        ,{"Baiano", "002.003.004-05", "", "61 3333-3123"}
-        ,{"Japones", "003.004.005-06", "", ""}
-        ,{"Japones", "003.004.005-06", "", ""}
-        ,{"Japones", "003.004.005-06", "", ""}
-        ,{"Japones", "003.004.005-06", "", ""}
-        ,{"Japones", "003.004.005-06", "", ""}};
-
+        
+        //-------- Mostrar dados da loja--------------
         if(titulo.equals("Sistema - Dados da loja")){
             JLabel dados = new JLabel();
             dados.setPreferredSize(new Dimension(300,300));
@@ -32,11 +24,85 @@ public class JanelaVisualizacao extends JDialog{
             this.add(dados);
         }
 
+        //------------Visualizar todos os funcionários cadastrados---------
         if(titulo.equals("Clientes - Visualizar")){
-            JTable tabela = new JTable(dadosClientes, colunasClientes);
-            tabela.setPreferredScrollableViewportSize(new Dimension(450,95));
+            String[] colunasClientes = {"Nome", "CPF", "Endereço", "Telefone"};
+            DefaultTableModel modeloTabelaCLientes = new DefaultTableModel(colunasClientes, 0){
+                //Torna todas as células não editáveis
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+                }
+            };
+            for(Cliente cliente : SYS.getClientes()){
+                String nome = cliente.getNome();
+                String cpf = cliente.getCpf();
+                String endereco = cliente.getEndereco();
+                String telefone = cliente.getTelefone();
+                Object[] dadosCliente = {nome,cpf,endereco,telefone};
+                modeloTabelaCLientes.addRow(dadosCliente);
+            }
+            JTable tabela = new JTable(modeloTabelaCLientes);
+            tabela.setPreferredScrollableViewportSize(new Dimension(750,150));
             tabela.setFillsViewportHeight(true);
+            JScrollPane painelDados = new JScrollPane(tabela);
+            this.add(painelDados);
+        }
 
+        //----------Visualizar todos os funcionários cadastrados-----------
+        if(titulo.equals("Loja - Visualizar funcioários")){
+            String[] colunasFuncionarios = {"Nome", "Matrícula", "Cargo", "Endereço", "Telefone"};
+            DefaultTableModel modeloTabelaFuncionarios = new DefaultTableModel(colunasFuncionarios, 0){
+                //Torna todas as células não editáveis
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+                }
+            };
+            for(Funcionario funcionario : SYS.getLoja().getFuncionarios()){
+                String nome = funcionario.getNome();
+                int id = funcionario.getId();
+                String cargo = funcionario.getCargo();
+                String endereco = funcionario.getEndereco();
+                String telefone = funcionario.getTelefone();
+                Object[] dadosFuncionario = {nome,id,cargo,endereco,telefone};
+                modeloTabelaFuncionarios.addRow(dadosFuncionario);
+            }
+            JTable tabela = new JTable(modeloTabelaFuncionarios);
+            tabela.setPreferredScrollableViewportSize(new Dimension(750,150));
+            tabela.setFillsViewportHeight(true);
+            JScrollPane painelDados = new JScrollPane(tabela);
+            this.add(painelDados);
+        }
+
+        //----------Visualizar todos os brinquedos cadastrados-----------
+        if(titulo.equals("Loja - Visualizar estoque")){
+            String[] colunasEstoque = {"Nome", "Marca", "Categ.",
+             "R$/Un.", "Idade indicada", "#QTD", "ID"};
+            DefaultTableModel modeloTabelaEstoque = new DefaultTableModel(colunasEstoque, 0){
+                //Torna todas as células não editáveis
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+                }
+            };
+            for(Brinquedo brinquedo : SYS.getLoja().getEstoque()){
+                String nome = brinquedo.getNome();
+                String marca = brinquedo.getMarca();
+                String categoria = brinquedo.getCategoria();
+                Double preco = brinquedo.getPreco();
+                int idadeIndicada = brinquedo.getIdade();
+                int quantidade = brinquedo.getQuantidade();
+                int id = brinquedo.getId();
+                Object[] dadosBrinquedo = {nome,marca,categoria,preco,idadeIndicada,quantidade,id};
+                modeloTabelaEstoque.addRow(dadosBrinquedo);
+            }
+            JTable tabela = new JTable(modeloTabelaEstoque);
+            tabela.setPreferredScrollableViewportSize(new Dimension(750,150));
+            tabela.setFillsViewportHeight(true);
             JScrollPane painelDados = new JScrollPane(tabela);
             this.add(painelDados);
         }
@@ -44,7 +110,7 @@ public class JanelaVisualizacao extends JDialog{
         this.setModal(true);
         this.setTitle(titulo);
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
-        this.setSize(new Dimension(500,500));
+        this.setSize(new Dimension(800,450));
         this.setResizable(false);
         this.setVisible(true);
     }

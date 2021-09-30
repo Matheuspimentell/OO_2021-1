@@ -8,6 +8,32 @@ public class Sistema {
     private ArrayList<Cliente> clientes = new ArrayList<Cliente>(); //ArrayList de clientes
     private Loja loja = new Loja("Toy Store", "Taguatinga", "87.499.017/0001-13"); //Declaração da loja
     
+    //Construtor de sistema
+    public Sistema(){
+
+        //-----------Adição de 10 clientes--------
+        Cliente cliente1 = new Cliente("Cleiton Silva", "649.094.970-99");
+        this.clientes.add(cliente1);
+        Cliente cliente2 = new Cliente("Cleiton Rocha", "004.941.170-52");
+        this.clientes.add(cliente2);
+        Cliente cliente3 = new Cliente("Cleiton Costa", "377.415.620-45");
+        this.clientes.add(cliente3);
+        Cliente cliente4 = new Cliente("Cleiton Araújo", "567.472.170-04");
+        this.clientes.add(cliente4);
+        Cliente cliente5 = new Cliente("Cleiton de Melo", "447.756.700-69");
+        this.clientes.add(cliente5);
+        Cliente cliente6 = new Cliente("Benedita Guerra", "225.483.950-06");
+        this.clientes.add(cliente6);
+        Cliente cliente7 = new Cliente("Benedita Barros", "141.210.010-01");
+        this.clientes.add(cliente7);
+        Cliente cliente8 = new Cliente("Benedita Pereira", "422.312.330-02");
+        this.clientes.add(cliente8);
+        Cliente cliente9 = new Cliente("Benedita Abreu", "254.596.400-08");
+        this.clientes.add(cliente9);
+        Cliente cliente10 = new Cliente("Benedita Fonseca", "895.003.850-15");
+        this.clientes.add(cliente10);
+    }
+
     //Cadastra a venda de um carrinho de compras de UM cliente
     public void CadastrarVenda(Funcionario vendedor){
         //Buscar cliente pelo CPF

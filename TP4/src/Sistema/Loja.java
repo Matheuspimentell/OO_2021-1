@@ -17,6 +17,45 @@ public class Loja extends Pessoa{
         this.cnpj = cnpj;
         this.estoque = new ArrayList<Brinquedo>();
         this.funcionarios = new ArrayList<Funcionario>();
+
+        //-------------Adição de 10 funcionarios------------
+        Funcionario funcionario1 = new Funcionario("Laura Maya Farias", 96234, "Gerente de Vendas");
+        this.funcionarios.add(funcionario1);
+        Funcionario funcionario2 = new Funcionario("Nicole Benedita", 39605, "Vendedor");
+        this.funcionarios.add(funcionario2);
+        Funcionario funcionario3 = new Funcionario("Luís Tomás", 11694, "Vendedor");
+        this.funcionarios.add(funcionario3);
+        Funcionario funcionario4 = new Funcionario("Francisco Miguel", 70384, "Vendedor");
+        this.funcionarios.add(funcionario4);
+        Funcionario funcionario5 = new Funcionario("Diego Juan", 68072, "Vendedor");
+        this.funcionarios.add(funcionario5);
+        Funcionario funcionario6 = new Funcionario("Luís Vitor", 97035, "Vendedor");
+        this.funcionarios.add(funcionario6);
+        Funcionario funcionario7 = new Funcionario("Leonardo Kaique", 58719, "Vendedor");
+        this.funcionarios.add(funcionario7);
+        Funcionario funcionario8 = new Funcionario("Brenda Daniela", 46712, "Vendedor");
+        this.funcionarios.add(funcionario8);
+        Funcionario funcionario9 = new Funcionario("Heitor Raul", 82053, "Vendedor");
+        this.funcionarios.add(funcionario9);
+        Funcionario funcionario10 = new Funcionario("Isabel Simone", 79658, "Vendedor");
+        this.funcionarios.add(funcionario10);
+
+        //--------Adição de 5 brinquedos---------
+        Brinquedo brinquedo1 = new Brinquedo("Boneca Barbie - Diversao na Praia",
+         "Brabie", "Boneca", 38.99, 3, 20, 354);
+        this.estoque.add(brinquedo1);
+        Brinquedo brinquedo2 = new Brinquedo("Jogo Pula Macaco",
+         "Estrela", "Tabuleiro", 64.99, 5, 15, 490);
+        this.estoque.add(brinquedo2);
+        Brinquedo brinquedo3 = new Brinquedo("Pista Hot Wheels - Track Set",
+         "Hot Wheels", "Carros", 649.99, 8, 16, 291);
+        this.estoque.add(brinquedo3);
+        Brinquedo brinquedo4 = new Brinquedo("Celular Musical",
+         "Estrela", "Musical", 58.99, 1, 8, 645);
+        this.estoque.add(brinquedo4);
+        Brinquedo brinquedo5 = new Brinquedo("Baby Alive - Lanchinhos Divertidos",
+         "Baby Alive", "Boneca", 278.99, 8, 24, 463);
+        this.estoque.add(brinquedo5);
     }
 
 

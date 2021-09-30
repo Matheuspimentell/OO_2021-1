@@ -200,7 +200,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de Visualizar Funcionários
-                janelaCadastro = new JanelaCadastro("Ainda não implementado", SYS);
+                janelaVisualizacao = new JanelaVisualizacao("Loja - Visualizar funcioários", SYS);
             }
             if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
                 //Opção de selecionar um carrinho de compras
@@ -214,7 +214,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             // }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de visualizar estoque
-                janelaCadastro = new JanelaCadastro("Ainda não implementado", SYS);
+                janelaVisualizacao = new JanelaVisualizacao("Loja - Visualizar estoque", SYS);
             }
             // if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
             //     janelaCadastro = new JanelaCadastro("Titulo", SYS);
