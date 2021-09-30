@@ -14,6 +14,7 @@ import javax.swing.border.Border;
 
 public class JanelaPrincipal extends JFrame implements ActionListener{
     BarraSuperior barraSuperior;
+    JanelaCadastro janelaCadastro;
     BotaoOpcao opcao1;
     BotaoOpcao opcao2;
     BotaoOpcao opcao3;
@@ -165,73 +166,81 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
         if(e.getSource() == opcao1){
             //Checar qual opção foi selecionada
             if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-                new JanelaCadastro("Sistema");
+                //Opção de visualizar dados da Loja
+                janelaCadastro = new JanelaCadastro("Ainda não implementado");
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
-                new JanelaCadastro("Loja");
+                //Opção de completar cadastro da loja
+                janelaCadastro = new JanelaCadastro("Loja - Completar cadastro");
             }
             if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
-                new JanelaCadastro("Clientes");
+                //Opção de visualizar clientes
+                janelaCadastro = new JanelaCadastro("Ainda não implementado");
             }
         }
         if(e.getSource() == opcao2){
             //Checar qual opção foi selecionada
             if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-                new JanelaCadastro("Sistema");
+                //Opção de cadastrar venda
+                janelaCadastro = new JanelaCadastro("Sistema - Cadastrar venda");
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
-                new JanelaCadastro("Loja");
+                //Opção de Visualizar Funcionários
+                janelaCadastro = new JanelaCadastro("Ainda não implementado");
             }
             if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
-                new JanelaCadastro("Clientes");
+                //Opção de selecionar um carrinho de compras
+                janelaCadastro = new JanelaCadastro("Ainda não implementado");
             }
         }
         if(e.getSource() == opcao3){
             //Checar qual opção foi selecionada
-            if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-                new JanelaCadastro("Sistema");
-            }
+            // if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
+            //     janelaCadastro = new JanelaCadastro("Titulo");
+            // }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
-                new JanelaCadastro("Loja");
+                //Opção de visualizar estoque
+                janelaCadastro = new JanelaCadastro("Ainda não implementado");
             }
-            if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
-                new JanelaCadastro("Clientes");
-            }
+            // if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
+            //     janelaCadastro = new JanelaCadastro("Titulo");
+            // }
         }
         if(e.getSource() == opcao4){
             //Checar qual opção foi selecionada
-            if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-                new JanelaCadastro("Sistema");
-            }
+            // if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
+            //     janelaCadastro = new JanelaCadastro("Titulo");
+            // }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
-                new JanelaCadastro("Loja");
+                //Opção de editar dados da loja
+                janelaCadastro = new JanelaCadastro("Loja - Editar dados");
             }
-            if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
-                new JanelaCadastro("Clientes");
-            }
+            // if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
+            //     janelaCadastro = new JanelaCadastro("Titulo");
+            // }
         }
         // if(e.getSource() == opcao5){
         //     //Checar qual opção foi selecionada
         //     if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-        //         new JanelaCadastro("Sistema");
+        //         new JanelaCadastro("Titulo");
         //     }
         //     if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
-        //         new JanelaCadastro("Loja");
+        //         new JanelaCadastro("Titulo");
         //     }
         //     if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
-        //         new JanelaCadastro("Clientes");
+        //         new JanelaCadastro("Titulo");
         //     }
         // }
         // if(e.getSource() == opcao6){
         //     //Checar qual opção foi selecionada
         //     if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-        //         new JanelaCadastro("Sistema");
+        //         new JanelaCadastro("Titulo");
         //     }
         //     if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
-        //         new JanelaCadastro("Loja");
+        //         new JanelaCadastro("Titulo");
         //     }
         //     if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
-        //         new JanelaCadastro("Clientes");
+        //         new JanelaCadastro("Titulo");
         //     }
         // }
     }
