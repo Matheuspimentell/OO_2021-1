@@ -26,11 +26,9 @@ public class Loja extends Pessoa{
                 "Telefone da loja: " + this.telefone;
     }
     //Completa o cadastro da loja
-    public void CompletaCadastro() {
+    public void CompletaCadastro(String telefone) {
         //Caso o telefone da loja seja nulo
         if(this.telefone == null){
-            System.out.print("Digite o telefone da loja: ");
-            String telefone = scan.nextLine();
             this.telefone = telefone;
         //Caso contrário
         } else {

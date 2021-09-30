@@ -9,12 +9,14 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 
 public class JanelaPrincipal extends JFrame implements ActionListener{
     BarraSuperior barraSuperior;
     JanelaCadastro janelaCadastro;
+    Sistema SYS;
     BotaoOpcao opcao1;
     BotaoOpcao opcao2;
     BotaoOpcao opcao3;
@@ -24,9 +26,9 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
     Border selecionada = BorderFactory.createBevelBorder(BevelBorder.LOWERED);
     Border disponivel = BorderFactory.createBevelBorder(BevelBorder.RAISED);
     
-    public JanelaPrincipal(){
+    public JanelaPrincipal(Sistema sistema){
+        SYS = sistema;
         barraSuperior = new BarraSuperior(); //Instancia o componente da barra superior
-
         //---------------------------Botões de opção----------------------------------
         opcao1 = new BotaoOpcao("<html>Visualizar dados<br />da loja</html>"); //Cria um botão com texto
         opcao2 = new BotaoOpcao("<html>Cadastrar<br />venda</html>"); //Cria um botão com texto
@@ -167,80 +169,88 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             //Checar qual opção foi selecionada
             if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
                 //Opção de visualizar dados da Loja
-                janelaCadastro = new JanelaCadastro("Ainda não implementado");
+                janelaCadastro = new JanelaCadastro("Ainda não implementado", SYS);
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de completar cadastro da loja
-                janelaCadastro = new JanelaCadastro("Loja - Completar cadastro");
+                if(SYS.getLoja().getTelefone() == null){
+                    janelaCadastro = new JanelaCadastro("Loja - Completar cadastro", SYS);
+                } else {
+                    //Mostrar que a loja já está com o cadastro completo
+                    JOptionPane.showMessageDialog(null,
+                     "Cadastro da loja já completo",
+                      "Mensagem",
+                       JOptionPane.INFORMATION_MESSAGE);
+                }
             }
             if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
                 //Opção de visualizar clientes
-                janelaCadastro = new JanelaCadastro("Ainda não implementado");
+                janelaCadastro = new JanelaCadastro("Ainda não implementado", SYS);
             }
         }
         if(e.getSource() == opcao2){
             //Checar qual opção foi selecionada
             if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
                 //Opção de cadastrar venda
-                janelaCadastro = new JanelaCadastro("Sistema - Cadastrar venda");
+                janelaCadastro = new JanelaCadastro("Sistema - Cadastrar venda", SYS);
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de Visualizar Funcionários
-                janelaCadastro = new JanelaCadastro("Ainda não implementado");
+                janelaCadastro = new JanelaCadastro("Ainda não implementado", SYS);
             }
             if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
                 //Opção de selecionar um carrinho de compras
-                janelaCadastro = new JanelaCadastro("Ainda não implementado");
+                janelaCadastro = new JanelaCadastro("Ainda não implementado", SYS);
             }
         }
         if(e.getSource() == opcao3){
             //Checar qual opção foi selecionada
             // if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-            //     janelaCadastro = new JanelaCadastro("Titulo");
+            //     janelaCadastro = new JanelaCadastro("Titulo", SYS);
             // }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de visualizar estoque
-                janelaCadastro = new JanelaCadastro("Ainda não implementado");
+                janelaCadastro = new JanelaCadastro("Ainda não implementado", SYS);
             }
             // if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
-            //     janelaCadastro = new JanelaCadastro("Titulo");
+            //     janelaCadastro = new JanelaCadastro("Titulo", SYS);
             // }
         }
         if(e.getSource() == opcao4){
             //Checar qual opção foi selecionada
             // if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-            //     janelaCadastro = new JanelaCadastro("Titulo");
+            //     janelaCadastro = new JanelaCadastro("Titulo", SYS);
             // }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de editar dados da loja
-                janelaCadastro = new JanelaCadastro("Loja - Editar dados");
+                janelaCadastro = new JanelaCadastro("Loja - Editar dados", SYS);
             }
             // if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
-            //     janelaCadastro = new JanelaCadastro("Titulo");
+            //     janelaCadastro = new JanelaCadastro("Titulo", SYS);
             // }
         }
         // if(e.getSource() == opcao5){
         //     //Checar qual opção foi selecionada
         //     if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-        //         new JanelaCadastro("Titulo");
+        //         new JanelaCadastro("Titulo", SYS);
         //     }
         //     if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
-        //         new JanelaCadastro("Titulo");
+        //         new JanelaCadastro("Titulo", SYS);
         //     }
         //     if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
-        //         new JanelaCadastro("Titulo");
+        //         new JanelaCadastro("Titulo", SYS);
         //     }
         // }
         // if(e.getSource() == opcao6){
         //     //Checar qual opção foi selecionada
         //     if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-        //         new JanelaCadastro("Titulo");
+        //         new JanelaCadastro("Titulo", SYS);
         //     }
         //     if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
-        //         new JanelaCadastro("Titulo");
+        //         new JanelaCadastro("Titulo", SYS);
         //     }
         //     if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
-        //         new JanelaCadastro("Titulo");
+        //         new JanelaCadastro("Titulo", SYS);
         //     }
         // }
     }
