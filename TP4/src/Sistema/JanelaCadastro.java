@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -84,7 +85,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             JLabel campo1 = new JLabel();
             campo1.setText("Nome: ");
             campo1.setFont(new Font("Arial", Font.PLAIN, 12));
-            campo1.setPreferredSize(new Dimension(65,20));
+            campo1.setPreferredSize(new Dimension(95,20));
 
             //--------Campo de texto------
             campo1Texto = new JTextField();
@@ -94,7 +95,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             JLabel campo2 = new JLabel();
             campo2.setText("Endereço: ");
             campo2.setFont(new Font("Arial", Font.PLAIN, 12));
-            campo2.setPreferredSize(new Dimension(65,20));
+            campo2.setPreferredSize(new Dimension(95,20));
 
             //--------Campo de texto------
             campo2Texto = new JTextField();
@@ -102,13 +103,28 @@ public class JanelaCadastro extends JDialog implements ActionListener{
 
             //--------------Texto indicativo do 3° campo-------------
             JLabel campo3 = new JLabel();
-            campo3.setText("Endereço: ");
+            campo3.setText("CNPJ: ");
             campo3.setFont(new Font("Arial", Font.PLAIN, 12));
-            campo3.setPreferredSize(new Dimension(65,20));
+            campo3.setPreferredSize(new Dimension(95,20));
 
             //--------Campo de texto------
-            campo2Texto = new JTextField();
-            campo2Texto.setPreferredSize(new Dimension(200,20));
+            campo3Texto = new JTextField();
+            campo3Texto.setPreferredSize(new Dimension(200,20));
+
+            //--------------Texto indicativo do 4° campo-------------
+            JLabel campo4 = new JLabel();
+            campo4.setText("Telefone: ");
+            campo4.setFont(new Font("Arial", Font.PLAIN, 12));
+            campo4.setPreferredSize(new Dimension(95,20));
+
+            //--------Campo de texto------
+            campo4Texto = new JTextField();
+            campo4Texto.setPreferredSize(new Dimension(200,20));
+
+            if(SYS.getLoja().getTelefone() == null){
+                campo4.setVisible(false);
+                campo4Texto.setVisible(false);
+            }
 
             //----------Botões-------------
             confirma = new JButton();
@@ -129,6 +145,12 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             conteudo.setVisible(true);
             conteudo.add(campo1);
             conteudo.add(campo1Texto);
+            conteudo.add(campo2);
+            conteudo.add(campo2Texto);
+            conteudo.add(campo3);
+            conteudo.add(campo3Texto);
+            conteudo.add(campo4);
+            conteudo.add(campo4Texto);
             conteudo.add(confirma);
             conteudo.add(cancela);
         }
@@ -153,9 +175,62 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             dispose();
         }
         if(e.getSource() == confirma){
+
+            //----------Janela de Completar cadastro da loja---------------
             if(this.getTitle().equals("Loja - Completar cadastro")){
-                //Completar o cadastro com o dado passado
-                SYS.getLoja().CompletaCadastro(campo1Texto.getText());
+                //Caso o usuário tenha digitado algo:
+                if (!campo1Texto.getText().equals("")){
+                    //Completar o cadastro com o dado passado
+                    SYS.getLoja().CompletaCadastro(campo1Texto.getText());
+                } else {
+                    //Caso contrário mostrar um painel com um warning
+                    JOptionPane.showMessageDialog(null,
+                     "Campo vazio!",
+                      "Atenção",
+                       JOptionPane.WARNING_MESSAGE);
+                }
+                dispose();
+            }
+
+            //--------------Janela de editar dados da loja------------------
+            if(this.getTitle().equals("Loja - Editar dados")){
+                String nome, endereco, cnpj, telefone;
+                nome = campo1Texto.getText();
+                endereco = campo2Texto.getText();
+                cnpj = campo3Texto.getText();
+                telefone = campo4Texto.getText();
+
+                if (campo1Texto.getText().equals("")){
+                    JOptionPane.showMessageDialog(null,
+                     "Campo nome vazio!",
+                      "Atenção",
+                       JOptionPane.WARNING_MESSAGE);
+                    nome = null;
+                }
+                if (campo2Texto.getText().equals("")){
+                    JOptionPane.showMessageDialog(null,
+                     "Campo endereço vazio!",
+                      "Atenção",
+                       JOptionPane.WARNING_MESSAGE);
+                    endereco = null;
+                }
+                if (campo3Texto.getText().equals("")){
+                    JOptionPane.showMessageDialog(null,
+                    "Campo CNPJ vazio!",
+                    "Atenção",
+                    JOptionPane.WARNING_MESSAGE);
+                    cnpj = null;
+                }
+                if (campo4Texto.getText().equals("")){
+                    if(SYS.getLoja().getTelefone() != null){
+                        JOptionPane.showMessageDialog(null,
+                        "Campo telefone vazio!",
+                        "Atenção",
+                        JOptionPane.WARNING_MESSAGE);
+                    }
+                    telefone = null;
+                }
+                SYS.getLoja().Editar(nome, endereco, cnpj, telefone);
                 dispose();
             }
         }

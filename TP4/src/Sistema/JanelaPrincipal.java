@@ -16,6 +16,7 @@ import javax.swing.border.Border;
 public class JanelaPrincipal extends JFrame implements ActionListener{
     BarraSuperior barraSuperior;
     JanelaCadastro janelaCadastro;
+    JanelaVisualizacao janelaVisualizacao;
     Sistema SYS;
     BotaoOpcao opcao1;
     BotaoOpcao opcao2;
@@ -169,7 +170,10 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             //Checar qual opção foi selecionada
             if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
                 //Opção de visualizar dados da Loja
-                janelaCadastro = new JanelaCadastro("Ainda não implementado", SYS);
+                janelaVisualizacao = new JanelaVisualizacao("Sistema - Dados da loja", SYS);
+                JOptionPane.showMessageDialog(null,
+                 "Para mais opções relacionadas à loja, selecione a aba Loja.",
+                  "Informativo!", JOptionPane.INFORMATION_MESSAGE);
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de completar cadastro da loja
@@ -185,14 +189,14 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             }
             if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
                 //Opção de visualizar clientes
-                janelaCadastro = new JanelaCadastro("Ainda não implementado", SYS);
+                janelaVisualizacao = new JanelaVisualizacao("Clientes - Visualizar", SYS);
             }
         }
         if(e.getSource() == opcao2){
             //Checar qual opção foi selecionada
             if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
                 //Opção de cadastrar venda
-                janelaCadastro = new JanelaCadastro("Sistema - Cadastrar venda", SYS);
+                janelaCadastro = new JanelaCadastro("Ainda não implementado", SYS);
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de Visualizar Funcionários

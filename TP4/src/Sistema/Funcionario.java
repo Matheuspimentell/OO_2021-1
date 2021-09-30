@@ -45,7 +45,7 @@ public class Funcionario extends Pessoa{
 
     //Imprime apenas os dados cadastrados
     @Override
-    public void Visualizar() {
+    public String Visualizar() {
         System.out.println("Nome do funcionario: " + this.nome);
         System.out.println("ID do funcionario: " + this.id);                  
         System.out.println("Cargo do funcionario: " + this.cargo);
@@ -55,9 +55,9 @@ public class Funcionario extends Pessoa{
         if(this.telefone != null){
             System.out.println("Telefone do funcionario: " + this.telefone);
         }
+        return null;
     }
-
-    @Override
+    
     public void Editar() {
         //Imprimir os dados anteriores
         System.out.println("Dados anteriores");

@@ -7,6 +7,7 @@ public class Loja extends Pessoa{
     private String cnpj;
     private ArrayList<Funcionario> funcionarios; //ArrayList de funcionarios
     private ArrayList<Brinquedo> estoque; //ArrayList de brinquedos
+    private String dadosLoja;
 
     //Alteração do construtor {new} de Loja
     public Loja(String nome, String endereco, String cnpj){
@@ -37,37 +38,34 @@ public class Loja extends Pessoa{
     }
     //Mostra apenas os dados cadastrados
     @Override
-    public void Visualizar() {
-        System.out.println("Nome da loja: " + this.nome);
-        System.out.println("CNPJ da loja: " + this.cnpj);
-        System.out.println("Endereco da loja: " + this.endereco);
+    public String Visualizar() {
+        String dadosTelefone = "";
         if(this.telefone != null){
-            System.out.println("Telefone da loja: " + this.telefone);
+            dadosTelefone = "Telefone da loja: " + this.telefone;
         }
+        dadosLoja = "<html>Nome da loja: " + this.nome + "<br /><br />" + 
+        "CNPJ da loja: " + this.cnpj + "<br /><br />" + 
+        "Endereco da loja: " + this.endereco + "<br /><br />" +
+        dadosTelefone + "</html>";
+
+        return dadosLoja;
     }
     //Edita os dados cadastrados
-    @Override
-    public void Editar() {
-        //Imprimir os dados anteriores
-        System.out.println("Dados anteriores");
-        this.Visualizar();
-        System.out.println("-----------------------------------------------------");
+    public void Editar(String nome, String endereco, String cnpj, String telefone) {
         //Nome
-        System.out.print("Digite o novo nome da loja: ");
-        String nome = scan.nextLine();
-        this.nome = nome;
-        //CNPJ
-        System.out.print("Digite o novo CNPJ da loja: ");
-        String cnpj = scan.nextLine();
-        this.cnpj = cnpj;
+        if(nome != null){
+            this.nome = nome;
+        }
         //Endereco
-        System.out.print("Digite o novo endereco da loja: ");
-        String endereco = scan.nextLine();
-        this.endereco = endereco;
-        if(this.telefone != null){
-            //Telefone
-            System.out.print("Digite o novo telefone da loja: ");
-            String telefone = scan.nextLine();
+        if(endereco != null){
+            this.endereco = endereco;
+        }
+        //CNPJ
+        if(cnpj != null){
+            this.cnpj = cnpj;
+        }
+        //Telefone
+        if(this.telefone != null && telefone != null){
             this.telefone = telefone;
         }
     }

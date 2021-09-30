@@ -49,7 +49,6 @@ public class Cliente extends Pessoa{
     }
 
     //Edita apenas os dados já cadastrados
-    @Override
     public void Editar() {
         //Imprimir os dados anteriores
         System.out.println("Dados anteriores:");
@@ -79,7 +78,7 @@ public class Cliente extends Pessoa{
 
     //Imprime apenas os dados cadastrados
     @Override
-    public void Visualizar() {
+    public String Visualizar() {
         System.out.println("Nome do cliente: " + this.nome);
         System.out.println("CPF do cliente: " + this.cpf);
         if(this.endereco != null){
@@ -88,6 +87,7 @@ public class Cliente extends Pessoa{
         if(this.telefone != null){
             System.out.println("Telefone do cliente: " + this.telefone);
         }
+        return null;
     }
 
     //Adiciona um item e sua quantidade comprada ao carrinho de compras do cliente
