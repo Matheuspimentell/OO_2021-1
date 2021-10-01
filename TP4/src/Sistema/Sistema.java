@@ -115,7 +115,13 @@ public class Sistema {
         return this.loja;
     }
     //Setters
-    public void setCliente(Cliente cliente){
+    public void setCliente(Cliente cliente, String endereco, String telefone){
+        if(endereco != null){
+            cliente.setEndereco(endereco);
+        }
+        if(telefone != null){
+            cliente.setTelefone(telefone);
+        }
         this.clientes.add(cliente); //Adição do cliente
     }
     public void setLoja(Loja loja){

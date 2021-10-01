@@ -246,7 +246,13 @@ public class Loja extends Pessoa{
         this.cnpj = c;
     }
     //Cadastro de 1 funcionário
-    public void setFuncionario(Funcionario funcionario){
+    public void setFuncionario(Funcionario funcionario, String endereco, String telefone){
+        if(endereco != null){
+            funcionario.setEndereco(endereco);
+        }
+        if(telefone != null){
+            funcionario.setTelefone(telefone);
+        }
         //Adiciona 1 funcionário na loja
         this.funcionarios.add(funcionario);
     }
