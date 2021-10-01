@@ -1,5 +1,6 @@
-package Sistema;
+package toyStore.srcCode;
 
+import toyStore.GUI.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 

@@ -1,4 +1,6 @@
-package Sistema;
+package toyStore.GUI;
+
+import toyStore.srcCode.*;
 
 import java.awt.Color;
 import java.awt.Dimension;

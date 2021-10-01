@@ -1,4 +1,4 @@
-package Sistema;
+package toyStore.GUI;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;

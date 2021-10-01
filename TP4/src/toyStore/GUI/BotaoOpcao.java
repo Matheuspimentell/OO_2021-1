@@ -1,4 +1,4 @@
-package Sistema;
+package toyStore.GUI;
 
 import javax.swing.JButton;
 import javax.swing.BorderFactory;

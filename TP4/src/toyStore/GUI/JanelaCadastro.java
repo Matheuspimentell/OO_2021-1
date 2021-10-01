@@ -1,4 +1,6 @@
-package Sistema;
+package toyStore.GUI;
+
+import toyStore.srcCode.*;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
