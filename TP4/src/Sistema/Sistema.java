@@ -13,6 +13,8 @@ public class Sistema {
 
         //-----------Adição de 10 clientes--------
         Cliente cliente1 = new Cliente("Cleiton Silva", "649.094.970-99");
+        Brinquedo teste = new Brinquedo("nome", "marca", "categoria", 0.99, 2, 1, 123);
+        cliente1.AdicionaItem(teste, 1);
         this.clientes.add(cliente1);
         Cliente cliente2 = new Cliente("Cleiton Rocha", "004.941.170-52");
         this.clientes.add(cliente2);
@@ -75,19 +77,16 @@ public class Sistema {
         }
     }
     //Buscar um cliente
-    public void BuscarCliente(){
-        System.out.println("Digite o CPF do cliente que deseja buscar:");
-        String cpf = scan.nextLine();
+    public Cliente BuscarCliente(String cpf){
+        //------Procurar cliente no banco de dados--------
         for(Cliente cliente : this.clientes){
+            //---------Caso encontrado---------
             if(cliente.getCpf().equals(cpf)){
-                //Caso o cliente tenha sido encontrado, mostrar o cliente e sair do método
-                System.out.println("Cliente encontrado:");
-                cliente.Visualizar();
-                return;
+                return cliente;
             }
         }
-        //Caso o cliente não tenha sido encontrado
-        System.out.println("Cliente nao encontrado.");
+        //---------Caso não encontrar---------
+        return null;
     }
     //Deletar um cliente
     public void DeletarCliente(){

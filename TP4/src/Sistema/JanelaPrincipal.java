@@ -28,8 +28,9 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
     Border disponivel = BorderFactory.createBevelBorder(BevelBorder.RAISED);
     
     public JanelaPrincipal(Sistema sistema){
-        SYS = sistema;
-        barraSuperior = new BarraSuperior(); //Instancia o componente da barra superior
+        SYS = sistema; //Referência do sistema para integração de dados
+        barraSuperior = new BarraSuperior(); //Instância o componente da barra superior
+
         //---------------------------Botões de opção----------------------------------
         opcao1 = new BotaoOpcao("<html>Visualizar dados<br />da loja</html>"); //Cria um botão com texto
         opcao2 = new BotaoOpcao("<html>Cadastrar<br />venda</html>"); //Cria um botão com texto
@@ -113,6 +114,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
 
         //--------------------Caso se esteja na opção loja------------------
         if(e.getSource() ==  barraSuperior.barraMenu.botaoLoja){
+            //-----------Realizar alterações no conteúdo mostrado---------------
             opcao1.setText("<html>Completar<br />cadastro</html>");
             opcao1.setVisible(true);
             opcao2.setText("<html>Visualizar<br />funcionarios</html>");
@@ -133,6 +135,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
 
         //--------------------Caso se esteja na opção cliente------------------
         if(e.getSource() ==  barraSuperior.barraMenu.botaoClientes){
+            //-----------Realizar alterações no conteúdo mostrado---------------
             opcao1.setText("<html>Visualizar<br />clientes</html>");
             opcao1.setVisible(true);
             opcao2.setText("<html>Carrinhos de<br />compras</html>");
@@ -151,6 +154,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
 
         //--------------------Caso se esteja na opção Sistema------------------
         if(e.getSource() ==  barraSuperior.barraMenu.botaoSistema){
+            //-----------Realizar alterações no conteúdo mostrado---------------
             opcao1.setText("<html>Visualizar dados<br />da loja</html>");
             opcao2.setText("<html>Cadastrar<br />venda</html>");
             opcao3.setVisible(false);
@@ -171,6 +175,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
                 //Opção de visualizar dados da Loja
                 janelaVisualizacao = new JanelaVisualizacao("Sistema - Dados da loja", SYS);
+                //Informar como acessar mais funcionalidade da Loja
                 JOptionPane.showMessageDialog(null,
                  "Para mais opções relacionadas à loja, selecione a aba Loja.",
                   "Informativo!", JOptionPane.INFORMATION_MESSAGE);
@@ -196,7 +201,10 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             //Checar qual opção foi selecionada
             if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
                 //Opção de cadastrar venda
-                janelaCadastro = new JanelaCadastro("Ainda não implementado", SYS);
+                JOptionPane.showMessageDialog(null,
+                 "Função não implementada",
+                 "ERRO",
+                 JOptionPane.ERROR_MESSAGE);
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de Visualizar Funcionários
@@ -204,7 +212,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             }
             if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
                 //Opção de selecionar um carrinho de compras
-                janelaCadastro = new JanelaCadastro("Ainda não implementado", SYS);
+                janelaVisualizacao = new JanelaVisualizacao("Clientes - Carrinhos de compras", SYS);
             }
         }
         if(e.getSource() == opcao3){

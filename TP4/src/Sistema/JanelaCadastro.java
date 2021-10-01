@@ -121,6 +121,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo4Texto = new JTextField();
             campo4Texto.setPreferredSize(new Dimension(200,20));
 
+            //----------------Caso a loja já possua um telefone cadastrado-------------------
             if(SYS.getLoja().getTelefone() == null){
                 campo4.setVisible(false);
                 campo4Texto.setVisible(false);
@@ -139,7 +140,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             cancela.setText("Cancelar");
             cancela.addActionListener(this);
 
-            
+            //-----------------Adição do conteúdo---------------
             conteudo = new JPanel();
             conteudo.setLayout(new FlowLayout());
             conteudo.setVisible(true);
@@ -171,9 +172,11 @@ public class JanelaCadastro extends JDialog implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //-----------Caso seja selecionada a opção de cancelar-----------
         if(e.getSource() == cancela){
             dispose();
         }
+        //--------Caso seja selecionada a opção de confirmar--------------
         if(e.getSource() == confirma){
 
             //----------Janela de Completar cadastro da loja---------------
@@ -189,17 +192,19 @@ public class JanelaCadastro extends JDialog implements ActionListener{
                       "Atenção",
                        JOptionPane.WARNING_MESSAGE);
                 }
+                //----------Fechar a janela---------
                 dispose();
             }
 
             //--------------Janela de editar dados da loja------------------
             if(this.getTitle().equals("Loja - Editar dados")){
                 String nome, endereco, cnpj, telefone;
+                //---------Receber os dados digitados----------
                 nome = campo1Texto.getText();
                 endereco = campo2Texto.getText();
                 cnpj = campo3Texto.getText();
                 telefone = campo4Texto.getText();
-
+                //----------------Verificação dos dados-----------------
                 if (campo1Texto.getText().equals("")){
                     JOptionPane.showMessageDialog(null,
                      "Campo nome vazio!",
@@ -230,7 +235,11 @@ public class JanelaCadastro extends JDialog implements ActionListener{
                     }
                     telefone = null;
                 }
+                
+                //--------------Chamada para a função de edição-------------
                 SYS.getLoja().Editar(nome, endereco, cnpj, telefone);
+
+                //----------Fechar a janela--------
                 dispose();
             }
         }
