@@ -107,6 +107,15 @@ public class Sistema {
             System.out.println("Cliente nao encontrado.");
         }
     }
+    //Editar um cliente
+    public void EditarCliente(Object cpf, Cliente novosDados){
+        for(Cliente cliente : this.clientes){
+            if(cliente.getCpf().equals(cpf)){
+                cliente.Editar(novosDados);
+                break;
+            }
+        }
+    }
 
     //Getters
     public ArrayList<Cliente> getClientes(){

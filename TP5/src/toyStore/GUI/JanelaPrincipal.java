@@ -2,23 +2,16 @@ package toyStore.GUI;
 
 import toyStore.srcCode.*;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JOptionPane;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
 
 public class JanelaPrincipal extends JFrame implements ActionListener{
     BarraSuperior barraSuperior;
     JanelaCadastro janelaCadastro;
     JanelaVisualizacao janelaVisualizacao;
+    JanelaEdicao janelaEdicao;
     Sistema SYS;
     BotaoOpcao opcao1;
     BotaoOpcao opcao2;
@@ -210,7 +203,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de Visualizar Funcionários
-                janelaVisualizacao = new JanelaVisualizacao("Loja - Visualizar funcioários", SYS);
+                janelaVisualizacao = new JanelaVisualizacao("Loja - Visualizar funcionários", SYS);
             }
             if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
                 //Opção de selecionar um carrinho de compras
@@ -237,7 +230,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             // }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de editar dados da loja
-                janelaCadastro = new JanelaCadastro("Loja - Editar dados", SYS);
+                janelaEdicao = new JanelaEdicao("Loja - Editar dados", SYS);
             }
             // if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
             //     janelaCadastro = new JanelaCadastro("Titulo", SYS);

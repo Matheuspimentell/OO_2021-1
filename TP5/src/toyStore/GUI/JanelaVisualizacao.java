@@ -2,24 +2,12 @@ package toyStore.GUI;
 
 import toyStore.srcCode.*;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.JList;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.JButton;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
-import javax.swing.BorderFactory;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FlowLayout;
+import javax.swing.*;
+import javax.swing.table.*;
+import javax.swing.event.*;
+import javax.swing.border.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class JanelaVisualizacao extends JDialog implements ActionListener{
     Sistema SYS;
@@ -71,10 +59,11 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
 
             opcao3 = new JButton();
             opcao3.setPreferredSize(new Dimension(150,40));
-            opcao3.setBorder(indisponivel);
+            opcao3.setBorder(disponivel);
             opcao3.setFocusable(false);
             opcao3.setText("<html>Editar cadastro<br />do cliente</html>");
-            opcao3.setEnabled(false);
+            opcao3.setEnabled(true);
+            opcao3.addActionListener(this);
 
             opcao4 = new JButton();
             opcao4.setPreferredSize(new Dimension(150,40));
@@ -123,7 +112,7 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
         }
 
         //----------Visualizar todos os funcionários cadastrados-----------
-        if(titulo.equals("Loja - Visualizar funcioários")){
+        if(titulo.equals("Loja - Visualizar funcionários")){
 
             //-----------Botões com opções----------------------
             opcao1 = new JButton();
@@ -390,7 +379,7 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
             }
 
             //---------Caso esteja na janela de visualizar funcionários------------
-            if(this.getTitle().equals("Loja - Visualizar funcioários")){
+            if(this.getTitle().equals("Loja - Visualizar funcionários")){
 
                 //-----------Abrir a janela de cadastro-----------
                 new JanelaCadastro("Funcionário - Novo Cadastro", SYS);
@@ -431,6 +420,21 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                     Object[] dadosBrinquedo = {nome,marca,categoria,preco,idadeIndicada,quantidade,id};
                     modeloTabelaEstoque.addRow(dadosBrinquedo);
                 }
+            }
+        }
+        //------------Para a opção de editar-------------
+        if(e.getSource() == opcao3){
+            //Caso nenhum item da lista tenha sido selecionado
+            if(tabelaClientes.getSelectedRow() == -1){
+                JOptionPane.showMessageDialog(null,
+                 "Nenhum cliente selecionado, selecione um cliente para continuar",
+                  "Atenção",
+                   JOptionPane.WARNING_MESSAGE);
+            } else {
+                //Obter o CPF do cliente selecionado
+                Object cpf = tabelaClientes.getModel().getValueAt(tabelaClientes.getSelectedRow(), 1);
+                //Instanciar a janela de edição
+                
             }
         }
     }

@@ -1,14 +1,8 @@
 package toyStore.GUI;
 
-import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.BorderFactory;
-import java.awt.FlowLayout;
-import java.awt.Dimension;
-import java.awt.Color;
-import java.awt.Font;
+import javax.swing.*;
+import javax.swing.border.*;
+import java.awt.*;
 
 public class BarraMenu extends JPanel{
     JButton botaoSistema;

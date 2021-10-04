@@ -51,30 +51,18 @@ public class Cliente extends Pessoa{
     }
 
     //Edita apenas os dados já cadastrados
-    public void Editar() {
-        //Imprimir os dados anteriores
-        System.out.println("Dados anteriores:");
-        this.Visualizar();
-        System.out.println("-----------------------------------------------------");
+    public void Editar(Cliente novosDados) {
         //Nome
-        System.out.print("Digite o novo nome do cliente: ");
-        String n = scan.nextLine();
-        this.nome = n;
+        this.nome = novosDados.getNome();
         //CPF
-        System.out.print("Digite o novo CPF do cliente: ");
-        String c = scan.nextLine();
-        this.cpf = c;
+        this.cpf = novosDados.getCpf();
         //Endereco
         if(this.endereco != null){
-            System.out.print("Digite o novo endereco do cliente: ");
-            String e = scan.nextLine();
-            this.endereco = e;
+            this.endereco = novosDados.getEndereco();
         }
         //Telefone
         if(this.telefone != null){
-            System.out.print("Digite o novo telefone do cliente: ");
-            String t = scan.nextLine();
-            this.telefone = t;
+            this.telefone = novosDados.getTelefone();
         }
     }
 
