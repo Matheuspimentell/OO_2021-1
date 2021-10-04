@@ -53,15 +53,19 @@ public class Cliente extends Pessoa{
     //Edita apenas os dados já cadastrados
     public void Editar(Cliente novosDados) {
         //Nome
-        this.nome = novosDados.getNome();
+        if(novosDados.getNome() != null){
+            this.nome = novosDados.getNome();
+        }
         //CPF
-        this.cpf = novosDados.getCpf();
+        if(novosDados.getCpf() != null){
+            this.cpf = novosDados.getCpf();
+        }
         //Endereco
-        if(this.endereco != null){
+        if(novosDados.getEndereco() != null){
             this.endereco = novosDados.getEndereco();
         }
         //Telefone
-        if(this.telefone != null){
+        if(novosDados.getTelefone() != null){
             this.telefone = novosDados.getTelefone();
         }
     }

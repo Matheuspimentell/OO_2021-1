@@ -183,7 +183,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
                     //Mostrar que a loja já está com o cadastro completo
                     JOptionPane.showMessageDialog(null,
                      "Cadastro da loja já completo",
-                      "Mensagem",
+                      "Informativo!",
                        JOptionPane.INFORMATION_MESSAGE);
                 }
             }
@@ -230,7 +230,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             // }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de editar dados da loja
-                janelaEdicao = new JanelaEdicao("Loja - Editar dados", SYS);
+                janelaEdicao = new JanelaEdicao("Loja - Editar dados", SYS, null);
             }
             // if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
             //     janelaCadastro = new JanelaCadastro("Titulo", SYS);

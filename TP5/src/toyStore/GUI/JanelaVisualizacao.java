@@ -432,9 +432,31 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                    JOptionPane.WARNING_MESSAGE);
             } else {
                 //Obter o CPF do cliente selecionado
-                Object cpf = tabelaClientes.getModel().getValueAt(tabelaClientes.getSelectedRow(), 1);
+                Object dado_aProcurar = tabelaClientes.getModel().getValueAt(tabelaClientes.getSelectedRow(), 1);
                 //Instanciar a janela de edição
+                new JanelaEdicao("Clientes - Editar dados", SYS, dado_aProcurar);
+
+                int totalClientes = modeloTabelaCLientes.getRowCount();
+                //--------Zerar a lista anterior de clientes----------
+                for (int i = 0; i < totalClientes; i++){
+                    modeloTabelaCLientes.removeRow(0);
+                }
                 
+                //--------------------Adicionar todos os clientes na tabela-----------
+                for(Cliente cliente : SYS.getClientes()){
+                    String nome = cliente.getNome();
+                    String cpf = cliente.getCpf();
+                    String endereco = cliente.getEndereco();
+                    String telefone = cliente.getTelefone();
+                    Object[] dadosCliente = {nome,cpf,endereco,telefone};
+                    modeloTabelaCLientes.addRow(dadosCliente);
+                }
+
+                //Mensagem de confirmação
+                JOptionPane.showMessageDialog(null,
+                 "Dados do cliente editados com sucesso",
+                  "Informativo!",
+                   JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }

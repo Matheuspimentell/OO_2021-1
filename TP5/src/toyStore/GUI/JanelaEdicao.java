@@ -9,6 +9,8 @@ import java.awt.event.*;
 public class JanelaEdicao extends JDialog implements ActionListener{
     
     Sistema SYS;
+    Object cpf, id;
+    boolean temTelefone, temEndereco;
     JPanel conteudo;
     JTextField campo1Texto;
     JTextField campo2Texto;
@@ -17,7 +19,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
     JButton confirma;
     JButton cancela;
 
-    JanelaEdicao(String titulo, Sistema sistema){
+    JanelaEdicao(String titulo, Sistema sistema, Object dado_aProcurar){
         SYS = sistema;
         
         //----------------Bordas de formatação----------------
@@ -39,6 +41,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
         bordaDireita.setOpaque(false);
 
         if(titulo.equals("Loja - Editar dados")){
+
             //----------------Instrução------------------
             JOptionPane.showMessageDialog(null,
             "Para não alterar os dados, deixar em branco"
@@ -85,7 +88,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo4Texto = new JTextField();
             campo4Texto.setPreferredSize(new Dimension(200,20));
 
-            //----------------Caso a loja já possua um telefone cadastrado-------------------
+            //----------------Caso a loja não possua um telefone cadastrado-------------------
             if(SYS.getLoja().getTelefone() == null){
                 campo4.setVisible(false);
                 campo4Texto.setVisible(false);
@@ -120,6 +123,109 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             conteudo.add(cancela);
         }
         
+        if(titulo.equals("Clientes - Editar dados")){
+            cpf = dado_aProcurar;
+            temTelefone = false;
+            temEndereco = false;
+
+            for(Cliente cliente : SYS.getClientes()){
+                if(cliente.getCpf().equals(cpf)){
+                    if(cliente.getEndereco() != null){
+                        temEndereco = true;
+                    }
+                    if(cliente.getTelefone() != null){
+                        temTelefone = true;
+                    }
+                }
+            }
+
+            //----------------Instrução------------------
+            JOptionPane.showMessageDialog(null,
+            "Para não alterar os dados, deixar em branco"
+            ,"Informativo"
+            ,JOptionPane.INFORMATION_MESSAGE);
+
+            //--------------Texto indicativo do 1° campo-------------
+            JLabel campo1 = new JLabel();
+            campo1.setText("Nome: ");
+            campo1.setFont(new Font("Arial", Font.PLAIN, 12));
+            campo1.setPreferredSize(new Dimension(95,20));
+
+            //--------Campo de texto------
+            campo1Texto = new JTextField();
+            campo1Texto.setPreferredSize(new Dimension(200,20));
+
+            //--------------Texto indicativo do 2° campo-------------
+            JLabel campo2 = new JLabel();
+            campo2.setText("Endereço: ");
+            campo2.setFont(new Font("Arial", Font.PLAIN, 12));
+            campo2.setPreferredSize(new Dimension(95,20));
+
+            //--------Campo de texto------
+            campo2Texto = new JTextField();
+            campo2Texto.setPreferredSize(new Dimension(200,20));
+
+            //--------------Texto indicativo do 3° campo-------------
+            JLabel campo3 = new JLabel();
+            campo3.setText("CPF: ");
+            campo3.setFont(new Font("Arial", Font.PLAIN, 12));
+            campo3.setPreferredSize(new Dimension(95,20));
+
+            //--------Campo de texto------
+            campo3Texto = new JTextField();
+            campo3Texto.setPreferredSize(new Dimension(200,20));
+
+            //--------------Texto indicativo do 4° campo-------------
+            JLabel campo4 = new JLabel();
+            campo4.setText("Telefone: ");
+            campo4.setFont(new Font("Arial", Font.PLAIN, 12));
+            campo4.setPreferredSize(new Dimension(95,20));
+
+            //--------Campo de texto------
+            campo4Texto = new JTextField();
+            campo4Texto.setPreferredSize(new Dimension(200,20));
+
+            //----------------Caso o cliente não possua um endereço cadastrado-------------------
+            if(temEndereco == false){
+                campo2.setVisible(false);
+                campo2Texto.setVisible(false);
+            }
+
+            //----------------Caso o cliente não possua um telefone cadastrado-------------------
+            if(temTelefone == false){
+                campo4.setVisible(false);
+                campo4Texto.setVisible(false);
+            }
+
+            //----------Botões-------------
+            confirma = new JButton();
+            confirma.setFocusable(false);
+            confirma.setPreferredSize(new Dimension(170,35));
+            confirma.setText("Cadastrar dados");
+            confirma.addActionListener(this);
+
+            cancela = new JButton();
+            cancela.setFocusable(false);
+            cancela.setPreferredSize(new Dimension(170,35));
+            cancela.setText("Cancelar");
+            cancela.addActionListener(this);
+
+            //-----------------Adição do conteúdo---------------
+            conteudo = new JPanel();
+            conteudo.setLayout(new FlowLayout());
+            conteudo.setVisible(true);
+            conteudo.add(campo1);
+            conteudo.add(campo1Texto);
+            conteudo.add(campo2);
+            conteudo.add(campo2Texto);
+            conteudo.add(campo3);
+            conteudo.add(campo3Texto);
+            conteudo.add(campo4);
+            conteudo.add(campo4Texto);
+            conteudo.add(confirma);
+            conteudo.add(cancela);
+        }
+
         //------------Configurações da tela------------
         this.setModal(true);
         this.setTitle(titulo);
@@ -187,6 +293,62 @@ public class JanelaEdicao extends JDialog implements ActionListener{
                 SYS.getLoja().Editar(nome, endereco, cnpj, telefone);
 
                 //----------Fechar a janela--------
+                dispose();
+            }
+            if(this.getTitle().equals("Clientes - Editar dados")){
+                String nome, endereco, cpf, telefone;
+
+                //------------Tratamento dos dados-------------
+                if(campo1Texto.getText().equals("")){
+                    nome = null;
+                    JOptionPane.showMessageDialog(null,
+                     "Campo nome vazio! Alterações descartadas.",
+                      "Atenção!",
+                       JOptionPane.WARNING_MESSAGE);
+                } else {
+                    nome = campo1Texto.getText();
+                }
+                if(campo2Texto.getText().equals("") && temEndereco){
+                    endereco = null;
+                    JOptionPane.showMessageDialog(null,
+                     "Campo endereço vazio! Alterações descartadas.",
+                      "Atenção!",
+                       JOptionPane.WARNING_MESSAGE);
+                } else {
+                    endereco = campo2Texto.getText();
+                }
+                if(campo3Texto.getText().equals("")){
+                    cpf = null;
+                    JOptionPane.showMessageDialog(null,
+                     "Campo CPF vazio! Alterações descartadas.",
+                      "Atenção!",
+                       JOptionPane.WARNING_MESSAGE);
+                } else {
+                    cpf = campo3Texto.getText();
+                }
+                if(campo4Texto.getText().equals("") && temTelefone){
+                    telefone = null;
+                    JOptionPane.showMessageDialog(null,
+                     "Campo telefone vazio! Alterações descartadas.",
+                      "Atenção!",
+                       JOptionPane.WARNING_MESSAGE);
+                } else {
+                    telefone = campo4Texto.getText();
+                }
+
+                //-------Cria um "novo cliente" com os novos dados para sobrescrever os antigos-------
+                Cliente novosDados = new Cliente(nome, cpf);
+                novosDados.setEndereco(endereco);
+                novosDados.setTelefone(telefone);
+
+                //-------Procura e edita o cliente------------
+                for(Cliente cliente : SYS.getClientes()){
+                    if(cliente.getCpf().equals(cpf)){
+                        cliente.Editar(novosDados);
+                        break;
+                    }
+                }
+
                 dispose();
             }
         }
