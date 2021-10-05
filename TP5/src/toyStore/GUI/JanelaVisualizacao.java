@@ -132,10 +132,11 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
 
             opcao3 = new JButton();
             opcao3.setPreferredSize(new Dimension(150,40));
-            opcao3.setBorder(indisponivel);
+            opcao3.setBorder(disponivel);
             opcao3.setFocusable(false);
             opcao3.setText("<html>Editar cadastro<br />do funcionario</html>");
-            opcao3.setEnabled(false);
+            opcao3.setEnabled(true);
+            opcao3.addActionListener(this);
 
             opcao4 = new JButton();
             opcao4.setPreferredSize(new Dimension(150,40));
@@ -367,6 +368,12 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                 //-----------Abrir a janela de cadastro-----------
                 new JanelaCadastro("Cliente - Novo Cadastro", SYS);
 
+                int totalItens = modeloTabelaCLientes.getRowCount();
+                //--------Zerar a lista anterior de itens na lista----------
+                for (int i = 0; i < totalItens; i++){
+                    modeloTabelaCLientes.removeRow(0);
+                }
+
                 //----------Atualizar a lista de clientes----------
                 for(Cliente cliente : SYS.getClientes()){
                     String nome = cliente.getNome();
@@ -383,6 +390,12 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
 
                 //-----------Abrir a janela de cadastro-----------
                 new JanelaCadastro("Funcionário - Novo Cadastro", SYS);
+
+                int totalItens = modeloTabelaFuncionarios.getRowCount();
+                //--------Zerar a lista anterior de itens na lista----------
+                for (int i = 0; i < totalItens; i++){
+                    modeloTabelaFuncionarios.removeRow(0);
+                }
 
                 //----------Atualizar a lista de funcionários----------
                 for(Funcionario funcionario : SYS.getLoja().getFuncionarios()){
@@ -424,39 +437,81 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
         }
         //------------Para a opção de editar-------------
         if(e.getSource() == opcao3){
-            //Caso nenhum item da lista tenha sido selecionado
-            if(tabelaClientes.getSelectedRow() == -1){
-                JOptionPane.showMessageDialog(null,
-                 "Nenhum cliente selecionado, selecione um cliente para continuar",
-                  "Atenção",
-                   JOptionPane.WARNING_MESSAGE);
-            } else {
-                //Obter o CPF do cliente selecionado
-                Object dado_aProcurar = tabelaClientes.getModel().getValueAt(tabelaClientes.getSelectedRow(), 1);
-                //Instanciar a janela de edição
-                new JanelaEdicao("Clientes - Editar dados", SYS, dado_aProcurar);
+            //---------------Caso esteja na janela de visualizar clientes------------
+            if(this.getTitle().equals("Clientes - Visualizar")){
+                //Caso nenhum item da lista tenha sido selecionado
+                if(tabelaClientes.getSelectedRow() == -1){
+                    JOptionPane.showMessageDialog(null,
+                    "Nenhum cliente selecionado, selecione um cliente para continuar",
+                    "Atenção",
+                    JOptionPane.WARNING_MESSAGE);
+                } else {
+                    //Obter o CPF do cliente selecionado
+                    Object dado_aProcurar = tabelaClientes.getModel().getValueAt(tabelaClientes.getSelectedRow(), 1);
+                    //Instanciar a janela de edição
+                    new JanelaEdicao("Clientes - Editar dados", SYS, dado_aProcurar);
 
-                int totalClientes = modeloTabelaCLientes.getRowCount();
-                //--------Zerar a lista anterior de clientes----------
-                for (int i = 0; i < totalClientes; i++){
-                    modeloTabelaCLientes.removeRow(0);
-                }
-                
-                //--------------------Adicionar todos os clientes na tabela-----------
-                for(Cliente cliente : SYS.getClientes()){
-                    String nome = cliente.getNome();
-                    String cpf = cliente.getCpf();
-                    String endereco = cliente.getEndereco();
-                    String telefone = cliente.getTelefone();
-                    Object[] dadosCliente = {nome,cpf,endereco,telefone};
-                    modeloTabelaCLientes.addRow(dadosCliente);
-                }
+                    int totalClientes = modeloTabelaCLientes.getRowCount();
+                    //--------Zerar a lista anterior de clientes----------
+                    for (int i = 0; i < totalClientes; i++){
+                        modeloTabelaCLientes.removeRow(0);
+                    }
+                    
+                    //--------------------Adicionar todos os clientes na tabela-----------
+                    for(Cliente cliente : SYS.getClientes()){
+                        String nome = cliente.getNome();
+                        String cpf = cliente.getCpf();
+                        String endereco = cliente.getEndereco();
+                        String telefone = cliente.getTelefone();
+                        Object[] dadosCliente = {nome,cpf,endereco,telefone};
+                        modeloTabelaCLientes.addRow(dadosCliente);
+                    }
 
-                //Mensagem de confirmação
-                JOptionPane.showMessageDialog(null,
-                 "Dados do cliente editados com sucesso",
-                  "Informativo!",
-                   JOptionPane.INFORMATION_MESSAGE);
+                    //Mensagem de confirmação
+                    JOptionPane.showMessageDialog(null,
+                    "Dados do cliente editados com sucesso",
+                    "Informativo!",
+                    JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+            //--------Cado esteja na janela de visualizar funcionários-------
+            if(this.getTitle().equals("Loja - Visualizar funcionários")){
+                //Caso nenhum item da lista tenha sido selecionado
+                if(tabelaFuncionarios.getSelectedRow() == -1){
+                    JOptionPane.showMessageDialog(null,
+                    "Nenhum funcionário selecionado, selecione um cliente para continuar",
+                    "Atenção",
+                    JOptionPane.WARNING_MESSAGE);
+                } else {
+                    //Obter o ID do funcionário selecionado
+                    Object dado_aProcurar = tabelaFuncionarios.getModel().getValueAt(tabelaFuncionarios.getSelectedRow(), 1);
+
+                    //Instanciar a janela de edição
+                    new JanelaEdicao("Funcionários - Editar dados", SYS, dado_aProcurar);
+
+                    int totalFuncionarios = modeloTabelaFuncionarios.getRowCount();
+                    //--------Zerar a lista anterior de funcionários----------
+                    for (int i = 0; i < totalFuncionarios; i++){
+                        modeloTabelaFuncionarios.removeRow(0);
+                    }
+                    
+                    //-----------Adicionar todos os funcionários à tabela--------------
+                    for(Funcionario funcionario : SYS.getLoja().getFuncionarios()){
+                        String nome = funcionario.getNome();
+                        int id = funcionario.getId();
+                        String cargo = funcionario.getCargo();
+                        String endereco = funcionario.getEndereco();
+                        String telefone = funcionario.getTelefone();
+                        Object[] dadosFuncionario = {nome,id,cargo,endereco,telefone};
+                        modeloTabelaFuncionarios.addRow(dadosFuncionario);
+                    }
+
+                    //Mensagem de confirmação
+                    JOptionPane.showMessageDialog(null,
+                    "Dados do funcionário editados com sucesso",
+                    "Informativo!",
+                    JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         }
     }

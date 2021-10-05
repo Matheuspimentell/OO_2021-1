@@ -60,35 +60,26 @@ public class Funcionario extends Pessoa{
         return null;
     }
     
-    public void Editar() {
-        //Imprimir os dados anteriores
-        System.out.println("Dados anteriores");
-        this.Visualizar();
-        System.out.println("-----------------------------------------------------");
+    public void Editar(Funcionario novosDados) {
         //Nome
-        System.out.print("Digite o novo nome do funcionario: ");
-        String nome = scan.nextLine();
-        this.nome = nome;
+        if(novosDados.getNome() != null){
+            this.nome = novosDados.getNome();
+        }
         //Codigo identificador
-        System.out.print("Digite o novo ID do funcionario: ");
-        int id = scan.nextInt();
-        scan.nextLine();
-        this.id = id;
+        if(novosDados.getId() != -1){
+            this.id = novosDados.getId();
+        }
         //Cargo
-        System.out.print("Digite o novo cargo do funcionario: ");
-        String cargo = scan.nextLine();
-        this.cargo = cargo;
+        if(novosDados.getCargo() != null){
+            this.cargo = novosDados.getCargo();
+        }
         //Endereco
-        if(this.endereco != null){
-            System.out.print("Digite o novo endereco do funcionario: ");
-            String endereco = scan.nextLine();
-            this.endereco = endereco;
+        if(novosDados.getEndereco() != null){
+            this.endereco = novosDados.getEndereco();
         }
         //Telefone
-        if(this.telefone != null){
-            System.out.print("Digite o novo telefone do funcionario: ");
-            String telefone = scan.nextLine();
-            this.telefone = telefone; 
+        if(novosDados.getTelefone() != null){
+            this.telefone = novosDados.getTelefone();
         }
     }
 
