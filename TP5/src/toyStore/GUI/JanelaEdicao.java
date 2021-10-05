@@ -9,7 +9,7 @@ import java.awt.event.*;
 public class JanelaEdicao extends JDialog implements ActionListener{
     
     Sistema SYS;
-    Object cpf, id;
+    Object oldCpf, oldId;
     boolean temTelefone, temEndereco;
     JPanel conteudo;
     JTextField campo1Texto;
@@ -21,7 +21,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
 
     JanelaEdicao(String titulo, Sistema sistema, Object dado_aProcurar){
         SYS = sistema;
-        
+
         //----------------Bordas de formatação----------------
         JPanel bordaSuperior = new JPanel();
         bordaSuperior.setPreferredSize(new Dimension(50, 50));
@@ -124,12 +124,12 @@ public class JanelaEdicao extends JDialog implements ActionListener{
         }
         
         if(titulo.equals("Clientes - Editar dados")){
-            cpf = dado_aProcurar;
+            oldCpf = dado_aProcurar;
             temTelefone = false;
             temEndereco = false;
 
             for(Cliente cliente : SYS.getClientes()){
-                if(cliente.getCpf().equals(cpf)){
+                if(cliente.getCpf().equals(oldCpf)){
                     if(cliente.getEndereco() != null){
                         temEndereco = true;
                     }
@@ -343,7 +343,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
 
                 //-------Procura e edita o cliente------------
                 for(Cliente cliente : SYS.getClientes()){
-                    if(cliente.getCpf().equals(cpf)){
+                    if(cliente.getCpf().equals(oldCpf)){
                         cliente.Editar(novosDados);
                         break;
                     }
