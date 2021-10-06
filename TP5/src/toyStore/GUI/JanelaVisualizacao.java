@@ -61,7 +61,7 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
             opcao3.setPreferredSize(new Dimension(150,40));
             opcao3.setBorder(disponivel);
             opcao3.setFocusable(false);
-            opcao3.setText("<html>Editar cadastro<br />do cliente</html>");
+            opcao3.setText("<html>Editar<br />cadastro</html>");
             opcao3.setEnabled(true);
             opcao3.addActionListener(this);
 
@@ -69,7 +69,7 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
             opcao4.setPreferredSize(new Dimension(150,40));
             opcao4.setBorder(indisponivel);
             opcao4.setFocusable(false);
-            opcao4.setText("<html>Completar<br />cadastro do cliente</html>");
+            opcao4.setText("<html>Completar<br />cadastro</html>");
             opcao4.setEnabled(false);
 
             //-------Modelo de barra superior de descrições-------------------
@@ -134,7 +134,7 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
             opcao3.setPreferredSize(new Dimension(150,40));
             opcao3.setBorder(disponivel);
             opcao3.setFocusable(false);
-            opcao3.setText("<html>Editar cadastro<br />do funcionario</html>");
+            opcao3.setText("<html>Editar<br />cadastro</html>");
             opcao3.setEnabled(true);
             opcao3.addActionListener(this);
 
@@ -142,7 +142,7 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
             opcao4.setPreferredSize(new Dimension(150,40));
             opcao4.setBorder(indisponivel);
             opcao4.setFocusable(false);
-            opcao4.setText("<html>Completar<br />cadastro do funcionario</html>");
+            opcao4.setText("<html>Completar<br />cadastro</html>");
             opcao4.setEnabled(false);
 
             //-------Modelo de barra superior de descrições-------------------
@@ -208,14 +208,14 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
             opcao3.setPreferredSize(new Dimension(150,40));
             opcao3.setBorder(indisponivel);
             opcao3.setFocusable(false);
-            opcao3.setText("<html>Editar cadastro<br />do brinquedo</html>");
+            opcao3.setText("<html>Editar<br />cadastro</html>");
             opcao3.setEnabled(false);
 
             opcao4 = new JButton();
             opcao4.setPreferredSize(new Dimension(150,40));
             opcao4.setBorder(indisponivel);
             opcao4.setFocusable(false);
-            opcao4.setText("<html>Completar<br />cadastro do brinquedo</html>");
+            opcao4.setText("<html>Completar<br />cadastro</html>");
             opcao4.setEnabled(false);
 
             //-------Modelo de barra superior de descrições-------------------

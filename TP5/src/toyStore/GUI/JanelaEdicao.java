@@ -528,7 +528,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
                         break;
                     }
                 }
-
+                //------------Fechar a janela---------------
                 dispose();
             }
         }
