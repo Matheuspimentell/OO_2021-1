@@ -14,8 +14,6 @@ public class Sistema {
 
         //-----------Adição de 10 clientes--------
         Cliente cliente1 = new Cliente("Cleiton Silva", "649.094.970-99");
-        Brinquedo teste = new Brinquedo("nome", "marca", "categoria", 0.99, 2, 1, 123);
-        cliente1.AdicionaItem(teste, 1);
         this.clientes.add(cliente1);
         Cliente cliente2 = new Cliente("Cleiton Rocha", "004.941.170-52");
         this.clientes.add(cliente2);

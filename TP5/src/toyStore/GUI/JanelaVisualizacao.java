@@ -283,18 +283,18 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
 
             opcao2 = new JButton();
             opcao2.setPreferredSize(new Dimension(150,40));
-            opcao2.setBorder(indisponivel);
+            opcao2.setBorder(disponivel);
             opcao2.setFocusable(false);
             opcao2.setText("<html>Retirar item<br />do carrinho</html>");
-            opcao2.setEnabled(false);
+            opcao2.setEnabled(true);
             opcao2.addActionListener(this);
 
             opcao3 = new JButton();
             opcao3.setPreferredSize(new Dimension(150,40));
-            opcao3.setBorder(indisponivel);
+            opcao3.setBorder(disponivel);
             opcao3.setFocusable(false);
-            opcao3.setText("<html>Editar item<br />do carrinho</html>");
-            opcao3.setEnabled(false);
+            opcao3.setText("<html>Editar quantidade<br />do item</html>");
+            opcao3.setEnabled(true);
             opcao3.addActionListener(this);
 
             //-------Modelo de barra superior de descrições-------------------
@@ -512,7 +512,7 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                                         Double preco = brinq.getPreco();
                                         int idadeIndicada = brinq.getIdade();
                                         int qtd = brinq.getQuantidade();
-                                        int id = brinquedo.getId();
+                                        int id = brinq.getId();
                                         Object[] dadosBrinquedo = {nome,marca,categoria,preco,idadeIndicada,qtd,id};
                                         modeloTabelaCarrinho.addRow(dadosBrinquedo);
                                     }
@@ -653,6 +653,55 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                        JOptionPane.WARNING_MESSAGE);
                 }
             }
+            //---------Caso esteja na janela de visualizar carrinho-----------
+            if(this.getTitle().equals("Clientes - Carrinhos de compras")){
+                if(tabelaCarrinho.getSelectedRow() != -1){
+                    Cliente cliente = SYS.BuscarCliente(listaClientes.getSelectedValue());
+
+                    Object idTabela = tabelaCarrinho.getModel().getValueAt(tabelaCarrinho.getSelectedRow(), 6);
+                    int idExcluir = (int) idTabela;
+
+                    Brinquedo noEstoque = null;
+                    for(Brinquedo brinquedo : SYS.getLoja().getEstoque()){
+                        if(brinquedo.getId() == idExcluir){
+                            noEstoque = brinquedo;
+                            break;
+                        }
+                    }
+
+                    for(Brinquedo excluir : cliente.getCarrinho()){
+                        if(excluir.getId() == idExcluir){
+                            noEstoque.setQuantidade(noEstoque.getQuantidade() + excluir.getQuantidade());
+                            cliente.getCarrinho().remove(excluir);
+                            break;
+                        }
+                    }
+
+                    //-------Zerar tabela de itens----------------
+                    int totalItensCarrinho = modeloTabelaCarrinho.getRowCount();
+                    for(int i = 0; i < totalItensCarrinho; i++){
+                        modeloTabelaCarrinho.removeRow(0);
+                    }
+
+                    //--------------------Adicionar todos os brinquedos no carrinho à tabela-----------
+                    for(Brinquedo brinq : cliente.getCarrinho()){
+                        String nome = brinq.getNome();
+                        String marca = brinq.getMarca();
+                        String categoria = brinq.getCategoria();
+                        Double preco = brinq.getPreco();
+                        int idadeIndicada = brinq.getIdade();
+                        int quant = brinq.getQuantidade();
+                        int id = brinq.getId();
+                        Object[] dadosBrinquedo = {nome,marca,categoria,preco,idadeIndicada,quant,id};
+                        modeloTabelaCarrinho.addRow(dadosBrinquedo);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                     "Nenhum brinquedo selecionado, selecione um brinquedo para continuar",
+                      "Atencao",
+                       JOptionPane.WARNING_MESSAGE);
+                }
+            }
         }
         //------------Para a opção de editar-------------
         if(e.getSource() == opcao3){
@@ -751,6 +800,62 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                         Object[] dadosBrinquedo = {nome,marca,categoria,preco,idadeIndicada,quantidade,id};
                         modeloTabelaEstoque.addRow(dadosBrinquedo);
                     }
+                }
+            }
+            //-----------Caso esteja na janela de visualizar carrinhos de compras--------------
+            if(this.getTitle().equals("Clientes - Carrinhos de compras")){
+                if(tabelaCarrinho.getSelectedRow() != -1){
+                    //Obter o ID do item a ser editado
+                    Object dado = tabelaCarrinho.getModel().getValueAt(tabelaCarrinho.getSelectedRow(), 6);
+                    int idEditar = (int) dado;
+                    String cpfCliente = listaClientes.getSelectedValue();
+                    Cliente cliente = SYS.BuscarCliente(cpfCliente);
+
+                    String entrada = JOptionPane.showInputDialog("Informe a nova quantidade do item:");
+                    int qtd = 0;
+
+                    Brinquedo editar = null;
+
+
+                    for(Brinquedo brinquedo : cliente.getCarrinho()){
+                        if(brinquedo.getId() == idEditar){
+                            editar = brinquedo;
+                            qtd = Integer.parseInt(entrada) - brinquedo.getQuantidade();
+                            editar.setQuantidade(editar.getQuantidade() + qtd);
+                            qtd = qtd*(-1);
+                            System.out.println(qtd);
+                            break;
+                        }
+                    }
+
+                    for(Brinquedo brinquedo : SYS.getLoja().getEstoque()){
+                        if(brinquedo.getId() == editar.getId()){
+                            brinquedo.setQuantidade(brinquedo.getQuantidade() + qtd);
+                        }
+                    }
+
+                    //-------Zerar tabela de itens----------------
+                    int totalItensCarrinho = modeloTabelaCarrinho.getRowCount();
+                    for(int i = 0; i < totalItensCarrinho; i++){
+                        modeloTabelaCarrinho.removeRow(0);
+                    }
+
+                    //--------------------Adicionar todos os brinquedos no carrinho à tabela-----------
+                    for(Brinquedo brinq : cliente.getCarrinho()){
+                        String nome = brinq.getNome();
+                        String marca = brinq.getMarca();
+                        String categoria = brinq.getCategoria();
+                        Double preco = brinq.getPreco();
+                        int idadeIndicada = brinq.getIdade();
+                        int quant = brinq.getQuantidade();
+                        int id = brinq.getId();
+                        Object[] dadosBrinquedo = {nome,marca,categoria,preco,idadeIndicada,quant,id};
+                        modeloTabelaCarrinho.addRow(dadosBrinquedo);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                     "Nenhum brinquedo do carrinho selecionado, selecione um brinquedo para continuar",
+                      "Atencao", JOptionPane.WARNING_MESSAGE);
                 }
             }
         }
