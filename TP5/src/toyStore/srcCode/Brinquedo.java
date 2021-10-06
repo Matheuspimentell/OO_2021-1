@@ -2,10 +2,7 @@ package toyStore.srcCode;
 
 import toyStore.GUI.*;
 
-import java.util.Scanner;
-
 public class Brinquedo implements Cloneable{
-    private Scanner scan = new Scanner(System.in);
     private String nome, marca, categoria;
     private double precoUnitario;
     private int idadeIndicada, quantidade, id;

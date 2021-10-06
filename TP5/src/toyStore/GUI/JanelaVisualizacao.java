@@ -52,10 +52,11 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
 
             opcao2 = new JButton();
             opcao2.setPreferredSize(new Dimension(150,40));
-            opcao2.setBorder(indisponivel);
+            opcao2.setBorder(disponivel);
             opcao2.setFocusable(false);
             opcao2.setText("<html>Deletar<br />cliente</html>");
-            opcao2.setEnabled(false);
+            opcao2.setEnabled(true);
+            opcao2.addActionListener(this);
 
             opcao3 = new JButton();
             opcao3.setPreferredSize(new Dimension(150,40));
@@ -125,10 +126,11 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
 
             opcao2 = new JButton();
             opcao2.setPreferredSize(new Dimension(150,40));
-            opcao2.setBorder(indisponivel);
+            opcao2.setBorder(disponivel);
             opcao2.setFocusable(false);
             opcao2.setText("<html>Deletar<br />funcionario</html>");
-            opcao2.setEnabled(false);
+            opcao2.setEnabled(true);
+            opcao2.addActionListener(this);
 
             opcao3 = new JButton();
             opcao3.setPreferredSize(new Dimension(150,40));
@@ -199,10 +201,11 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
 
             opcao2 = new JButton();
             opcao2.setPreferredSize(new Dimension(150,40));
-            opcao2.setBorder(indisponivel);
+            opcao2.setBorder(disponivel);
             opcao2.setFocusable(false);
             opcao2.setText("<html>Deletar<br />brinquedo</html>");
-            opcao2.setEnabled(false);
+            opcao2.setEnabled(true);
+            opcao2.addActionListener(this);
 
             opcao3 = new JButton();
             opcao3.setPreferredSize(new Dimension(150,40));
@@ -433,6 +436,129 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                     int id = brinquedo.getId();
                     Object[] dadosBrinquedo = {nome,marca,categoria,preco,idadeIndicada,quantidade,id};
                     modeloTabelaEstoque.addRow(dadosBrinquedo);
+                }
+            }
+        }
+        if(e.getSource() == opcao2){
+            //---------Caso esteja na janela de visualizar clientes-----------
+            if(this.getTitle().equals("Clientes - Visualizar")){
+                if(tabelaClientes.getSelectedRow() != -1){
+                    //Obter CPF fo cliente a ser excluído
+                    Object dado = tabelaClientes.getModel().getValueAt(tabelaClientes.getSelectedRow(), 1);
+
+                    //Procurar o cliente pelo CPF e excluí-lo
+                    for(Cliente cliente : SYS.getClientes()){
+                        if(cliente.getCpf().equals(dado)){
+                            SYS.getClientes().remove(cliente);
+                            JOptionPane.showMessageDialog(null,
+                            "Cadastro do cliente excluído com sucesso.",
+                            "Informativo",
+                            JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        }
+                    }
+
+                    //Atualizar a lista
+                    int totalClientes = modeloTabelaCLientes.getRowCount();
+                    //--------Zerar a lista anterior de clientes----------
+                    for (int i = 0; i < totalClientes; i++){
+                        modeloTabelaCLientes.removeRow(0);
+                    }
+                    //--------------------Adicionar todos os clientes na tabela-----------
+                    for(Cliente cliente : SYS.getClientes()){
+                        String nome = cliente.getNome();
+                        String cpf = cliente.getCpf();
+                        String endereco = cliente.getEndereco();
+                        String telefone = cliente.getTelefone();
+                        Object[] dadosCliente = {nome,cpf,endereco,telefone};
+                        modeloTabelaCLientes.addRow(dadosCliente);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                     "Nenhum cliente selecionado, selecione um cliente para continuar.",
+                      "Atenção",
+                       JOptionPane.WARNING_MESSAGE);
+                }
+            }
+            //---------Caso esteja na janela de visualizar funcionários-------
+            if(this.getTitle().equals("Loja - Visualizar funcionários")){
+                if(tabelaFuncionarios.getSelectedRow() != -1){
+                    //Obter o ID do funcionário a ser deletado
+                    Object dado = tabelaFuncionarios.getModel().getValueAt(tabelaFuncionarios.getSelectedRow(), 1);
+                    int idExcluir = (int) dado;
+                    for(Funcionario funcionario : SYS.getLoja().getFuncionarios()){
+                        if(funcionario.getId() == idExcluir){
+                            SYS.getLoja().getFuncionarios().remove(funcionario);
+                            JOptionPane.showMessageDialog(null,
+                            "Cadastro do funcionário excluído com sucesso.",
+                            "Informativo",
+                            JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        }
+                    }
+                    //Atualizar a lista de funcionários
+                    int totalFuncionarios = modeloTabelaFuncionarios.getRowCount();
+                    //--------Zerar a lista anterior de funcionários----------
+                    for (int i = 0; i < totalFuncionarios; i++){
+                        modeloTabelaFuncionarios.removeRow(0);
+                    }
+                    //-----------Adicionar todos os funcionários à tabela--------------
+                    for(Funcionario funcionario : SYS.getLoja().getFuncionarios()){
+                        String nome = funcionario.getNome();
+                        int id = funcionario.getId();
+                        String cargo = funcionario.getCargo();
+                        String endereco = funcionario.getEndereco();
+                        String telefone = funcionario.getTelefone();
+                        Object[] dadosFuncionario = {nome,id,cargo,endereco,telefone};
+                        modeloTabelaFuncionarios.addRow(dadosFuncionario);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                     "Nenhum funcionário selecionado, selecione um funcionário para continuar.",
+                      "Atenção",
+                       JOptionPane.WARNING_MESSAGE);
+                }
+                
+            }
+            //---------Caso esteja na janela de visualizar estoque------------
+            if(this.getTitle().equals("Loja - Visualizar estoque")){
+                if(tabelaBrinquedos.getSelectedRow() != -1){
+                    Object dado = tabelaBrinquedos.getModel().getValueAt(tabelaBrinquedos.getSelectedRow(), 6);
+                    int idExcluir = (int) dado;
+
+                    for(Brinquedo brinquedo : SYS.getLoja().getEstoque()){
+                        if(brinquedo.getId() == idExcluir){
+                            SYS.getLoja().getEstoque().remove(brinquedo);
+                            JOptionPane.showMessageDialog(null,
+                            "Cadastro do brinquedo excluído com sucesso.",
+                            "Informativo",
+                            JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        }
+                    }
+                    //Atualizar a lista de brinquedos
+                    int totalEstoque = modeloTabelaEstoque.getRowCount();
+                    //--------Zerar a lista anterior de brinquedos----------
+                    for (int i = 0; i < totalEstoque; i++){
+                        modeloTabelaEstoque.removeRow(0);
+                    }
+                    //--------------------Adicionar todos os brinquedos na tabela-----------
+                    for(Brinquedo brinquedo : SYS.getLoja().getEstoque()){
+                        String nome = brinquedo.getNome();
+                        String marca = brinquedo.getMarca();
+                        String categoria = brinquedo.getCategoria();
+                        Double preco = brinquedo.getPreco();
+                        int idadeIndicada = brinquedo.getIdade();
+                        int quantidade = brinquedo.getQuantidade();
+                        int id = brinquedo.getId();
+                        Object[] dadosBrinquedo = {nome,marca,categoria,preco,idadeIndicada,quantidade,id};
+                        modeloTabelaEstoque.addRow(dadosBrinquedo);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                     "Nenhum brinquedo selecionado, para continuar selecione algum brinquedo.",
+                      "Atenção",
+                       JOptionPane.WARNING_MESSAGE);
                 }
             }
         }
