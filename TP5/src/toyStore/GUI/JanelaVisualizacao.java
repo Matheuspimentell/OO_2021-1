@@ -206,10 +206,11 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
 
             opcao3 = new JButton();
             opcao3.setPreferredSize(new Dimension(150,40));
-            opcao3.setBorder(indisponivel);
+            opcao3.setBorder(disponivel);
             opcao3.setFocusable(false);
             opcao3.setText("<html>Editar<br />cadastro</html>");
-            opcao3.setEnabled(false);
+            opcao3.setEnabled(true);
+            opcao3.addActionListener(this);
 
             opcao4 = new JButton();
             opcao4.setPreferredSize(new Dimension(150,40));
@@ -466,15 +467,9 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                         Object[] dadosCliente = {nome,cpf,endereco,telefone};
                         modeloTabelaCLientes.addRow(dadosCliente);
                     }
-
-                    //Mensagem de confirmação
-                    JOptionPane.showMessageDialog(null,
-                    "Dados do cliente editados com sucesso",
-                    "Informativo!",
-                    JOptionPane.INFORMATION_MESSAGE);
                 }
             }
-            //--------Cado esteja na janela de visualizar funcionários-------
+            //--------Caso esteja na janela de visualizar funcionários-------
             if(this.getTitle().equals("Loja - Visualizar funcionários")){
                 //Caso nenhum item da lista tenha sido selecionado
                 if(tabelaFuncionarios.getSelectedRow() == -1){
@@ -505,12 +500,39 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                         Object[] dadosFuncionario = {nome,id,cargo,endereco,telefone};
                         modeloTabelaFuncionarios.addRow(dadosFuncionario);
                     }
-
-                    //Mensagem de confirmação
+                }
+            }
+            //---------Caso esteja na janela de visualizar estoque--------------
+            if(this.getTitle().equals("Loja - Visualizar estoque")){
+                //Caso nenhum item da lista tenha sido selecionado
+                if(tabelaBrinquedos.getSelectedRow() == -1){
                     JOptionPane.showMessageDialog(null,
-                    "Dados do funcionário editados com sucesso",
-                    "Informativo!",
-                    JOptionPane.INFORMATION_MESSAGE);
+                     "Nenhum brinquedo do estoque selecionado, selecione um brinquedo para continuar.",
+                      "Atenção",
+                       JOptionPane.WARNING_MESSAGE);
+                } else {
+                    Object dado_aProcurar = tabelaBrinquedos.getModel().getValueAt(tabelaBrinquedos.getSelectedRow(), 6);
+
+                    new JanelaEdicao("Brinquedo - Editar dados", SYS, dado_aProcurar);
+
+                    int totalEstoque = modeloTabelaEstoque.getRowCount();
+                    //--------Zerar a lista anterior de brinquedos----------
+                    for (int i = 0; i < totalEstoque; i++){
+                        modeloTabelaEstoque.removeRow(0);
+                    }
+
+                    //--------------------Adicionar todos os brinquedos na tabela-----------
+                    for(Brinquedo brinquedo : SYS.getLoja().getEstoque()){
+                        String nome = brinquedo.getNome();
+                        String marca = brinquedo.getMarca();
+                        String categoria = brinquedo.getCategoria();
+                        Double preco = brinquedo.getPreco();
+                        int idadeIndicada = brinquedo.getIdade();
+                        int quantidade = brinquedo.getQuantidade();
+                        int id = brinquedo.getId();
+                        Object[] dadosBrinquedo = {nome,marca,categoria,preco,idadeIndicada,quantidade,id};
+                        modeloTabelaEstoque.addRow(dadosBrinquedo);
+                    }
                 }
             }
         }

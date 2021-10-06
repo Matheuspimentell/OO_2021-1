@@ -41,38 +41,35 @@ public class Brinquedo implements Cloneable{
     }
 
     //Edição dos dados cadastrados
-    public void Editar(){
-        //Dados anteriores
-        System.out.println("Dados anteriores");
-        System.out.println(this);
-        System.out.println("-----------------------------------------------------");
+    public void Editar(Brinquedo novosDados){
         //Nome
-        System.out.print("Digite o novo nome do brinquedo: ");
-        String nome = scan.nextLine();
-        this.nome = nome;
+        if(novosDados.getNome() != null){
+            this.nome = novosDados.getNome();
+        }
         //Marca
-        System.out.print("Digite a nova marca do brinquedo: ");
-        String marca = scan.nextLine();
-        this.marca = marca;
+        if(novosDados.getMarca() != null){
+            this.marca = novosDados.getMarca();
+        }
         //Categoria
-        System.out.print("Digite a nova categoria do brinquedo: ");
-        String categoria = scan.nextLine();
-        this.categoria = categoria;
+        if(novosDados.getCategoria() != null){
+            this.categoria = novosDados.getCategoria();
+        }
         //Preço unitário
-        System.out.print("Digite o novo preco unitario do brinquedo: ");
-        double precoUnitario = scan.nextDouble();
-        scan.nextLine();
-        this.precoUnitario = precoUnitario;
+        if(novosDados.getPreco() != -1.0){
+            this.precoUnitario = novosDados.getPreco();
+        }
         //Idade indicativa
-        System.out.print("Digite a nova idade indicada para o uso do brinquedo: ");
-        int idade = scan.nextInt();
-        scan.nextLine();
-        this.idadeIndicada = idade;
+        if(novosDados.getIdade() != -1){
+            this.idadeIndicada = novosDados.getIdade();
+        }
+        //Quantidade em estoque
+        if(novosDados.getQuantidade() != -1){
+            this.quantidade = novosDados.getQuantidade();
+        }
         //Código identificador
-        System.out.print("Digite o novo codigo identificador do brinquedo: ");
-        int id = scan.nextInt();
-        scan.nextLine();
-        this.id = id;
+        if(novosDados.getId() != -1){
+            this.id = novosDados.getId();
+        }
     }
 
     //Getters
