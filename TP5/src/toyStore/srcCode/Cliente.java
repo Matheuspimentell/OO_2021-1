@@ -4,7 +4,7 @@ import toyStore.GUI.*;
 
 import java.util.ArrayList;
 
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa implements Cloneable{
     private String cpf;
     private ArrayList<Brinquedo> carrinho;
 
@@ -86,8 +86,10 @@ public class Cliente extends Pessoa{
 
     //Adiciona um item e sua quantidade comprada ao carrinho de compras do cliente
     public void AdicionaItem(Brinquedo brinquedo, int quantidade){
-        brinquedo.setQuantidade(quantidade); //Adiciona a quantidade correta do brinquedo
-        this.carrinho.add(brinquedo); //Adiciona o brinquedo ao carrinho
+        if(brinquedo != null){
+            brinquedo.setQuantidade(quantidade); //Adiciona a quantidade correta do brinquedo
+            this.carrinho.add(brinquedo); //Adiciona o brinquedo ao carrinho
+        }
     }
     
     //Imprime todos os brinquedos no carrinho de compras

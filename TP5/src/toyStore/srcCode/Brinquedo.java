@@ -23,7 +23,12 @@ public class Brinquedo implements Cloneable{
     //Clonar Brinquedo
     @Override
     public Brinquedo clone() throws CloneNotSupportedException{
-        return (Brinquedo) super.clone();
+        try {
+            return (Brinquedo) super.clone();
+        } catch(CloneNotSupportedException e){
+            return this;
+        }
+        
     }
 
     //Visualizar o Brinquedo

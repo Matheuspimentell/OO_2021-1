@@ -4,6 +4,9 @@ import toyStore.srcCode.*;
 
 import javax.swing.*;
 import javax.swing.table.*;
+
+import org.w3c.dom.NodeList;
+
 import javax.swing.event.*;
 import javax.swing.border.*;
 import java.awt.*;
@@ -15,9 +18,11 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
     DefaultTableModel modeloTabelaCLientes;
     DefaultTableModel modeloTabelaFuncionarios;
     DefaultTableModel modeloTabelaEstoque;
+    DefaultTableModel modeloTabelaCarrinho;
     JTable tabelaClientes;
     JTable tabelaFuncionarios;
     JTable tabelaBrinquedos;
+    JTable tabelaCarrinho;
     JScrollPane painelDados = new JScrollPane();
     JButton opcao1;
     JButton opcao2;
@@ -268,12 +273,36 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
         //----------Visualizar os carrinhos de compras do cliente selecionado-----------
         if(titulo.equals("Clientes - Carrinhos de compras")){
 
+            opcao1 = new JButton();
+            opcao1.setPreferredSize(new Dimension(150,40));
+            opcao1.setBorder(disponivel);
+            opcao1.setFocusable(false);
+            opcao1.setText("<html>Adicionar item<br />ao carrinho</html>");
+            opcao1.setEnabled(true);
+            opcao1.addActionListener(this);
+
+            opcao2 = new JButton();
+            opcao2.setPreferredSize(new Dimension(150,40));
+            opcao2.setBorder(indisponivel);
+            opcao2.setFocusable(false);
+            opcao2.setText("<html>Retirar item<br />do carrinho</html>");
+            opcao2.setEnabled(false);
+            opcao2.addActionListener(this);
+
+            opcao3 = new JButton();
+            opcao3.setPreferredSize(new Dimension(150,40));
+            opcao3.setBorder(indisponivel);
+            opcao3.setFocusable(false);
+            opcao3.setText("<html>Editar item<br />do carrinho</html>");
+            opcao3.setEnabled(false);
+            opcao3.addActionListener(this);
+
             //-------Modelo de barra superior de descrições-------------------
             String[] colunasCarrinho = {"Nome", "Marca", "Categ.",
                         "R$/Un.", "Idade indicada", "#QTD", "ID"};
 
             //----------------Define o modelo de tabela------------
-            DefaultTableModel modeloTabelaCarrinho = new DefaultTableModel(colunasCarrinho, 0){
+            modeloTabelaCarrinho = new DefaultTableModel(colunasCarrinho, 0){
                 //Torna todas as células não editáveis
                 @Override
                 public boolean isCellEditable(int row, int column) {
@@ -340,7 +369,7 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
             });
 
             //------------Definição da tabela de itens do carrinho---------------
-            JTable tabelaCarrinho = new JTable(modeloTabelaCarrinho);
+            tabelaCarrinho = new JTable(modeloTabelaCarrinho);
             tabelaCarrinho.setPreferredScrollableViewportSize(new Dimension(750,150));
             tabelaCarrinho.setFillsViewportHeight(true);
 
@@ -352,6 +381,9 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
             this.add(painelClientes);
             this.add(linha);
             this.add(painelCarrinho);
+            this.add(opcao1);
+            this.add(opcao2);
+            this.add(opcao3);
         }
 
         //-------Definições da janela principal----------
@@ -365,6 +397,7 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //--------------Para a opção de cadastrar novo------------
         if(e.getSource() == opcao1){
             //---------Caso esteja na janela de visualizar clientes------------
             if(this.getTitle().equals("Clientes - Visualizar")){
@@ -388,7 +421,6 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                     modeloTabelaCLientes.addRow(dadosCliente);
                 }
             }
-
             //---------Caso esteja na janela de visualizar funcionários------------
             if(this.getTitle().equals("Loja - Visualizar funcionários")){
 
@@ -412,8 +444,7 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                     modeloTabelaFuncionarios.addRow(dadosFuncionario);
                 }
             }
-
-            //----------Caso esteja na janela de visualizar estoque---------
+            //----------Caso esteja na janela de visualizar estoque-------------
             if(this.getTitle().equals("Loja - Visualizar estoque")){
 
                 //-------Abrir a janela de cadastro----------
@@ -438,7 +469,68 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                     modeloTabelaEstoque.addRow(dadosBrinquedo);
                 }
             }
+            //----------Caso esteja na janela de visualizar carrinhos de compras----------
+            if(this.getTitle().equals("Clientes - Carrinhos de compras")){
+                if(listaClientes.getSelectedValue() != null){
+                    Cliente cliente = SYS.BuscarCliente(listaClientes.getSelectedValue());
+                    //Opção para adicionar um item ao carrinho de compras
+                    String input = JOptionPane.showInputDialog("Digite o ID do brinquedo");
+                    int buscarId;
+
+                    if(input != null){
+                        if(!input.equals("")){
+                            buscarId = Integer.parseInt(input);
+                            for(Brinquedo brinquedo : SYS.getLoja().getEstoque()){
+                                if(brinquedo.getId() == buscarId){
+                                    String entrada = JOptionPane.showInputDialog("Informe a quantidade a ser adicionada");
+                                    int quantidade = Integer.parseInt(entrada);
+                                    if(quantidade > brinquedo.getQuantidade()){
+                                        JOptionPane.showMessageDialog(null,
+                                        "Quantidade invalida",
+                                        "ERRO", JOptionPane.ERROR_MESSAGE);
+                                    } else {
+                                        Brinquedo adicionar;
+                                        try {
+                                            adicionar = brinquedo.clone();
+                                            brinquedo.setQuantidade(brinquedo.getQuantidade() - quantidade);
+                                            cliente.AdicionaItem(adicionar, quantidade);
+                                        } catch (CloneNotSupportedException e1) {
+                                            e1.printStackTrace();
+                                        }
+                                    }
+                                    //-------Zerar tabela de itens----------------
+                                    int totalItensCarrinho = modeloTabelaCarrinho.getRowCount();
+                                    for(int i = 0; i < totalItensCarrinho; i++){
+                                        modeloTabelaCarrinho.removeRow(0);
+                                    }
+
+                                    //--------------------Adicionar todos os brinquedos no carrinho à tabela-----------
+                                    for(Brinquedo brinq : cliente.getCarrinho()){
+                                        String nome = brinq.getNome();
+                                        String marca = brinq.getMarca();
+                                        String categoria = brinq.getCategoria();
+                                        Double preco = brinq.getPreco();
+                                        int idadeIndicada = brinq.getIdade();
+                                        int qtd = brinq.getQuantidade();
+                                        int id = brinquedo.getId();
+                                        Object[] dadosBrinquedo = {nome,marca,categoria,preco,idadeIndicada,qtd,id};
+                                        modeloTabelaCarrinho.addRow(dadosBrinquedo);
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                     "Nenhum cliente selecionado.",
+                      "Atencao",
+                       JOptionPane.WARNING_MESSAGE);
+                }
+            } 
         }
+        //------------Para a opção de deletar--------------------
         if(e.getSource() == opcao2){
             //---------Caso esteja na janela de visualizar clientes-----------
             if(this.getTitle().equals("Clientes - Visualizar")){
