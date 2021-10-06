@@ -4,9 +4,6 @@ import toyStore.srcCode.*;
 
 import javax.swing.*;
 import javax.swing.table.*;
-
-import org.w3c.dom.NodeList;
-
 import javax.swing.event.*;
 import javax.swing.border.*;
 import java.awt.*;

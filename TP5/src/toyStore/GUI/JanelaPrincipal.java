@@ -195,11 +195,10 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
         if(e.getSource() == opcao2){
             //Checar qual opção foi selecionada
             if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
+                //Janela com uma lista de CPFs de clientes
+                
                 //Opção de cadastrar venda
-                JOptionPane.showMessageDialog(null,
-                 "Função não implementada",
-                 "ERRO",
-                 JOptionPane.ERROR_MESSAGE);
+                new JanelaNotaFiscal();
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de Visualizar Funcionários
