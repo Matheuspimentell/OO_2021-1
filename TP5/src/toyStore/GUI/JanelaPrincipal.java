@@ -200,9 +200,12 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
                 //Caso a opção seja selecionada
                  if(op == 0){
                     //Buscar cliente
-                    Cliente comprador = SYS.BuscarCliente(
-                        JOptionPane.showInputDialog("Digite o CPF do comprador: "));
-                    if(comprador == null){
+                    String cpf = JOptionPane.showInputDialog(
+                        "Digite o CPF do comprador (Ex.: 0123.456.789-01): ");
+                    Cliente comprador = SYS.BuscarCliente(cpf);
+                    if(cpf == null){
+                        //Apenas fechar o JOptionPane
+                    } else if(comprador == null){
                         JOptionPane.showMessageDialog(null,
                          "Cliente não encontrado.", "Erro",
                           JOptionPane.ERROR_MESSAGE);
@@ -215,7 +218,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
                              "Carrinho vazio.", "Atencao",
                               JOptionPane.WARNING_MESSAGE);
                         }
-                    } 
+                    }
                 }
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
