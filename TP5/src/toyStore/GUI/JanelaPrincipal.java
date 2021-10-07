@@ -195,10 +195,28 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
         if(e.getSource() == opcao2){
             //Checar qual opção foi selecionada
             if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-                //Janela com uma lista de CPFs de clientes
-                
-                //Opção de cadastrar venda
-                new JanelaNotaFiscal();
+                int op = JOptionPane.showConfirmDialog(null,
+                 "Opcao APENAS para clientes cadastrados.", "AVISO!", JOptionPane.OK_CANCEL_OPTION);
+                //Caso a opção seja selecionada
+                 if(op == 0){
+                    //Buscar cliente
+                    Cliente comprador = SYS.BuscarCliente(
+                        JOptionPane.showInputDialog("Digite o CPF do comprador: "));
+                    if(comprador == null){
+                        JOptionPane.showMessageDialog(null,
+                         "Cliente não encontrado.", "Erro",
+                          JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        if(comprador.getCarrinho().size() != 0){
+                            //Impressão da nota fiscal em tela
+                            new JanelaNotaFiscal(SYS, comprador);
+                        } else {
+                            JOptionPane.showMessageDialog(null,
+                             "Carrinho vazio.", "Atencao",
+                              JOptionPane.WARNING_MESSAGE);
+                        }
+                    } 
+                }
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de Visualizar Funcionários
