@@ -11,7 +11,7 @@ public class JanelaNotaFiscal extends JDialog implements ActionListener{
     JPanel conteudo;
     JButton botao;
     Sistema SYS;
-
+    
     JanelaNotaFiscal(Sistema sistema, Cliente comprador){
         SYS = sistema;
 
@@ -66,6 +66,11 @@ public class JanelaNotaFiscal extends JDialog implements ActionListener{
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
         this.add(conteudo);
         this.setVisible(true);
+        
+        //Limpar carrinho
+        for(int i = 0; i < comprador.getCarrinho().size(); i++) {
+        	comprador.getCarrinho().remove(0);
+        }
     }
     @Override
     public void actionPerformed(ActionEvent e) {

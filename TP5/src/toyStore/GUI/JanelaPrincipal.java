@@ -193,7 +193,7 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             }
         }
         if(e.getSource() == opcao2){
-            //Checar qual opção foi selecionada
+            //Checar qual opcao foi selecionada
             if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
                 int op = JOptionPane.showConfirmDialog(null,
                  "Opcao APENAS para clientes cadastrados.", "AVISO!", JOptionPane.OK_CANCEL_OPTION);

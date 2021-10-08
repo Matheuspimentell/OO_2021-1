@@ -70,10 +70,11 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
 
             opcao4 = new JButton();
             opcao4.setPreferredSize(new Dimension(150,40));
-            opcao4.setBorder(indisponivel);
+            opcao4.setBorder(disponivel);
             opcao4.setFocusable(false);
-            opcao4.setText("<html>Completar<br />cadastro</html>");
-            opcao4.setEnabled(false);
+            opcao4.setText("<html>Buscar<br />cadastro</html>");
+            opcao4.setEnabled(true);
+            opcao4.addActionListener(this);
 
             //-------Modelo de barra superior de descrições-------------------
             String[] colunasClientes = {"Nome", "CPF", "Endereço", "Telefone"};
@@ -144,11 +145,12 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
 
             opcao4 = new JButton();
             opcao4.setPreferredSize(new Dimension(150,40));
-            opcao4.setBorder(indisponivel);
+            opcao4.setBorder(disponivel);
             opcao4.setFocusable(false);
-            opcao4.setText("<html>Completar<br />cadastro</html>");
-            opcao4.setEnabled(false);
-
+            opcao4.setText("<html>Buscar<br />cadastro</html>");
+            opcao4.setEnabled(true);
+            opcao4.addActionListener(this);
+            
             //-------Modelo de barra superior de descrições-------------------
             String[] colunasFuncionarios = {"Nome", "Matrícula", "Cargo", "Endereço", "Telefone"};
 
@@ -855,6 +857,54 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                       "Atencao", JOptionPane.WARNING_MESSAGE);
                 }
             }
+        }
+        if(e.getSource() == opcao4) {
+        	if(this.getTitle().equals("Clientes - Visualizar")) {
+        		String cpf = JOptionPane.showInputDialog("Digite o CPF do cliente que deseja buscar Ex.:(012.345.678-90):");
+        		
+        		Cliente cliente = SYS.BuscarCliente(cpf);
+        		
+        		if(cliente != null) {
+        			JLabel dados = new JLabel();
+            		dados.setText(cliente.Visualizar());
+            		JDialog janelaVisualizar = new JDialog();
+            		janelaVisualizar.setLayout(new FlowLayout(FlowLayout.CENTER));
+            		janelaVisualizar.setModal(true);
+            		janelaVisualizar.setSize(new Dimension(400,400));
+            		janelaVisualizar.setTitle("Dados do cliente");
+            		janelaVisualizar.add(dados);
+            		janelaVisualizar.setResizable(false);
+            		janelaVisualizar.setVisible(true);
+        		} else {
+        			JOptionPane.showMessageDialog(null,
+        					"Cliente nao encontrado!",
+        					"Aviso!",
+        					JOptionPane.WARNING_MESSAGE);
+        		}
+        	}
+        	if(this.getTitle().equals("Loja - Visualizar funcionários")) {
+        		String id = JOptionPane.showInputDialog("Digite o ID do funcionario que deseja buscar Ex.:(12345):");
+        		
+        		Funcionario funcionario = SYS.getLoja().BuscarFuncionario(id);
+        		
+        		if(funcionario != null) {
+        			JLabel dados = new JLabel();
+            		dados.setText(funcionario.Visualizar());
+            		JDialog janelaVisualizar = new JDialog();
+            		janelaVisualizar.setLayout(new FlowLayout(FlowLayout.CENTER));
+            		janelaVisualizar.setModal(true);
+            		janelaVisualizar.setSize(new Dimension(400,400));
+            		janelaVisualizar.setTitle("Dados do funcionario");
+            		janelaVisualizar.add(dados);
+            		janelaVisualizar.setResizable(false);
+            		janelaVisualizar.setVisible(true);
+        		} else {
+        			JOptionPane.showMessageDialog(null,
+        					"Funcionario nao encontrado!",
+        					"Aviso!",
+        					JOptionPane.WARNING_MESSAGE);
+        		}
+        	}
         }
     }
 }

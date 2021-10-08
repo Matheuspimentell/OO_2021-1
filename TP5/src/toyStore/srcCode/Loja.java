@@ -10,27 +10,27 @@ public class Loja extends Pessoa{
     private ArrayList<Brinquedo> estoque; //ArrayList de brinquedos
     private String dadosLoja;
 
-    //Alteração do construtor {new} de Loja
+    //AlteraÃ§Ã£o do construtor {new} de Loja
     public Loja(String nome, String endereco, String cnpj){
-        //únicos atributos ESTRITAMENTE NECESSÁRIOS de Loja
+        //Ãºnicos atributos ESTRITAMENTE NECESSÃ�RIOS de Loja
         this.nome = nome;
         this.endereco = endereco;
         this.cnpj = cnpj;
         this.estoque = new ArrayList<Brinquedo>();
         this.funcionarios = new ArrayList<Funcionario>();
 
-        //-------------Adição de 10 funcionarios------------
+        //-------------AdiÃ§Ã£o de 10 funcionarios------------
         Funcionario funcionario1 = new Funcionario("Laura Maya Farias", 96234, "Gerente de Vendas");
         this.funcionarios.add(funcionario1);
         Funcionario funcionario2 = new Funcionario("Nicole Benedita", 39605, "Vendedor");
         this.funcionarios.add(funcionario2);
-        Funcionario funcionario3 = new Funcionario("Luís Tomás", 11694, "Vendedor");
+        Funcionario funcionario3 = new Funcionario("LuÃ­s TomÃ¡s", 11694, "Vendedor");
         this.funcionarios.add(funcionario3);
         Funcionario funcionario4 = new Funcionario("Francisco Miguel", 70384, "Vendedor");
         this.funcionarios.add(funcionario4);
         Funcionario funcionario5 = new Funcionario("Diego Juan", 68072, "Vendedor");
         this.funcionarios.add(funcionario5);
-        Funcionario funcionario6 = new Funcionario("Luís Vitor", 97035, "Vendedor");
+        Funcionario funcionario6 = new Funcionario("LuÃ­s Vitor", 97035, "Vendedor");
         this.funcionarios.add(funcionario6);
         Funcionario funcionario7 = new Funcionario("Leonardo Kaique", 58719, "Vendedor");
         this.funcionarios.add(funcionario7);
@@ -41,7 +41,7 @@ public class Loja extends Pessoa{
         Funcionario funcionario10 = new Funcionario("Isabel Simone", 79658, "Vendedor");
         this.funcionarios.add(funcionario10);
 
-        //--------Adição de 5 brinquedos---------
+        //--------AdiÃ§Ã£o de 5 brinquedos---------
         Brinquedo brinquedo1 = new Brinquedo("Boneca Barbie - Diversao na Praia",
          "Brabie", "Boneca", 38.99, 3, 20, 354);
         this.estoque.add(brinquedo1);
@@ -71,7 +71,7 @@ public class Loja extends Pessoa{
         //Caso o telefone da loja seja nulo
         if(this.telefone == null){
             this.telefone = telefone;
-        //Caso contrário
+        //Caso contrÃ¡rio
         } else {
             System.out.println("A loja ja esta com o cadastro completo.");
         }
@@ -109,7 +109,7 @@ public class Loja extends Pessoa{
             this.telefone = telefone;
         }
     }
-    //Método para deletar um funcionário
+    //MÃ©todo para deletar um funcionÃ¡rio
     public void DeletarFuncionario(){
         System.out.print("Digite o ID do funcionario que deseja excluir: ");
         int id = scan.nextInt();
@@ -128,22 +128,15 @@ public class Loja extends Pessoa{
             System.out.println("Funcionario nao encontrado.");
         }
     }
-    //Método para buscar e visualizar 1 funcionário na lista de funcionários
-    public void BuscarFuncionario(){
-        System.out.print("Digite o ID do funcionario que deseja buscar: ");
-        int id = scan.nextInt();
-        scan.nextLine();
-        //Percorrer toda a lista de funcionários
-        for (Funcionario funcionario : this.funcionarios){
-            if(funcionario.getId() == id){
-                //Caso o funcionario tenha sido encontrado, mostrá-lo e sair do método
-                System.out.println("Funcionario encontrado:");
-                funcionario.Visualizar();
-                return;
-            }
-        }
-        //Caso o funcionario não tenha sido encontrado
-        System.out.println("Funcionario nao encontrado.");
+    //MÃ©todo para buscar e visualizar 1 funcionÃ¡rio na lista de funcionÃ¡rios
+    public Funcionario BuscarFuncionario(String id){
+       int procurarId = Integer.parseInt(id);
+       for(Funcionario funcionario : this.funcionarios) {
+    	   if(procurarId == funcionario.getId()) {
+    		   return funcionario;
+    	   }
+       }
+       return null;
     }
     //Visualizar todos os funcionarios
     public void VisualizarFuncionarios(){
@@ -155,7 +148,7 @@ public class Loja extends Pessoa{
             System.out.println("Nao ha funcionarios cadastrados.");
         }
     }
-    //Método para deletar brinquedos no estoque
+    //MÃ©todo para deletar brinquedos no estoque
     public void DeletarBrinquedo(){
         System.out.print("Digite o Codigo Identificador do brinquedo que deseja excluir: ");
         int cid = scan.nextInt();
@@ -174,7 +167,7 @@ public class Loja extends Pessoa{
             System.out.println("Brinquedo nao encontrado.");
         }
     }
-    //Método para visualizar 1 brinquedo
+    //MÃ©todo para visualizar 1 brinquedo
     public void BuscarBrinquedo(){
         System.out.print("Digite o Codigo Identificador do brinquedo que deseja buscar: ");
         int cid = scan.nextInt();
@@ -182,13 +175,13 @@ public class Loja extends Pessoa{
         //Percorrer todo o estoque
         for(Brinquedo brinquedo : this.estoque){
             if(brinquedo.getId() == cid){
-                //Caso o brinquedo seja encontrado, mostrá-lo e sair do método
+                //Caso o brinquedo seja encontrado, mostrÃ¡-lo e sair do mÃ©todo
                 System.out.println("Brinquedo encontrado:");
                 System.out.println(brinquedo);
                 return;
             }
         }
-        //Caso o brinquedo não tenha sido encontrado
+        //Caso o brinquedo nÃ£o tenha sido encontrado
         System.out.println("Brinquedo nao encontrado.");
     }
     //Visualizar o estoque inteiro
@@ -200,7 +193,7 @@ public class Loja extends Pessoa{
                 System.out.println(brinquedo);
                 System.out.println("-----------------------------------------------------");
             }
-        //Caso contrário
+        //Caso contrÃ¡rio
         } else {
             System.out.println("Nao ha itens em estoque.");
         }
@@ -223,7 +216,7 @@ public class Loja extends Pessoa{
         return this.cnpj;
     }
     public ArrayList<Funcionario> getFuncionarios(){
-        //Retornar o ArrayList de funcionários da loja
+        //Retornar o ArrayList de funcionÃ¡rios da loja
         return this.funcionarios;
     }
     public ArrayList<Brinquedo> getEstoque(){
@@ -246,7 +239,7 @@ public class Loja extends Pessoa{
     public void setCnpj(String c){
         this.cnpj = c;
     }
-    //Cadastro de 1 funcionário
+    //Cadastro de 1 funcionÃ¡rio
     public void setFuncionario(Funcionario funcionario, String endereco, String telefone){
         if(endereco != null){
             funcionario.setEndereco(endereco);
@@ -254,7 +247,7 @@ public class Loja extends Pessoa{
         if(telefone != null){
             funcionario.setTelefone(telefone);
         }
-        //Adiciona 1 funcionário na loja
+        //Adiciona 1 funcionÃ¡rio na loja
         this.funcionarios.add(funcionario);
     }
     //Cadastro de 1 brinquedo no estoque

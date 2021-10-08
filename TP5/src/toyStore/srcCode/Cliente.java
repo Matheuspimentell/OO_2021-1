@@ -8,9 +8,9 @@ public class Cliente extends Pessoa implements Cloneable{
     private String cpf;
     private ArrayList<Brinquedo> carrinho;
 
-    //Alteração do construtor {new} de Cliente
+    //AlteraÃ§Ã£o do construtor {new} de Cliente
     public Cliente(String nome, String cpf){
-        //únicos atributos ESTRITAMENTE NECESSÁRIOS de Cliente
+        //Ãºnicos atributos ESTRITAMENTE NECESSÃ�RIOS de Cliente
         this.nome = nome;
         this.cpf = cpf;
         this.carrinho = new ArrayList<Brinquedo>();
@@ -43,14 +43,14 @@ public class Cliente extends Pessoa implements Cloneable{
                 this.telefone = t;
                 System.out.println("-----------------------------------------------------");
             }
-        //Caso contrário
+        //Caso contrÃ¡rio
         } else {
             System.out.println("O cliente em questao ja possui um cadastro completo.");
             System.out.println("-----------------------------------------------------");
         }
     }
 
-    //Edita apenas os dados já cadastrados
+    //Edita apenas os dados jÃ¡ cadastrados
     public void Editar(Cliente novosDados) {
         //Nome
         if(novosDados.getNome() != null){
@@ -73,15 +73,27 @@ public class Cliente extends Pessoa implements Cloneable{
     //Imprime apenas os dados cadastrados
     @Override
     public String Visualizar() {
-        System.out.println("Nome do cliente: " + this.nome);
-        System.out.println("CPF do cliente: " + this.cpf);
-        if(this.endereco != null){
-            System.out.println("Endereco do cliente: " + this.endereco);
-        }
-        if(this.telefone != null){
-            System.out.println("Telefone do cliente: " + this.telefone);
-        }
-        return null;
+    	if(this.telefone == null && this.endereco == null) {
+    		return "<html>Nome do cliente: " + this.nome + "<br />" +
+            		"CPF do cliente: " + this.cpf + "<br />" +
+            		"Telefone do cliente: " + "" + "<br />" +
+            		"Endereco do cliente: " + "" + "</html>";
+    	} else if(this.telefone != null && this.endereco == null) {
+    		return "<html>Nome do cliente: " + this.nome + "<br />" +
+            		"CPF do cliente: " + this.cpf + "<br />" +
+            		"Telefone do cliente: " + this.telefone + "<br />" +
+            		"Endereco do cliente: " + "" + "</html>";
+    	} else if(this.telefone == null && this.endereco != null) {
+    		return "<html>Nome do cliente: " + this.nome + "<br />" +
+            		"CPF do cliente: " + this.cpf + "<br />" +
+            		"Telefone do cliente: " + "" + "<br />" +
+            		"Endereco do cliente: " + this.endereco + "</html>";
+    	} else {
+    		return "<html>Nome do cliente: " + this.nome + "<br />" +
+            		"CPF do cliente: " + this.cpf + "<br />" +
+            		"Telefone do cliente: " + this.telefone + "<br />" +
+            		"Endereco do cliente: " + this.endereco + "</html>";
+    	}
     }
 
     //Adiciona um item e sua quantidade comprada ao carrinho de compras do cliente
@@ -99,6 +111,12 @@ public class Cliente extends Pessoa implements Cloneable{
                                " " + brinquedo.getQuantidade() + " * " + brinquedo.getPreco() +
                                " (" + brinquedo.getQuantidade()*brinquedo.getPreco() + ")");
         }
+    }
+    
+    public void LimpaCarrinho() {
+    	for(Brinquedo brinquedo : this.carrinho) {
+    		this.carrinho.remove(brinquedo);
+    	}
     }
 
     //Getters

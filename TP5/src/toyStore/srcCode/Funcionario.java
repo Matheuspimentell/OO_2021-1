@@ -7,9 +7,9 @@ public class Funcionario extends Pessoa{
     private int id;
     private String cargo;
 
-    //Alteração do construtor {new} de Funcionário
+    //AlteraÃ§Ã£o do construtor {new} de FuncionÃ¡rio
     public Funcionario(String nome, int id, String cargo){
-        //únicos atributos ESTRITAMENTE NECESSÁRIOS de Funcionário
+        //Ãºnicos atributos ESTRITAMENTE NECESSÃ�RIOS de FuncionÃ¡rio
         this.nome = nome;
         this.id = id;
         this.cargo = cargo;
@@ -27,7 +27,7 @@ public class Funcionario extends Pessoa{
     public void CompletaCadastro() {
         //Caso ainda existam dados nulos
         if(this.endereco == null || this.telefone == null){
-            //Endereço
+            //EndereÃ§o
             if(this.endereco == null){
                 System.out.print("Digite o endereco do funcionario: ");
                 String e = scan.nextLine();
@@ -39,7 +39,7 @@ public class Funcionario extends Pessoa{
                 String t = scan.nextLine();
                 this.telefone = t;
             }
-        //Caso contrário
+        //Caso contrÃ¡rio
         } else {
             System.out.println("O funcionario em questao ja possui um cadastro completo.");
         }
@@ -48,16 +48,31 @@ public class Funcionario extends Pessoa{
     //Imprime apenas os dados cadastrados
     @Override
     public String Visualizar() {
-        System.out.println("Nome do funcionario: " + this.nome);
-        System.out.println("ID do funcionario: " + this.id);                  
-        System.out.println("Cargo do funcionario: " + this.cargo);
-        if(this.endereco != null){
-            System.out.println("Endereco do funcionario: " + this.endereco);
-        }
-        if(this.telefone != null){
-            System.out.println("Telefone do funcionario: " + this.telefone);
-        }
-        return null;
+    	if(this.endereco == null && this.telefone == null){
+    		return "<html> Nome do funcionario: " + this.nome + "<br />" +
+            		"ID do funcionario: " + this.id + "<br />" +
+            		"Cargo do funcionario: " + this.cargo + "<br />" +
+            		"Endereco do funcionario: " + "" + "<br />" +
+            		"Telefone do funcionario: " + "" + "</html>";
+    	} else if (this.endereco != null && this.telefone == null) {
+    		return "<html> Nome do funcionario: " + this.nome + "<br />" +
+            		"ID do funcionario: " + this.id + "<br />" +
+            		"Cargo do funcionario: " + this.cargo + "<br />" +
+            		"Endereco do funcionario: " + this.endereco + "<br />" +
+            		"Telefone do funcionario: " + "" + "</html>";
+    	} else if (this.endereco == null && this.telefone != null) {
+    		return "<html> Nome do funcionario: " + this.nome + "<br />" +
+            		"ID do funcionario: " + this.id + "<br />" +
+            		"Cargo do funcionario: " + this.cargo + "<br />" +
+            		"Endereco do funcionario: " + "" + "<br />" +
+            		"Telefone do funcionario: " + this.telefone + "</html>";
+    	} else {
+    		return "<html> Nome do funcionario: " + this.nome + "<br />" +
+            		"ID do funcionario: " + this.id + "<br />" +
+            		"Cargo do funcionario: " + this.cargo + "<br />" +
+            		"Endereco do funcionario: " + this.endereco + "<br />" +
+            		"Telefone do funcionario: " + this.telefone + "</html>";
+    	}
     }
     
     public void Editar(Funcionario novosDados) {
