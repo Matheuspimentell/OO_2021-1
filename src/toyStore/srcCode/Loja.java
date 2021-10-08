@@ -251,7 +251,11 @@ public class Loja extends Pessoa{
         //Adiciona 1 funcionÃ¡rio na loja
         this.funcionarios.add(funcionario);
     }
-    //Cadastro de 1 brinquedo no estoque
+    /**
+     * Adicao de um brinquedo no estoque.
+     * 
+     * @param brinquedo Brinquedo a ser adicionado.
+     * */
     public void addBrinquedo(Brinquedo brinquedo){
         //Adiciona 1 brinquedo no estoque
         this.estoque.add(brinquedo);
