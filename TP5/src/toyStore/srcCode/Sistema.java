@@ -1,18 +1,34 @@
 package toyStore.srcCode;
 
-import toyStore.GUI.*;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ * Objeto Sistema
+ * 
+ * Um objeto que define os parametros e funcionalidades de um Sistema.
+ * 
+ * @author Matheus Pimentel Leal
+ * @author Luana de Lima Medeiros
+ * */
 
 public class Sistema {
+	
+	/**
+	 * Parametros uteis para um sistema.
+	 * */
     private Scanner scan = new Scanner(System.in);
     private ArrayList<Cliente> clientes = new ArrayList<Cliente>(); //ArrayList de clientes
     private Loja loja = new Loja("Toy Store", "Taguatinga", "87.499.017/0001-13"); //Declaração da loja
     
-    //Construtor de sistema
+    /**
+     * Construtor padrao de Sistema.
+     * */
     public Sistema(){
 
-        //-----------Adicao de 10 clientes--------
+        /**
+         * Adicao de 10 clientes para facilitar testes.
+         * */
         Cliente cliente1 = new Cliente("Cleiton Silva", "649.094.970-99");
         this.clientes.add(cliente1);
         Cliente cliente2 = new Cliente("Cleiton Rocha", "004.941.170-52");
@@ -35,9 +51,13 @@ public class Sistema {
         this.clientes.add(cliente10);
     }
 
-    //Cadastra a venda de um carrinho de compras de UM cliente
+    /**
+     * Cadastro de uma venda.
+     * 
+     * @param vendedor Objeto Funcionario com os dados do vendedor.
+     * @deprecated
+     * */
     public void CadastrarVenda(Funcionario vendedor){
-        //Buscar cliente pelo CPF
         System.out.println("Digite o CPF do comprador:");
         String cpf = scan.nextLine();
         boolean encontrou = false;
@@ -60,14 +80,16 @@ public class Sistema {
                 cliente.VisualizarCarrinho();
                 System.out.println("-------------------------------------------------\n" + 
                                    "Valor total = \t\t\t" + cliente.getTotalCompras());
-                //Zerar o carrinho
             }
         }
         if(encontrou == false){
             System.out.println("Cliente nao encontrado.");
         }
     }
-    //Visualizar todos os clientes cadastrados
+    
+    /**
+     * Visualizacao dos clientes cadastrados.
+     * */
     public void VisualizarClientes(){
         System.out.println("-----------------------------------------------------");
         for(Cliente cliente : this.clientes){
@@ -75,7 +97,13 @@ public class Sistema {
             System.out.println("-----------------------------------------------------");
         }
     }
-    //Buscar um cliente
+    
+    /**
+     * Busca por um cliente cadastrado.
+     * 
+     * @param cpf CPF do cliente a ser procurado.
+     * @return Um objeto Cliente caso o cliente seja encontrado ou null caso o cliente n�o tenha sido encontrado.
+     * */
     public Cliente BuscarCliente(String cpf){
         //------Procurar cliente no banco de dados--------
         for(Cliente cliente : this.clientes){
@@ -87,7 +115,13 @@ public class Sistema {
         //---------Caso não encontrar---------
         return null;
     }
-    //Deletar um cliente
+    
+    /**
+     * Remocao de um cliente.
+     * 
+     * @param cpf CPF do cliente a ter o cadastro removido.
+     * @return Um boolean indicando o sucesso ou nao da remocao, Ex.: sucesso = true | falha = false.
+     * */
     public boolean DeletarCliente(String cpf){
         for(Cliente cliente : this.clientes){
             if(cliente.getCpf() == cpf){
@@ -97,7 +131,15 @@ public class Sistema {
         }
         return false;
     }
-    //Editar um cliente
+    
+    /**
+     * Edicao dos dados de um cliente cadastrado
+     * 
+     * Faz a busca por um cliente e edita seus dados caso seja encontrado
+     * 
+     * @param cpf CPF do cliente a ter seu cadastro editado
+     * @param novosDados Objeto Cliente com os dados atualizados.
+     * */
     public void EditarCliente(Object cpf, Cliente novosDados){
         for(Cliente cliente : this.clientes){
             if(cliente.getCpf().equals(cpf)){
@@ -106,16 +148,17 @@ public class Sistema {
             }
         }
     }
-
-    //Getters
-    public ArrayList<Cliente> getClientes(){
-        return this.clientes;
-    }
-    public Loja getLoja(){
-        return this.loja;
-    }
-    //Setters
-    public void setCliente(Cliente cliente, String endereco, String telefone){
+    
+    /**
+     * Adicao de um Cliente.
+     * 
+     * Adiciona um cliente ao ArrayList de clientes.
+     * 
+     * @param cliente Objeto Cliente com os dados a serem adicionados.
+     * @param endereco Endereco do cliente.
+     * @param telefone Telefone do cliente.
+     * */
+    public void addCliente(Cliente cliente, String endereco, String telefone){
         if(endereco != null){
             cliente.setEndereco(endereco);
         }
@@ -124,6 +167,15 @@ public class Sistema {
         }
         this.clientes.add(cliente); //Adição do cliente
     }
+    
+    //Getters
+    public ArrayList<Cliente> getClientes(){
+        return this.clientes;
+    }
+    public Loja getLoja(){
+        return this.loja;
+    }
+    //Setters
     public void setLoja(Loja loja){
         this.loja = loja; //Troca a loja cadastrada
     }

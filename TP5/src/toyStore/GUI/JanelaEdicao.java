@@ -6,27 +6,47 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+
+/**
+ * Objeto JanelaEdicao
+ * 
+ * Janela de edicao de dados para a GUI do sistema de loja de brinquedos.
+ * 
+ * @author Matheus Pimentel Leal
+ * @author Luana de Lima Medeiros
+ * */
 public class JanelaEdicao extends JDialog implements ActionListener{
     
-    Sistema SYS;
-    Object oldCpf;
-    int oldId;
-    boolean temTelefone, temEndereco;
-    JPanel conteudo;
-    JTextField campo1Texto;
-    JTextField campo2Texto;
-    JTextField campo3Texto;
-    JTextField campo4Texto;
-    JTextField campo5Texto;
-    JTextField campo6Texto;
-    JTextField campo7Texto;
-    JButton confirma;
-    JButton cancela;
-
+	/**
+	 * Parametros uteis para uma janela de impressao de nota fiscal.
+	 * */
+    private Sistema SYS;
+    private Object oldCpf;
+    private int oldId;
+    private boolean temTelefone, temEndereco;
+    private JPanel conteudo;
+    private JTextField campo1Texto;
+    private JTextField campo2Texto;
+    private JTextField campo3Texto;
+    private JTextField campo4Texto;
+    private JTextField campo5Texto;
+    private JTextField campo6Texto;
+    private JTextField campo7Texto;
+    private JButton confirma;
+    private JButton cancela;
+    
+    
+    /**
+     * Construtor padrao de JanelaEdicao
+     *  
+     * @param titulo Titulo da janela
+     * @param sistema Conexao com o srcCode feita por meio da classe sistema.
+     * @param dado_aProcurar Object com um dado a ser procurado
+     * */
     JanelaEdicao(String titulo, Sistema sistema, Object dado_aProcurar){
         SYS = sistema;
 
-        //----------------Bordas de formatação----------------
+        //----------------Bordas de formatacao----------------
         JPanel bordaSuperior = new JPanel();
         bordaSuperior.setPreferredSize(new Dimension(50, 50));
         bordaSuperior.setBackground(Color.GRAY);
@@ -44,7 +64,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
         bordaDireita.setBackground(Color.BLACK);
         bordaDireita.setOpaque(false);
 
-        //----------Botões-------------
+        //----------Botoes-------------
         confirma = new JButton();
         confirma.setFocusable(false);
         confirma.setPreferredSize(new Dimension(170,35));
@@ -61,11 +81,11 @@ public class JanelaEdicao extends JDialog implements ActionListener{
 
             //----------------Instrução------------------
             JOptionPane.showMessageDialog(null,
-            "Para não alterar os dados, deixar em branco"
+            "Para nao alterar os dados, deixar em branco"
             ,"Informativo"
             ,JOptionPane.INFORMATION_MESSAGE);
 
-            //--------------Texto indicativo do 1° campo-------------
+            //--------------Texto indicativo do primeiro campo-------------
             JLabel campo1 = new JLabel();
             campo1.setText("Nome: ");
             campo1.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -75,9 +95,9 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo1Texto = new JTextField();
             campo1Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 2° campo-------------
+            //--------------Texto indicativo do segundo campo-------------
             JLabel campo2 = new JLabel();
-            campo2.setText("Endereço: ");
+            campo2.setText("Endereco: ");
             campo2.setFont(new Font("Arial", Font.PLAIN, 12));
             campo2.setPreferredSize(new Dimension(95,20));
 
@@ -85,7 +105,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo2Texto = new JTextField();
             campo2Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 3° campo-------------
+            //--------------Texto indicativo do terceiro campo-------------
             JLabel campo3 = new JLabel();
             campo3.setText("CNPJ: ");
             campo3.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -95,7 +115,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo3Texto = new JTextField();
             campo3Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 4° campo-------------
+            //--------------Texto indicativo do quarto campo-------------
             JLabel campo4 = new JLabel();
             campo4.setText("Telefone: ");
             campo4.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -106,7 +126,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo4Texto.setPreferredSize(new Dimension(200,20));
 
 
-            //-----------------Adição do conteúdo---------------
+            //-----------------Adicao do conteudo---------------
             conteudo = new JPanel();
             conteudo.setLayout(new FlowLayout());
             conteudo.setVisible(true);
@@ -125,13 +145,13 @@ public class JanelaEdicao extends JDialog implements ActionListener{
         if(titulo.equals("Clientes - Editar dados")){
             oldCpf = dado_aProcurar;            
 
-            //----------------Instrução------------------
+            //----------------Instrucao------------------
             JOptionPane.showMessageDialog(null,
             "Para não alterar os dados, deixar em branco"
             ,"Informativo"
             ,JOptionPane.INFORMATION_MESSAGE);
 
-            //--------------Texto indicativo do 1° campo-------------
+            //--------------Texto indicativo do primeiro campo-------------
             JLabel campo1 = new JLabel();
             campo1.setText("Nome: ");
             campo1.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -141,9 +161,9 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo1Texto = new JTextField();
             campo1Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 2° campo-------------
+            //--------------Texto indicativo do segundo campo-------------
             JLabel campo2 = new JLabel();
-            campo2.setText("Endereço: ");
+            campo2.setText("Endereco: ");
             campo2.setFont(new Font("Arial", Font.PLAIN, 12));
             campo2.setPreferredSize(new Dimension(95,20));
 
@@ -151,7 +171,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo2Texto = new JTextField();
             campo2Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 3° campo-------------
+            //--------------Texto indicativo do terceiro campo-------------
             JLabel campo3 = new JLabel();
             campo3.setText("CPF: ");
             campo3.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -161,7 +181,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo3Texto = new JTextField();
             campo3Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 4° campo-------------
+            //--------------Texto indicativo do quarto campo-------------
             JLabel campo4 = new JLabel();
             campo4.setText("Telefone: ");
             campo4.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -171,7 +191,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo4Texto = new JTextField();
             campo4Texto.setPreferredSize(new Dimension(200,20));
 
-            //-----------------Adição do conteúdo---------------
+            //-----------------Adicao do conteudo---------------
             conteudo = new JPanel();
             conteudo.setLayout(new FlowLayout());
             conteudo.setVisible(true);
@@ -187,16 +207,16 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             conteudo.add(cancela);
         }
 
-        if(titulo.equals("Funcionários - Editar dados")){
+        if(titulo.equals("Funcionarios - Editar dados")){
             oldId = (int) dado_aProcurar;
 
-            //----------------Instrução------------------
+            //----------------Instrucao------------------
             JOptionPane.showMessageDialog(null,
             "Para não alterar os dados, deixar em branco"
             ,"Informativo"
             ,JOptionPane.INFORMATION_MESSAGE);
 
-            //--------------Texto indicativo do 1° campo-------------
+            //--------------Texto indicativo do primeiro campo-------------
             JLabel campo1 = new JLabel();
             campo1.setText("Nome: ");
             campo1.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -206,7 +226,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo1Texto = new JTextField();
             campo1Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 2° campo-------------
+            //--------------Texto indicativo do segundo campo-------------
             JLabel campo2 = new JLabel();
             campo2.setText("ID: ");
             campo2.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -216,7 +236,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo2Texto = new JTextField();
             campo2Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 3° campo-------------
+            //--------------Texto indicativo do terceiro campo-------------
             JLabel campo3 = new JLabel();
             campo3.setText("Cargo: ");
             campo3.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -226,7 +246,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo3Texto = new JTextField();
             campo3Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 4° campo-------------
+            //--------------Texto indicativo do quarto campo-------------
             JLabel campo4 = new JLabel();
             campo4.setText("Endereco: ");
             campo4.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -236,7 +256,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo4Texto = new JTextField();
             campo4Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 5° campo-------------
+            //--------------Texto indicativo do quinto campo-------------
             JLabel campo5 = new JLabel();
             campo5.setText("Telefone: ");
             campo5.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -246,7 +266,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo5Texto = new JTextField();
             campo5Texto.setPreferredSize(new Dimension(200,20));
 
-            //-----------------Adição do conteúdo---------------
+            //-----------------Adicao do conteudo---------------
             conteudo = new JPanel();
             conteudo.setLayout(new FlowLayout());
             conteudo.setVisible(true);
@@ -269,11 +289,11 @@ public class JanelaEdicao extends JDialog implements ActionListener{
 
             //----------------Instrução------------------
             JOptionPane.showMessageDialog(null,
-            "Para não alterar os dados, deixar em branco"
+            "Para nao alterar os dados, deixar em branco"
              ,"Informativo"
              ,JOptionPane.INFORMATION_MESSAGE);
  
-            //--------------Texto indicativo do 1° campo-------------
+            //--------------Texto indicativo do primeiro campo-------------
             JLabel campo1 = new JLabel();
             campo1.setText("Nome: ");
             campo1.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -283,7 +303,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo1Texto = new JTextField();
             campo1Texto.setPreferredSize(new Dimension(200,20));
  
-            //--------------Texto indicativo do 2° campo-------------
+            //--------------Texto indicativo do segundo campo-------------
             JLabel campo2 = new JLabel();
             campo2.setText("Marca: ");
             campo2.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -293,7 +313,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo2Texto = new JTextField();
             campo2Texto.setPreferredSize(new Dimension(200,20));
  
-            //--------------Texto indicativo do 3° campo-------------
+            //--------------Texto indicativo do terceiro campo-------------
             JLabel campo3 = new JLabel();
             campo3.setText("Categoria: ");
             campo3.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -303,9 +323,9 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo3Texto = new JTextField();
             campo3Texto.setPreferredSize(new Dimension(200,20));
  
-            //--------------Texto indicativo do 4° campo-------------
+            //--------------Texto indicativo do quarto campo-------------
             JLabel campo4 = new JLabel();
-            campo4.setText("Preço unitário: ");
+            campo4.setText("Preco unitario: ");
             campo4.setFont(new Font("Arial", Font.PLAIN, 12));
             campo4.setPreferredSize(new Dimension(95,20));
  
@@ -313,7 +333,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo4Texto = new JTextField();
             campo4Texto.setPreferredSize(new Dimension(200,20));
  
-            //--------------Texto indicativo do 5° campo-------------
+            //--------------Texto indicativo do quinto campo-------------
             JLabel campo5 = new JLabel();
             campo5.setText("Idade indicada: ");
             campo5.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -323,7 +343,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo5Texto = new JTextField();
             campo5Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 6° campo-------------
+            //--------------Texto indicativo do sexto campo-------------
             JLabel campo6 = new JLabel();
             campo6.setText("quantidade: ");
             campo6.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -333,7 +353,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo6Texto = new JTextField();
             campo6Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 7° campo-------------
+            //--------------Texto indicativo do setimo campo-------------
             JLabel campo7 = new JLabel();
             campo7.setText("ID: ");
             campo7.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -343,7 +363,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo7Texto = new JTextField();
             campo7Texto.setPreferredSize(new Dimension(200,20));
 
-            //-----------------Adição do conteúdo---------------
+            //-----------------Adicao do conteudo---------------
             conteudo = new JPanel();
             conteudo.setLayout(new FlowLayout());
             conteudo.setVisible(true);
@@ -365,7 +385,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             conteudo.add(cancela);
         }
 
-        //------------Configurações da tela------------
+        //------------Configuracoes da tela------------
         this.setModal(true);
         this.setTitle(titulo);
         this.setLayout(new BorderLayout());
@@ -378,7 +398,12 @@ public class JanelaEdicao extends JDialog implements ActionListener{
         this.add(bordaDireita, BorderLayout.EAST);
         this.setVisible(true);
     }
-
+    
+    /**
+     * Realiza uma acao caso aconteca um ActionEvent
+     * 
+     * @see https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/event/package-summary.html
+     * */
     @Override
     public void actionPerformed(ActionEvent e) {
         //-----------Caso seja selecionada a opção de cancelar-----------
@@ -669,4 +694,124 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             }
         }
     }
+
+	public Sistema getSYS() {
+		return SYS;
+	}
+
+	public void setSYS(Sistema sYS) {
+		SYS = sYS;
+	}
+
+	public Object getOldCpf() {
+		return oldCpf;
+	}
+
+	public void setOldCpf(Object oldCpf) {
+		this.oldCpf = oldCpf;
+	}
+
+	public int getOldId() {
+		return oldId;
+	}
+
+	public void setOldId(int oldId) {
+		this.oldId = oldId;
+	}
+
+	public boolean isTemTelefone() {
+		return temTelefone;
+	}
+
+	public void setTemTelefone(boolean temTelefone) {
+		this.temTelefone = temTelefone;
+	}
+
+	public boolean isTemEndereco() {
+		return temEndereco;
+	}
+
+	public void setTemEndereco(boolean temEndereco) {
+		this.temEndereco = temEndereco;
+	}
+
+	public JPanel getConteudo() {
+		return conteudo;
+	}
+
+	public void setConteudo(JPanel conteudo) {
+		this.conteudo = conteudo;
+	}
+
+	public JTextField getCampo1Texto() {
+		return campo1Texto;
+	}
+
+	public void setCampo1Texto(JTextField campo1Texto) {
+		this.campo1Texto = campo1Texto;
+	}
+
+	public JTextField getCampo2Texto() {
+		return campo2Texto;
+	}
+
+	public void setCampo2Texto(JTextField campo2Texto) {
+		this.campo2Texto = campo2Texto;
+	}
+
+	public JTextField getCampo3Texto() {
+		return campo3Texto;
+	}
+
+	public void setCampo3Texto(JTextField campo3Texto) {
+		this.campo3Texto = campo3Texto;
+	}
+
+	public JTextField getCampo4Texto() {
+		return campo4Texto;
+	}
+
+	public void setCampo4Texto(JTextField campo4Texto) {
+		this.campo4Texto = campo4Texto;
+	}
+
+	public JTextField getCampo5Texto() {
+		return campo5Texto;
+	}
+
+	public void setCampo5Texto(JTextField campo5Texto) {
+		this.campo5Texto = campo5Texto;
+	}
+
+	public JTextField getCampo6Texto() {
+		return campo6Texto;
+	}
+
+	public void setCampo6Texto(JTextField campo6Texto) {
+		this.campo6Texto = campo6Texto;
+	}
+
+	public JTextField getCampo7Texto() {
+		return campo7Texto;
+	}
+
+	public void setCampo7Texto(JTextField campo7Texto) {
+		this.campo7Texto = campo7Texto;
+	}
+
+	public JButton getConfirma() {
+		return confirma;
+	}
+
+	public void setConfirma(JButton confirma) {
+		this.confirma = confirma;
+	}
+
+	public JButton getCancela() {
+		return cancela;
+	}
+
+	public void setCancela(JButton cancela) {
+		this.cancela = cancela;
+	}
 }

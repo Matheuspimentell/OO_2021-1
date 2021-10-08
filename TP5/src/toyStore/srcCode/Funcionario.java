@@ -1,20 +1,41 @@
 package toyStore.srcCode;
 
-import toyStore.GUI.*;
+/**
+ * Objeto Funcionario.
+ * 
+ * Um objeto que define os parametros e funcionalidades de um Funcionario.
+ * 
+ * @author Matheus Pimentel Leal
+ * @author Luana de Lima Medeiros
+ * @version 1.0
+ * */
 
 public class Funcionario extends Pessoa{
-
+	
+	/**
+	 * Parametros uteis para um Funcionario.
+	 * */
     private int id;
     private String cargo;
 
-    //AlteraÃ§Ã£o do construtor {new} de FuncionÃ¡rio
+    /**
+     * Construtor padrao de Funcionario
+     * 
+     * @param nome Nome do funcionario.
+     * @param id Codigo identificador do funcionario.
+     * @param cargo Cargo ocupado pelo funcionario na loja.
+     * */
     public Funcionario(String nome, int id, String cargo){
-        //Ãºnicos atributos ESTRITAMENTE NECESSÃ�RIOS de FuncionÃ¡rio
         this.nome = nome;
         this.id = id;
         this.cargo = cargo;
     }
-
+    
+    /**
+     * Sobrescrcao do metodo toString
+     * 
+     * @return String contendo os dados do funcionario
+     * */
     public String toString(){
         return  "Nome do funcionario: " + this.nome+ "\n" +
                 "ID do funcionario: " + this.id+ "\n" +
@@ -23,29 +44,11 @@ public class Funcionario extends Pessoa{
                 "Telefone do funcionario: " + this.telefone + "\n" ;
     }
 
-    //Completa o cadastro do funcionario
-    public void CompletaCadastro() {
-        //Caso ainda existam dados nulos
-        if(this.endereco == null || this.telefone == null){
-            //EndereÃ§o
-            if(this.endereco == null){
-                System.out.print("Digite o endereco do funcionario: ");
-                String e = scan.nextLine();
-                this.endereco = e;
-            }
-            //Telefone
-            if(this.telefone == null){
-                System.out.print("Digite o telefone do funcionario: ");
-                String t = scan.nextLine();
-                this.telefone = t;
-            }
-        //Caso contrÃ¡rio
-        } else {
-            System.out.println("O funcionario em questao ja possui um cadastro completo.");
-        }
-    }
-
-    //Imprime apenas os dados cadastrados
+    /**
+     * Visualizacao dos dados cadastrados do funcionario.
+     * 
+     * @return String contendo os dados cadastrados do funcionario
+     * */
     @Override
     public String Visualizar() {
     	if(this.endereco == null && this.telefone == null){
@@ -75,6 +78,11 @@ public class Funcionario extends Pessoa{
     	}
     }
     
+    /**
+     * Edita os dados de um funcionario
+     * 
+     * @param novosDados Objeto Funcionario contendo os dados atualizados.
+     * */
     public void Editar(Funcionario novosDados) {
         //Nome
         if(novosDados.getNome() != null){

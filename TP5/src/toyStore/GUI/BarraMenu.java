@@ -5,9 +5,9 @@ import javax.swing.border.*;
 import java.awt.*;
 
 public class BarraMenu extends JPanel{
-    JButton botaoSistema;
-    JButton botaoLoja;
-    JButton botaoClientes;
+    private JButton botaoSistema;
+    private JButton botaoLoja;
+    private JButton botaoClientes;
     
     BarraMenu(){
 
@@ -69,5 +69,30 @@ public class BarraMenu extends JPanel{
         this.add(botaoLoja); //Adiciona o botão de opções da classe Loja
         this.add(botaoClientes); //Adiciona o botão de opções da classe Cliente
     }
+
+	public JButton getBotaoSistema() {
+		return botaoSistema;
+	}
+
+	public void setBotaoSistema(JButton botaoSistema) {
+		this.botaoSistema = botaoSistema;
+	}
+
+	public JButton getBotaoLoja() {
+		return botaoLoja;
+	}
+
+	public void setBotaoLoja(JButton botaoLoja) {
+		this.botaoLoja = botaoLoja;
+	}
+
+	public JButton getBotaoClientes() {
+		return botaoClientes;
+	}
+
+	public void setBotaoClientes(JButton botaoClientes) {
+		this.botaoClientes = botaoClientes;
+	}
+    
     
 }

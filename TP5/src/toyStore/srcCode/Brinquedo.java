@@ -1,16 +1,38 @@
 package toyStore.srcCode;
 
-import toyStore.GUI.*;
+/**
+ * Objeto Brinquedo.
+ * 
+ * Um objeto que define os parametros e funcionalidades de um Brinquedo.
+ * 
+ * @author Matheus Pimentel Leal
+ * @author Luana de Lima Medeiros
+ * @version 1.0
+ * @see https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Cloneable.html
+ * */
 
 public class Brinquedo implements Cloneable{
+	
+	/**
+	 * Parametros uteis para um brinquedo em estoque ou no carrinho de compras de um cliente
+	 * */
     private String nome, marca, categoria;
     private double precoUnitario;
     private int idadeIndicada, quantidade, id;
 
-    //Alteração do construtor {new} de brinquedo
+    /**
+     * Construtor padrao de Brinquedo
+     * 
+     * @param nome Nome do brinquedo
+     * @param marca Marca do brinquedo
+     * @param categoria Categoria do brinquedo
+     * @param precoUnit Preco por unidade do brinquedo
+     * @param idadeInd Idade indicativa do brinquedo, Ex.: Recomendado para <strong>8</strong> ou mais anos de idade
+     * @param quant Quantidade em estoque do brinquedo
+     * @param id Codigo identificador do brinquedo
+     * */
     public Brinquedo(String nome, String marca, String categoria,
                         double precoUnit, int idadeInd, int quant, int id){
-        //No caso de Brinquedo, não existem dados desnecessários.
         this.nome = nome;
         this.marca = marca;
         this.categoria = categoria;
@@ -20,7 +42,15 @@ public class Brinquedo implements Cloneable{
         this.id = id;
     }
     
-    //Clonar Brinquedo
+    /**
+     * Clonar um brinquedo.
+     * 
+     * Metodo utilizado para transferir dados de um Objeto Brinquedo outro sem ligacao entre os dois.
+     * 
+     * @return Clone do Objeto Brinquedo
+     * @see https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/lang/Cloneable.html
+     * @throws CloneNotSupportedException
+     * */
     @Override
     public Brinquedo clone() throws CloneNotSupportedException{
         try {
@@ -31,7 +61,11 @@ public class Brinquedo implements Cloneable{
         
     }
 
-    //Visualizar o Brinquedo
+    /**
+     * Sobrescricao do metodo toString.
+     * 
+     * @return String contendo todos os dados do Brinquedo.
+     * */
     public String toString(){
         return  "Nome do brinquedo: " +this.nome+ "\n"+
                 "Marca: " +this.marca+ "\n"+
@@ -42,7 +76,11 @@ public class Brinquedo implements Cloneable{
                 "Codigo identificador: " +this.id+ "\n";
     }
 
-    //Edição dos dados cadastrados
+    /**
+     * Editar dados de um Brinquedo
+     * 
+     * @param novosDados Objeto Brinquedo contendo os dados atualizados.
+     * */
     public void Editar(Brinquedo novosDados){
         //Nome
         if(novosDados.getNome() != null){

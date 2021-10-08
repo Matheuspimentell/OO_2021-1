@@ -8,7 +8,7 @@ import java.awt.Dimension;
 import java.awt.Color;
 
 public class BarraSuperior extends JPanel{
-    BarraMenu barraMenu;
+    private BarraMenu barraMenu;
     
     BarraSuperior(){
         barraMenu = new BarraMenu();
@@ -24,4 +24,12 @@ public class BarraSuperior extends JPanel{
         this.add(bordaMeio, BorderLayout.WEST); //Adiciona a borda à barra superior
         this.add(barraMenu, BorderLayout.SOUTH); //Adiciona a barra de menu à borda superior
     }
+
+	public BarraMenu getBarraMenu() {
+		return barraMenu;
+	}
+
+	public void setBarraMenu(BarraMenu barraMenu) {
+		this.barraMenu = barraMenu;
+	}
 }

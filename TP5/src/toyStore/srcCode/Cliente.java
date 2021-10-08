@@ -1,21 +1,38 @@
 package toyStore.srcCode;
 
-import toyStore.GUI.*;
-
 import java.util.ArrayList;
 
+/**
+ * Um objeto Cliente.
+ * 
+ * Um objeto que define os parametros e funcionalidades de um Cliente.
+ * 
+ * @author Matheus Pimentel Leal
+ * @author Luana de Lima Medeiros
+ * */
 public class Cliente extends Pessoa implements Cloneable{
+	
+	/**
+	 * Parametros uteis para um Cliente.
+	 * */
     private String cpf;
-    private ArrayList<Brinquedo> carrinho;
-
-    //AlteraÃ§Ã£o do construtor {new} de Cliente
+    private ArrayList<Brinquedo> carrinho;   
+    
+    /**
+     * Construtor padrao de Cliente.
+     * 
+     * @param nome Nome do cliente.
+     * @param cpf CPF do cliente.
+     * */
     public Cliente(String nome, String cpf){
-        //Ãºnicos atributos ESTRITAMENTE NECESSÃ�RIOS de Cliente
         this.nome = nome;
         this.cpf = cpf;
         this.carrinho = new ArrayList<Brinquedo>();
     }
-
+    
+    /**
+     * Sobrescricao do metodo toString.
+     * */
     public String toString(){
         return "Nome do cliente: " +this.nome+ "\n" +
                "CPF do cliente: " +this.cpf+ "\n" +
@@ -23,34 +40,11 @@ public class Cliente extends Pessoa implements Cloneable{
                "Telefone do cliente: " +this.telefone+ "\n";
     }
 
-    //Completa o cadastro do cliente
-    public void CompletaCadastro() {
-        //Caso ainda existam dados nulos
-        if(this.endereco == null || this.telefone == null){
-            System.out.println("Completar o cadastro do cliente: " + this.nome);
-            System.out.println("-----------------------------------------------------");
-            //Endereco
-            if(this.endereco == null){
-                System.out.print("Digite o endereco do cliente: ");
-                String e = scan.nextLine();
-                this.endereco = e;
-                System.out.println("-----------------------------------------------------");
-            }
-            //Telefone
-            if(this.telefone ==  null){
-                System.out.print("Digite o telefone do cliente: ");
-                String t = scan.nextLine();
-                this.telefone = t;
-                System.out.println("-----------------------------------------------------");
-            }
-        //Caso contrÃ¡rio
-        } else {
-            System.out.println("O cliente em questao ja possui um cadastro completo.");
-            System.out.println("-----------------------------------------------------");
-        }
-    }
-
-    //Edita apenas os dados jÃ¡ cadastrados
+    /**
+     * Edita os dados do cliente.
+     * 
+     * @param novosDados Objeto Cliente contendo os dados atualizados.
+     * */
     public void Editar(Cliente novosDados) {
         //Nome
         if(novosDados.getNome() != null){
@@ -70,7 +64,11 @@ public class Cliente extends Pessoa implements Cloneable{
         }
     }
 
-    //Imprime apenas os dados cadastrados
+    /**
+     * Metodo Visualizar.
+     * 
+     * @return Os dados atualmente cadastrados de um cliente.
+     * */
     @Override
     public String Visualizar() {
     	if(this.telefone == null && this.endereco == null) {
@@ -96,6 +94,12 @@ public class Cliente extends Pessoa implements Cloneable{
     	}
     }
     
+    /**
+     * Busca de um item no carrinho de compras do cliente.
+     * 
+     * @param id O codigo identificador do brinquedo a ser procurado
+     * @return O objeto encontrado, caso não encontrado retorna null 
+     * */
     public Brinquedo BuscaItem(int id) {
     	for(Brinquedo brinquedo : this.getCarrinho()) {
     		if(brinquedo.getId() == id) {
@@ -105,14 +109,25 @@ public class Cliente extends Pessoa implements Cloneable{
     	return null;
     }
     
-    //Adiciona um item e sua quantidade comprada ao carrinho de compras do cliente
+    /**
+     * Adicao de um item no carrinho de compras do cliente
+     * 
+     * @param brinquedo Item a ser adicionado.
+     * @param quantidade Quantidade do item a ser adicionado ao carrinho de compras.
+     * */
     public void AdicionaItem(Brinquedo brinquedo, int quantidade){
         if(brinquedo != null){
-            brinquedo.setQuantidade(quantidade); //Adiciona a quantidade correta do brinquedo
-            this.carrinho.add(brinquedo); //Adiciona o brinquedo ao carrinho
+            brinquedo.setQuantidade(quantidade);
+            this.carrinho.add(brinquedo);
         }
     }
     
+    /**
+     * Remocao de um item do carrinho de compras do cliente
+     * 
+     * @param id O codigo identificador do brinquedo a ser removido do carrinho
+     * @return Retorna um boolean indicando a remocao com sucesso: true = sucesso | false = falha
+     * */
     public boolean removeItem(int id) {
     	for(Brinquedo brinquedo : this.getCarrinho()) {
     		if(brinquedo.getId() == id) {
@@ -123,7 +138,11 @@ public class Cliente extends Pessoa implements Cloneable{
     	return false;
     }
     
-    //Imprime todos os brinquedos no carrinho de compras
+    /**
+     * Visualizacao do carrinho de compras do cliente
+     * 
+     * @deprecated
+     * */
     public void VisualizarCarrinho(){
         for(Brinquedo brinquedo : this.carrinho){
             System.out.println(brinquedo.getId() + " " + brinquedo.getNome() +
@@ -132,9 +151,12 @@ public class Cliente extends Pessoa implements Cloneable{
         }
     }
     
+    /**
+     * Remocao de todos os itens do carrinho de compras de um cliente
+     * */
     public void LimpaCarrinho() {
-    	for(Brinquedo brinquedo : this.carrinho) {
-    		this.carrinho.remove(brinquedo);
+    	for(int i = 0; i < this.carrinho.size(); i++) {
+    		this.carrinho.remove(0);
     	}
     }
 
@@ -157,6 +179,11 @@ public class Cliente extends Pessoa implements Cloneable{
     public ArrayList<Brinquedo> getCarrinho(){
         return this.carrinho;
     }
+    /**
+     * Retorna o valor total em compras do cliente
+     * 
+     * @return O valor total de itens comprados pelo cliente
+     * */
     public double getTotalCompras(){
         double valorTotal = 0.00;
         for(Brinquedo brinquedo : this.carrinho){

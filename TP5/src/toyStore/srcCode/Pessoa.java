@@ -1,15 +1,27 @@
 package toyStore.srcCode;
 
-import toyStore.GUI.*;
-import java.util.Scanner;
-
+/**
+ * Classe abstrata "Pessoa".
+ * 
+ * Classe abstrata para utilizacao em objetos que representam pessoas fisicas e juridicas.
+ * 
+ * @author Matheus Pimentel Leal
+ * @author Luana de Lima Medeiros
+ * @version 1.0
+ * */
 abstract class Pessoa {
+	
+	/**
+	 * @param nome O nome da pessoa
+	 * @param endereco O endereco da pessoa
+	 * @param telefone O telefone da pessoa 
+	 * */
     protected String nome, endereco, telefone;
-    protected Scanner scan = new Scanner(System.in); //Declaração do scanner
 
-    //Métodos CRUD para aplicação nas classes filhas
+    /**
+     * Funcao de visualizacao que todas as classes filhas sobrescrevem.
+     * */
     abstract public String Visualizar();
-    //Para deletar o objeto, tem que ser na classe que vai controlar os dados do objeto
 
     //Setters
     abstract public void setNome(String nome);

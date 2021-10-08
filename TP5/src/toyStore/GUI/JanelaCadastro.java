@@ -6,23 +6,42 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Objeto JanelaCadastro
+ * 
+ * Janela de cadastro de dados para a GUI do sistema de loja de brinquedos.
+ * 
+ * @author Matheus Pimentel Leal
+ * @author Luana de Lima Medeiros
+ * */
 public class JanelaCadastro extends JDialog implements ActionListener{
-    Sistema SYS;
-    JPanel conteudo;
-    JTextField campo1Texto;
-    JTextField campo2Texto;
-    JTextField campo3Texto;
-    JTextField campo4Texto;
-    JTextField campo5Texto;
-    JTextField campo6Texto;
-    JTextField campo7Texto;
-    JButton confirma;
-    JButton cancela;
-
+	
+	/**
+	 * Parametros uteis para uma janela de cadastro.
+	 * */
+    private Sistema SYS;
+    private JPanel conteudo;
+    private JTextField campo1Texto;
+    private JTextField campo2Texto;
+    private JTextField campo3Texto;
+    private JTextField campo4Texto;
+    private JTextField campo5Texto;
+    private JTextField campo6Texto;
+    private JTextField campo7Texto;
+    private JButton confirma;
+    private JButton cancela;
+    
+    
+    /**
+     * Construtor padrao de JanelaCadastro
+     *  
+     * @param titulo Titulo da janela
+     * @param sistema Conexao com o srcCode feita por meio da classe sistema.
+     * */
     JanelaCadastro(String titulo, Sistema sistema){
         SYS = sistema;
 
-        //----------------Bordas de formatação----------------
+        //----------------Bordas de formatacao----------------
         JPanel bordaSuperior = new JPanel();
         bordaSuperior.setPreferredSize(new Dimension(50, 50));
         bordaSuperior.setBackground(Color.GRAY);
@@ -40,62 +59,20 @@ public class JanelaCadastro extends JDialog implements ActionListener{
         bordaDireita.setBackground(Color.BLACK);
         bordaDireita.setOpaque(false);
 
-        //-------------------Painel de conteudo---------------------
-        if(titulo.equals("Loja - Completar cadastro")){
-            
-            //----------------Instrução------------------
-            JOptionPane.showMessageDialog(null,
-            "Para não alterar os dados, deixar em branco"
-            ,"Informativo"
-            ,JOptionPane.INFORMATION_MESSAGE);
-
-            //----------Texto indicativo do 1° campo---------
-            JLabel campo1 = new JLabel();
-            campo1.setText("Telefone: ");
-            campo1.setFont(new Font("Arial", Font.PLAIN, 12));
-            campo1.setPreferredSize(new Dimension(65,20));
-
-            //--------Campo de texto------
-            campo1Texto = new JTextField();
-            campo1Texto.setPreferredSize(new Dimension(200,20));
-
-            //----------Botões-------------
-            confirma = new JButton();
-            confirma.setFocusable(false);
-            confirma.setPreferredSize(new Dimension(170,35));
-            confirma.setText("Cadastrar dados");
-            confirma.addActionListener(this);
-
-            cancela = new JButton();
-            cancela.setFocusable(false);
-            cancela.setPreferredSize(new Dimension(170,35));
-            cancela.setText("Cancelar");
-            cancela.addActionListener(this);
-
-            
-            conteudo = new JPanel();
-            conteudo.setLayout(new FlowLayout());
-            conteudo.setVisible(true);
-            conteudo.add(campo1);
-            conteudo.add(campo1Texto);
-            conteudo.add(confirma);
-            conteudo.add(cancela);
-        }
-
         if(titulo.equals("Cliente - Novo Cadastro")){
-            //----------------Instrução------------------
+            //----------------Instrucao------------------
             JOptionPane.showMessageDialog(null,
-            "Para não alterar os dados, deixar em branco"
+            "Para nao alterar os dados, deixar em branco"
             ,"Informativo"
             ,JOptionPane.INFORMATION_MESSAGE);
 
             JLabel informacao = new JLabel();
-            informacao.setText("(*) - Dados obrigatórios");
+            informacao.setText("(*) - Dados obrigatorios");
             informacao.setFont(new Font("Arial", Font.BOLD, 14));
             informacao.setPreferredSize(new Dimension(400, 20));
             informacao.setVisible(true);
 
-            //--------------Texto indicativo do 1° campo-------------
+            //--------------Texto indicativo do primeiro campo-------------
             JLabel campo1 = new JLabel();
             campo1.setText("(*) Nome: ");
             campo1.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -105,7 +82,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo1Texto = new JTextField();
             campo1Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 2° campo-------------
+            //--------------Texto indicativo do segundo campo-------------
             JLabel campo2 = new JLabel();
             campo2.setText("(*) CPF: ");
             campo2.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -115,9 +92,9 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo2Texto = new JTextField();
             campo2Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 3° campo-------------
+            //--------------Texto indicativo do terceiro campo-------------
             JLabel campo3 = new JLabel();
-            campo3.setText("Endereço: ");
+            campo3.setText("Endereco: ");
             campo3.setFont(new Font("Arial", Font.PLAIN, 12));
             campo3.setPreferredSize(new Dimension(95,20));
 
@@ -125,7 +102,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo3Texto = new JTextField();
             campo3Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 4° campo-------------
+            //--------------Texto indicativo do quarto campo-------------
             JLabel campo4 = new JLabel();
             campo4.setText("Telefone: ");
             campo4.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -135,7 +112,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo4Texto = new JTextField();
             campo4Texto.setPreferredSize(new Dimension(200,20));
 
-            //----------Botões-------------
+            //----------Botoes-------------
             confirma = new JButton();
             confirma.setFocusable(false);
             confirma.setPreferredSize(new Dimension(170,35));
@@ -148,7 +125,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             cancela.setText("Cancelar");
             cancela.addActionListener(this);
 
-            //-----------------Adição do conteúdo---------------
+            //-----------------Adicao do conteudo---------------
             conteudo = new JPanel();
             conteudo.setLayout(new FlowLayout());
             conteudo.setVisible(true);
@@ -166,19 +143,19 @@ public class JanelaCadastro extends JDialog implements ActionListener{
         }
 
         if(titulo.equals("Brinquedo - Novo Cadastro")){
-            //----------------Instrução------------------
+            //----------------Instrucao------------------
             JOptionPane.showMessageDialog(null,
-            "Para não alterar os dados, deixar em branco"
+            "Para nao alterar os dados, deixar em branco"
             ,"Informativo"
             ,JOptionPane.INFORMATION_MESSAGE);
 
             JLabel informacao = new JLabel();
-            informacao.setText("(*) TODOS os dados são obrigatórios!");
+            informacao.setText("(*) TODOS os dados saoo obrigatorios!");
             informacao.setFont(new Font("Arial", Font.BOLD, 14));
             informacao.setPreferredSize(new Dimension(400, 20));
             informacao.setVisible(true);
 
-            //--------------Texto indicativo do 1° campo-------------
+            //--------------Texto indicativo do primeiro campo-------------
             JLabel campo1 = new JLabel();
             campo1.setText("(*) Nome: ");
             campo1.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -188,7 +165,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo1Texto = new JTextField();
             campo1Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 2° campo-------------
+            //--------------Texto indicativo do segundo campo-------------
             JLabel campo2 = new JLabel();
             campo2.setText("(*) Marca: ");
             campo2.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -198,7 +175,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo2Texto = new JTextField();
             campo2Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 3° campo-------------
+            //--------------Texto indicativo do terceiro campo-------------
             JLabel campo3 = new JLabel();
             campo3.setText("(*) Categoria: ");
             campo3.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -208,9 +185,9 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo3Texto = new JTextField();
             campo3Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 4° campo-------------
+            //--------------Texto indicativo do quarto campo-------------
             JLabel campo4 = new JLabel();
-            campo4.setText("(*) Preço unitário: ");
+            campo4.setText("(*) Preco unitario: ");
             campo4.setFont(new Font("Arial", Font.PLAIN, 12));
             campo4.setPreferredSize(new Dimension(130,20));
 
@@ -218,7 +195,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo4Texto = new JTextField();
             campo4Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 5° campo-------------
+            //--------------Texto indicativo do quinto campo-------------
             JLabel campo5 = new JLabel();
             campo5.setText("(*) Idade Inidicada: ");
             campo5.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -228,7 +205,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo5Texto = new JTextField();
             campo5Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 6° campo-------------
+            //--------------Texto indicativo do sexto campo-------------
             JLabel campo6 = new JLabel();
             campo6.setText("(*) Quantidade: ");
             campo6.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -238,7 +215,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo6Texto = new JTextField();
             campo6Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 7° campo-------------
+            //--------------Texto indicativo do setimo campo-------------
             JLabel campo7 = new JLabel();
             campo7.setText("(*) ID: ");
             campo7.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -248,7 +225,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo7Texto = new JTextField();
             campo7Texto.setPreferredSize(new Dimension(200,20));
 
-            //----------Botões-------------
+            //----------Botoes-------------
             confirma = new JButton();
             confirma.setFocusable(false);
             confirma.setPreferredSize(new Dimension(170,35));
@@ -261,7 +238,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             cancela.setText("Cancelar");
             cancela.addActionListener(this);
 
-            //-----------------Adição do conteúdo---------------
+            //-----------------Adicao do conteudo---------------
             conteudo = new JPanel();
             conteudo.setLayout(new FlowLayout());
             conteudo.setVisible(true);
@@ -285,19 +262,19 @@ public class JanelaCadastro extends JDialog implements ActionListener{
         }
 
         if(titulo.equals("Funcionário - Novo Cadastro")){
-            //----------------Instrução------------------
+            //----------------Instrucao------------------
             JOptionPane.showMessageDialog(null,
-            "Para não alterar os dados, deixar em branco"
+            "Para nao alterar os dados, deixar em branco"
             ,"Informativo"
             ,JOptionPane.INFORMATION_MESSAGE);
 
             JLabel informacao = new JLabel();
-            informacao.setText("(*) - Dados obrigatórios");
+            informacao.setText("(*) - Dados obrigatorios");
             informacao.setFont(new Font("Arial", Font.BOLD, 14));
             informacao.setPreferredSize(new Dimension(400, 20));
             informacao.setVisible(true);
 
-            //--------------Texto indicativo do 1° campo-------------
+            //--------------Texto indicativo do primeiro campo-------------
             JLabel campo1 = new JLabel();
             campo1.setText("(*) Nome: ");
             campo1.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -307,7 +284,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo1Texto = new JTextField();
             campo1Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 2° campo-------------
+            //--------------Texto indicativo do segundo campo-------------
             JLabel campo2 = new JLabel();
             campo2.setText("(*) ID: ");
             campo2.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -317,7 +294,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo2Texto = new JTextField();
             campo2Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 3° campo-------------
+            //--------------Texto indicativo do terceiro campo-------------
             JLabel campo3 = new JLabel();
             campo3.setText("(*) Cargo: ");
             campo3.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -327,7 +304,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo3Texto = new JTextField();
             campo3Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 4° campo-------------
+            //--------------Texto indicativo do quarto campo-------------
             JLabel campo4 = new JLabel();
             campo4.setText("Endereco: ");
             campo4.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -337,7 +314,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             campo4Texto = new JTextField();
             campo4Texto.setPreferredSize(new Dimension(200,20));
 
-            //--------------Texto indicativo do 5° campo-------------
+            //--------------Texto indicativo do quinto campo-------------
             JLabel campo5 = new JLabel();
             campo5.setText("Telefone: ");
             campo5.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -360,7 +337,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             cancela.setText("Cancelar");
             cancela.addActionListener(this);
 
-            //-----------------Adição do conteúdo---------------
+            //-----------------Adicao do conteudo---------------
             conteudo = new JPanel();
             conteudo.setLayout(new FlowLayout());
             conteudo.setVisible(true);
@@ -379,7 +356,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             conteudo.add(cancela);
         }
 
-        //------------Configurações da tela------------
+        //------------Configuracoes da tela------------
         this.setModal(true);
         this.setTitle(titulo);
         this.setLayout(new BorderLayout());
@@ -392,32 +369,20 @@ public class JanelaCadastro extends JDialog implements ActionListener{
         this.add(bordaDireita, BorderLayout.EAST);
         this.setVisible(true);
     }
-
+    
+    /**
+     * Realiza uma acao caso aconteca um ActionEvent
+     * 
+     * @see https://docs.oracle.com/en/java/javase/16/docs/api/java.desktop/java/awt/event/package-summary.html
+     * */
     @Override
     public void actionPerformed(ActionEvent e) {
-        //-----------Caso seja selecionada a opção de cancelar-----------
+        //-----------Caso seja selecionada a opcao de cancelar-----------
         if(e.getSource() == cancela){
             dispose();
         }
-        //--------Caso seja selecionada a opção de confirmar--------------
+        //--------Caso seja selecionada a opcao de confirmar--------------
         if(e.getSource() == confirma){
-
-            //----------Janela de Completar cadastro da loja---------------
-            if(this.getTitle().equals("Loja - Completar cadastro")){
-                //Caso o usuário tenha digitado algo:
-                if (!campo1Texto.getText().equals("")){
-                    //Completar o cadastro com o dado passado
-                    SYS.getLoja().CompletaCadastro(campo1Texto.getText());
-                } else {
-                    //Caso contrário mostrar um painel com um warning
-                    JOptionPane.showMessageDialog(null,
-                     "Campo vazio! alterações descartadas",
-                      "Atenção",
-                       JOptionPane.WARNING_MESSAGE);
-                }
-                //----------Fechar a janela---------
-                dispose();
-            }
 
             if(this.getTitle().equals("Cliente - Novo Cadastro")){
                 String nome, cpf, endereco, telefone;
@@ -427,11 +392,11 @@ public class JanelaCadastro extends JDialog implements ActionListener{
                 endereco = campo3Texto.getText();
                 telefone = campo4Texto.getText();
 
-                //--------------Verificação dos dados recebidos-------------------
+                //--------------Verificacao dos dados recebidos-------------------
                 if(campo1Texto.getText().equals("") || campo2Texto.getText().equals("")){
                     //--------Caso nome ou cpf nao tenham sido preenchidos------
                     JOptionPane.showMessageDialog(null,
-                     "Atenção, um ou mais campos obrigatórios não preenchidos",
+                     "Atencao, um ou mais campos obrigatorios nao preenchidos",
                       "ERRO", JOptionPane.ERROR_MESSAGE);
                 } else {
                     if(campo3Texto.getText().equals("")){
@@ -441,7 +406,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
                         telefone = null;
                     }
                     Cliente cliente = new Cliente(nome, cpf);
-                    SYS.setCliente(cliente, endereco, telefone);
+                    SYS.addCliente(cliente, endereco, telefone);
                     JOptionPane.showMessageDialog(null,
                      "Cliente cadastrado com sucesso",
                       "Informativo", JOptionPane.INFORMATION_MESSAGE);
@@ -449,7 +414,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
                 }
             }
 
-            if(this.getTitle().equals("Funcionário - Novo Cadastro")){
+            if(this.getTitle().equals("Funcionario - Novo Cadastro")){
                 String nome, cargo, endereco, telefone;
                 int id;
 
@@ -463,12 +428,12 @@ public class JanelaCadastro extends JDialog implements ActionListener{
                 endereco = campo4Texto.getText();
                 telefone = campo5Texto.getText();
 
-                //--------------Verificação dos dados recebidos-------------------
+                //--------------Verificacao dos dados recebidos-------------------
                 if(campo1Texto.getText().equals("") || campo2Texto.getText().equals("") || campo3Texto.getText().equals("")){
                     
-                    //--------Caso nome ou id ou cargo não tenham sido preenchidos------
+                    //--------Caso nome ou id ou cargo nao tenham sido preenchidos------
                     JOptionPane.showMessageDialog(null,
-                     "Atenção, um ou mais campos obrigatórios não preenchidos",
+                     "Atencao, um ou mais campos obrigatorios nao preenchidos",
                       "ERRO", JOptionPane.ERROR_MESSAGE);
 
                 } else {
@@ -482,9 +447,9 @@ public class JanelaCadastro extends JDialog implements ActionListener{
                     }
 
                     Funcionario funcionario = new Funcionario(nome, id, cargo);
-                    SYS.getLoja().setFuncionario(funcionario, endereco, telefone);
+                    SYS.getLoja().addFuncionario(funcionario, endereco, telefone);
                     JOptionPane.showMessageDialog(null,
-                     "Funcionário cadastrado com sucesso",
+                     "Funcionario cadastrado com sucesso",
                       "Informativo", JOptionPane.INFORMATION_MESSAGE);
 
                     dispose();
@@ -496,7 +461,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
                 double precoUnitario;
                 int idadeIndicada, quantidade, id;
 
-                //-------Controle de área de texto não preenchida-------
+                //-------Controle de area de texto nao preenchida-------
                 Boolean vazio1,vazio2,vazio3,vazio4,vazio5,vazio6,vazio7;
                 vazio1 = true;
                 vazio2 = true;
@@ -508,19 +473,19 @@ public class JanelaCadastro extends JDialog implements ActionListener{
 
                 //-------------Checagem de campos de texto-----------
                 if(campo1Texto.getText().equals("")){
-                    nome = "invalido";
+                    nome = null;
                 } else {
                     nome = campo1Texto.getText();
                     vazio1 = false;
                 }
                 if(campo2Texto.getText().equals("")){
-                    marca = "invalido";
+                    marca = null;
                 } else {
                     marca = campo2Texto.getText();
                     vazio2 = false;
                 }
                 if(campo3Texto.getText().equals("")){
-                    categoria = "invalido";
+                    categoria = null;
                 } else {
                     categoria = campo3Texto.getText();
                     vazio3 = false;
@@ -553,14 +518,14 @@ public class JanelaCadastro extends JDialog implements ActionListener{
                 //----------------Caso ao menos um campo de texto esteja vazio------------
                 if(vazio1 || vazio2 || vazio3 || vazio4 || vazio5 || vazio6 || vazio7){
 
-                    //--------Caso ao menos 1 opção não tenha sido preenchida------
+                    //--------Caso ao menos 1 opcao nao tenha sido preenchida------
                     JOptionPane.showMessageDialog(null,
-                     "Atenção, um ou mais campos obrigatórios não preenchidos",
+                     "Atencao, um ou mais campos obrigatorios nao preenchidos",
                       "ERRO", JOptionPane.ERROR_MESSAGE);
 
                 } else {
 
-                    //-------------Definição do brinquedo a ser adicionado-----------
+                    //-------------Definicao do brinquedo a ser adicionado-----------
                     Brinquedo brinquedo = new Brinquedo(nome,
                      marca,
                       categoria,
@@ -569,9 +534,9 @@ public class JanelaCadastro extends JDialog implements ActionListener{
                          quantidade, id);
 
                     //---------Adicionar o brinquedo ao estoque
-                    SYS.getLoja().setBrinquedo(brinquedo);
+                    SYS.getLoja().addBrinquedo(brinquedo);
 
-                    //--------Mensagem de cadastro concluído----------
+                    //--------Mensagem de cadastro concluido----------
                     JOptionPane.showMessageDialog(null,
                      "Brinquedo cadastrado com sucesso",
                       "Informativo", JOptionPane.INFORMATION_MESSAGE);
@@ -581,4 +546,92 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             }
         }
     }
+
+	public Sistema getSYS() {
+		return SYS;
+	}
+
+	public void setSYS(Sistema sYS) {
+		SYS = sYS;
+	}
+
+	public JPanel getConteudo() {
+		return conteudo;
+	}
+
+	public void setConteudo(JPanel conteudo) {
+		this.conteudo = conteudo;
+	}
+
+	public JTextField getCampo1Texto() {
+		return campo1Texto;
+	}
+
+	public void setCampo1Texto(JTextField campo1Texto) {
+		this.campo1Texto = campo1Texto;
+	}
+
+	public JTextField getCampo2Texto() {
+		return campo2Texto;
+	}
+
+	public void setCampo2Texto(JTextField campo2Texto) {
+		this.campo2Texto = campo2Texto;
+	}
+
+	public JTextField getCampo3Texto() {
+		return campo3Texto;
+	}
+
+	public void setCampo3Texto(JTextField campo3Texto) {
+		this.campo3Texto = campo3Texto;
+	}
+
+	public JTextField getCampo4Texto() {
+		return campo4Texto;
+	}
+
+	public void setCampo4Texto(JTextField campo4Texto) {
+		this.campo4Texto = campo4Texto;
+	}
+
+	public JTextField getCampo5Texto() {
+		return campo5Texto;
+	}
+
+	public void setCampo5Texto(JTextField campo5Texto) {
+		this.campo5Texto = campo5Texto;
+	}
+
+	public JTextField getCampo6Texto() {
+		return campo6Texto;
+	}
+
+	public void setCampo6Texto(JTextField campo6Texto) {
+		this.campo6Texto = campo6Texto;
+	}
+
+	public JTextField getCampo7Texto() {
+		return campo7Texto;
+	}
+
+	public void setCampo7Texto(JTextField campo7Texto) {
+		this.campo7Texto = campo7Texto;
+	}
+
+	public JButton getConfirma() {
+		return confirma;
+	}
+
+	public void setConfirma(JButton confirma) {
+		this.confirma = confirma;
+	}
+
+	public JButton getCancela() {
+		return cancela;
+	}
+
+	public void setCancela(JButton cancela) {
+		this.cancela = cancela;
+	}
 }
