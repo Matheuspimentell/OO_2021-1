@@ -95,13 +95,32 @@ public class Cliente extends Pessoa implements Cloneable{
             		"Endereco do cliente: " + this.endereco + "</html>";
     	}
     }
-
+    
+    public Brinquedo BuscaItem(int id) {
+    	for(Brinquedo brinquedo : this.getCarrinho()) {
+    		if(brinquedo.getId() == id) {
+    			return brinquedo;
+    		}
+    	}
+    	return null;
+    }
+    
     //Adiciona um item e sua quantidade comprada ao carrinho de compras do cliente
     public void AdicionaItem(Brinquedo brinquedo, int quantidade){
         if(brinquedo != null){
             brinquedo.setQuantidade(quantidade); //Adiciona a quantidade correta do brinquedo
             this.carrinho.add(brinquedo); //Adiciona o brinquedo ao carrinho
         }
+    }
+    
+    public boolean removeItem(int id) {
+    	for(Brinquedo brinquedo : this.getCarrinho()) {
+    		if(brinquedo.getId() == id) {
+    			this.getCarrinho().remove(brinquedo);
+    			return true;
+    		}
+    	}
+    	return false;
     }
     
     //Imprime todos os brinquedos no carrinho de compras
@@ -139,7 +158,7 @@ public class Cliente extends Pessoa implements Cloneable{
         return this.carrinho;
     }
     public double getTotalCompras(){
-        double valorTotal = 0;
+        double valorTotal = 0.00;
         for(Brinquedo brinquedo : this.carrinho){
             valorTotal = valorTotal + (brinquedo.getQuantidade()*brinquedo.getPreco());
         }

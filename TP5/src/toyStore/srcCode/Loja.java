@@ -105,28 +105,19 @@ public class Loja extends Pessoa{
             this.cnpj = cnpj;
         }
         //Telefone
-        if(this.telefone != null && telefone != null){
+        if(telefone != null){
             this.telefone = telefone;
         }
     }
     //MÃ©todo para deletar um funcionÃ¡rio
-    public void DeletarFuncionario(){
-        System.out.print("Digite o ID do funcionario que deseja excluir: ");
-        int id = scan.nextInt();
-        scan.nextLine();
-        boolean removeu = false;
+    public boolean DeletarFuncionario(int id){
         for (Funcionario funcionario : this.funcionarios){
             if(funcionario.getId() == id){
                 this.funcionarios.remove(funcionario);
-                removeu = true;
-                System.out.println("Funcionario excluido:");
-                funcionario.Visualizar();
-                break;
+                return true;
             }
         }
-        if(removeu == false){
-            System.out.println("Funcionario nao encontrado.");
-        }
+        return false;
     }
     //MÃ©todo para buscar e visualizar 1 funcionÃ¡rio na lista de funcionÃ¡rios
     public Funcionario BuscarFuncionario(String id){
@@ -149,40 +140,24 @@ public class Loja extends Pessoa{
         }
     }
     //MÃ©todo para deletar brinquedos no estoque
-    public void DeletarBrinquedo(){
-        System.out.print("Digite o Codigo Identificador do brinquedo que deseja excluir: ");
-        int cid = scan.nextInt();
-        scan.nextLine();
-        boolean removeu = false;
+    public boolean DeletarBrinquedo(int cid){
         for(Brinquedo brinquedo : this.estoque){
             if(brinquedo.getId() == cid){
                 this.estoque.remove(brinquedo);
-                removeu = true;
-                System.out.println("Brinquedo excluido:");
-                System.out.println(brinquedo);
-                break;
+                return true;
             }
         }
-        if(removeu == false){
-            System.out.println("Brinquedo nao encontrado.");
-        }
+        return false;
     }
     //MÃ©todo para visualizar 1 brinquedo
-    public void BuscarBrinquedo(){
-        System.out.print("Digite o Codigo Identificador do brinquedo que deseja buscar: ");
-        int cid = scan.nextInt();
-        scan.nextLine();
+    public Brinquedo BuscarBrinquedo(int cid){
         //Percorrer todo o estoque
         for(Brinquedo brinquedo : this.estoque){
             if(brinquedo.getId() == cid){
-                //Caso o brinquedo seja encontrado, mostrÃ¡-lo e sair do mÃ©todo
-                System.out.println("Brinquedo encontrado:");
-                System.out.println(brinquedo);
-                return;
+                return brinquedo;
             }
         }
-        //Caso o brinquedo nÃ£o tenha sido encontrado
-        System.out.println("Brinquedo nao encontrado.");
+        return null;
     }
     //Visualizar o estoque inteiro
     public void VisualizarEstoque(){

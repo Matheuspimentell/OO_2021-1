@@ -429,7 +429,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
 
                 //--------------Verificação dos dados recebidos-------------------
                 if(campo1Texto.getText().equals("") || campo2Texto.getText().equals("")){
-                    //--------Caso nome ou cpf não tenham sido preenchidos------
+                    //--------Caso nome ou cpf nao tenham sido preenchidos------
                     JOptionPane.showMessageDialog(null,
                      "Atenção, um ou mais campos obrigatórios não preenchidos",
                       "ERRO", JOptionPane.ERROR_MESSAGE);

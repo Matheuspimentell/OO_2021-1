@@ -105,11 +105,6 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo4Texto = new JTextField();
             campo4Texto.setPreferredSize(new Dimension(200,20));
 
-            //----------------Caso a loja não possua um telefone cadastrado-------------------
-            if(SYS.getLoja().getTelefone() == null){
-                campo4.setVisible(false);
-                campo4Texto.setVisible(false);
-            }
 
             //-----------------Adição do conteúdo---------------
             conteudo = new JPanel();
@@ -128,20 +123,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
         }
         
         if(titulo.equals("Clientes - Editar dados")){
-            oldCpf = dado_aProcurar;
-            temTelefone = false;
-            temEndereco = false;
-
-            for(Cliente cliente : SYS.getClientes()){
-                if(cliente.getCpf().equals(oldCpf)){
-                    if(cliente.getEndereco() != null){
-                        temEndereco = true;
-                    }
-                    if(cliente.getTelefone() != null){
-                        temTelefone = true;
-                    }
-                }
-            }
+            oldCpf = dado_aProcurar;            
 
             //----------------Instrução------------------
             JOptionPane.showMessageDialog(null,
@@ -189,18 +171,6 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             campo4Texto = new JTextField();
             campo4Texto.setPreferredSize(new Dimension(200,20));
 
-            //----------------Caso o cliente não possua um endereço cadastrado-------------------
-            if(temEndereco == false){
-                campo2.setVisible(false);
-                campo2Texto.setVisible(false);
-            }
-
-            //----------------Caso o cliente não possua um telefone cadastrado-------------------
-            if(temTelefone == false){
-                campo4.setVisible(false);
-                campo4Texto.setVisible(false);
-            }
-
             //-----------------Adição do conteúdo---------------
             conteudo = new JPanel();
             conteudo.setLayout(new FlowLayout());
@@ -219,19 +189,6 @@ public class JanelaEdicao extends JDialog implements ActionListener{
 
         if(titulo.equals("Funcionários - Editar dados")){
             oldId = (int) dado_aProcurar;
-            temTelefone = false;
-            temEndereco = false;
-
-            for(Funcionario funcionario : SYS.getLoja().getFuncionarios()){
-                if(funcionario.getId() == oldId){
-                    if(funcionario.getEndereco() != null){
-                        temEndereco = true;
-                    }
-                    if(funcionario.getTelefone() != null){
-                        temTelefone = true;
-                    }
-                }
-            }
 
             //----------------Instrução------------------
             JOptionPane.showMessageDialog(null,
@@ -288,18 +245,6 @@ public class JanelaEdicao extends JDialog implements ActionListener{
             //--------Campo de texto------
             campo5Texto = new JTextField();
             campo5Texto.setPreferredSize(new Dimension(200,20));
-
-            //----------------Caso o funcionário não possua um endereço cadastrado-------------------
-            if(temEndereco == false){
-                campo4.setVisible(false);
-                campo4Texto.setVisible(false);
-            }
-
-            //----------------Caso o funcionário não possua um telefone cadastrado-------------------
-            if(temTelefone == false){
-                campo5.setVisible(false);
-                campo5Texto.setVisible(false);
-            }
 
             //-----------------Adição do conteúdo---------------
             conteudo = new JPanel();

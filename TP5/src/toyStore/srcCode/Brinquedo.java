@@ -26,7 +26,7 @@ public class Brinquedo implements Cloneable{
         try {
             return (Brinquedo) super.clone();
         } catch(CloneNotSupportedException e){
-            return this;
+            return null;
         }
         
     }

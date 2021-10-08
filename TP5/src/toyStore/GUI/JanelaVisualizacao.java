@@ -219,13 +219,6 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
             opcao3.setEnabled(true);
             opcao3.addActionListener(this);
 
-            opcao4 = new JButton();
-            opcao4.setPreferredSize(new Dimension(150,40));
-            opcao4.setBorder(indisponivel);
-            opcao4.setFocusable(false);
-            opcao4.setText("<html>Completar<br />cadastro</html>");
-            opcao4.setEnabled(false);
-
             //-------Modelo de barra superior de descrições-------------------
             String[] colunasEstoque = {"Nome", "Marca", "Categ.",
              "R$/Un.", "Idade indicada", "#QTD", "ID"};
@@ -266,7 +259,6 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
             this.add(opcao1);
             this.add(opcao2);
             this.add(opcao3);
-            this.add(opcao4);
         }
 
         //----------Visualizar os carrinhos de compras do cliente selecionado-----------
@@ -537,16 +529,13 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                     //Obter CPF fo cliente a ser excluído
                     Object dado = tabelaClientes.getModel().getValueAt(tabelaClientes.getSelectedRow(), 1);
 
-                    //Procurar o cliente pelo CPF e excluí-lo
-                    for(Cliente cliente : SYS.getClientes()){
-                        if(cliente.getCpf().equals(dado)){
-                            SYS.getClientes().remove(cliente);
-                            JOptionPane.showMessageDialog(null,
-                            "Cadastro do cliente excluído com sucesso.",
-                            "Informativo",
-                            JOptionPane.INFORMATION_MESSAGE);
-                            break;
-                        }
+                    boolean removeu = SYS.DeletarCliente((String) dado);
+                    
+                    if(removeu) {
+                    	JOptionPane.showMessageDialog(null,
+                                "Cadastro do cliente excluído com sucesso.",
+                                "Informativo",
+                                JOptionPane.INFORMATION_MESSAGE);
                     }
 
                     //Atualizar a lista
@@ -576,17 +565,16 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                 if(tabelaFuncionarios.getSelectedRow() != -1){
                     //Obter o ID do funcionário a ser deletado
                     Object dado = tabelaFuncionarios.getModel().getValueAt(tabelaFuncionarios.getSelectedRow(), 1);
-                    int idExcluir = (int) dado;
-                    for(Funcionario funcionario : SYS.getLoja().getFuncionarios()){
-                        if(funcionario.getId() == idExcluir){
-                            SYS.getLoja().getFuncionarios().remove(funcionario);
-                            JOptionPane.showMessageDialog(null,
-                            "Cadastro do funcionário excluído com sucesso.",
-                            "Informativo",
-                            JOptionPane.INFORMATION_MESSAGE);
-                            break;
-                        }
+                    
+                    boolean removeu = SYS.getLoja().DeletarFuncionario((int) dado);
+                    
+                    if(removeu) {
+                    	JOptionPane.showMessageDialog(null,
+                                "Cadastro do funcionário excluído com sucesso.",
+                                "Informativo",
+                                JOptionPane.INFORMATION_MESSAGE);
                     }
+
                     //Atualizar a lista de funcionários
                     int totalFuncionarios = modeloTabelaFuncionarios.getRowCount();
                     //--------Zerar a lista anterior de funcionários----------
@@ -615,18 +603,16 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
             if(this.getTitle().equals("Loja - Visualizar estoque")){
                 if(tabelaBrinquedos.getSelectedRow() != -1){
                     Object dado = tabelaBrinquedos.getModel().getValueAt(tabelaBrinquedos.getSelectedRow(), 6);
-                    int idExcluir = (int) dado;
-
-                    for(Brinquedo brinquedo : SYS.getLoja().getEstoque()){
-                        if(brinquedo.getId() == idExcluir){
-                            SYS.getLoja().getEstoque().remove(brinquedo);
-                            JOptionPane.showMessageDialog(null,
-                            "Cadastro do brinquedo excluído com sucesso.",
-                            "Informativo",
-                            JOptionPane.INFORMATION_MESSAGE);
-                            break;
-                        }
+                    
+                    boolean removeu = SYS.getLoja().DeletarBrinquedo((int) dado);
+                    
+                    if(removeu) {
+                    	JOptionPane.showMessageDialog(null,
+                                "Cadastro do brinquedo excluído com sucesso.",
+                                "Informativo",
+                                JOptionPane.INFORMATION_MESSAGE);
                     }
+
                     //Atualizar a lista de brinquedos
                     int totalEstoque = modeloTabelaEstoque.getRowCount();
                     //--------Zerar a lista anterior de brinquedos----------
@@ -660,20 +646,17 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                     Object idTabela = tabelaCarrinho.getModel().getValueAt(tabelaCarrinho.getSelectedRow(), 6);
                     int idExcluir = (int) idTabela;
 
-                    Brinquedo noEstoque = null;
-                    for(Brinquedo brinquedo : SYS.getLoja().getEstoque()){
-                        if(brinquedo.getId() == idExcluir){
-                            noEstoque = brinquedo;
-                            break;
-                        }
-                    }
-
-                    for(Brinquedo excluir : cliente.getCarrinho()){
-                        if(excluir.getId() == idExcluir){
-                            noEstoque.setQuantidade(noEstoque.getQuantidade() + excluir.getQuantidade());
-                            cliente.getCarrinho().remove(excluir);
-                            break;
-                        }
+                    Brinquedo noEstoque = SYS.getLoja().BuscarBrinquedo(idExcluir);
+                    
+                    Brinquedo noCarrinho = cliente.BuscaItem(idExcluir);
+                    noEstoque.setQuantidade(noEstoque.getQuantidade() + noCarrinho.getQuantidade());
+                    boolean removeu = cliente.removeItem(idExcluir);
+                    
+                    if(removeu) {
+                    	JOptionPane.showMessageDialog(null,
+                                "Item removido com sucesso.",
+                                 "Informativo",
+                                  JOptionPane.INFORMATION_MESSAGE);
                     }
 
                     //-------Zerar tabela de itens----------------
@@ -683,14 +666,14 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                     }
 
                     //--------------------Adicionar todos os brinquedos no carrinho à tabela-----------
-                    for(Brinquedo brinq : cliente.getCarrinho()){
-                        String nome = brinq.getNome();
-                        String marca = brinq.getMarca();
-                        String categoria = brinq.getCategoria();
-                        Double preco = brinq.getPreco();
-                        int idadeIndicada = brinq.getIdade();
-                        int quant = brinq.getQuantidade();
-                        int id = brinq.getId();
+                    for(Brinquedo brinquedo : cliente.getCarrinho()){
+                        String nome = brinquedo.getNome();
+                        String marca = brinquedo.getMarca();
+                        String categoria = brinquedo.getCategoria();
+                        Double preco = brinquedo.getPreco();
+                        int idadeIndicada = brinquedo.getIdade();
+                        int quant = brinquedo.getQuantidade();
+                        int id = brinquedo.getId();
                         Object[] dadosBrinquedo = {nome,marca,categoria,preco,idadeIndicada,quant,id};
                         modeloTabelaCarrinho.addRow(dadosBrinquedo);
                     }

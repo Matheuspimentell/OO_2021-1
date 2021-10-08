@@ -12,7 +12,7 @@ public class Sistema {
     //Construtor de sistema
     public Sistema(){
 
-        //-----------Adição de 10 clientes--------
+        //-----------Adicao de 10 clientes--------
         Cliente cliente1 = new Cliente("Cleiton Silva", "649.094.970-99");
         this.clientes.add(cliente1);
         Cliente cliente2 = new Cliente("Cleiton Rocha", "004.941.170-52");
@@ -88,22 +88,14 @@ public class Sistema {
         return null;
     }
     //Deletar um cliente
-    public void DeletarCliente(){
-        System.out.println("Digite o CPF do cliente que deseja excluir: ");
-        String cpf = scan.nextLine();
-        boolean removeu = false;
+    public boolean DeletarCliente(String cpf){
         for(Cliente cliente : this.clientes){
             if(cliente.getCpf() == cpf){
                 clientes.remove(cliente);
-                System.out.println("Cliente excluido: ");
-                cliente.Visualizar();
-                removeu = true;
-                break;
+                return true;
             }
         }
-        if(removeu == false){
-            System.out.println("Cliente nao encontrado.");
-        }
+        return false;
     }
     //Editar um cliente
     public void EditarCliente(Object cpf, Cliente novosDados){
