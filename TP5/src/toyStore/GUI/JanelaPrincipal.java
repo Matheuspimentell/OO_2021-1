@@ -110,16 +110,14 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
         //--------------------Caso se esteja na opção loja------------------
         if(e.getSource() ==  barraSuperior.barraMenu.botaoLoja){
             //-----------Realizar alterações no conteúdo mostrado---------------
-            opcao1.setText("<html>Completar<br />cadastro</html>");
+            opcao1.setText("<html>Visualizar<br />funcionarios</html>");
             opcao1.setVisible(true);
-            opcao2.setText("<html>Visualizar<br />funcionarios</html>");
+            opcao2.setText("<html>Visualizar<br />estoque</html>");
             opcao2.setVisible(true);
-            opcao3.setText("<html>Visualizar<br />estoque</html>");
+            opcao3.setText("<html>Editar dados<br />da Loja</html>");
             opcao3.setVisible(true);
-            opcao4.setText("<html>Editar dados<br />da Loja</html>");
-            opcao4.setVisible(true);
-            opcao5.setVisible(false);
-            opcao6.setVisible(false);
+            opcao4.setVisible(false);
+            opcao4.setVisible(false);
             barraSuperior.barraMenu.botaoLoja.setEnabled(false);
             barraSuperior.barraMenu.botaoLoja.setBorder(selecionada);
             barraSuperior.barraMenu.botaoSistema.setEnabled(true);
@@ -176,9 +174,9 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
                   "Informativo!", JOptionPane.INFORMATION_MESSAGE);
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
-                //Opção de completar cadastro da loja
+                //Opção de visualizar funcion�rios
                 if(SYS.getLoja().getTelefone() == null){
-                    janelaCadastro = new JanelaCadastro("Loja - Completar cadastro", SYS);
+                	janelaVisualizacao = new JanelaVisualizacao("Loja - Visualizar funcionários", SYS);
                 } else {
                     //Mostrar que a loja já está com o cadastro completo
                     JOptionPane.showMessageDialog(null,
@@ -222,8 +220,8 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
                 }
             }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
-                //Opção de Visualizar Funcionários
-                janelaVisualizacao = new JanelaVisualizacao("Loja - Visualizar funcionários", SYS);
+                //Opção de Visualizar estoque
+            	janelaVisualizacao = new JanelaVisualizacao("Loja - Visualizar estoque", SYS);
             }
             if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
                 //Opção de selecionar um carrinho de compras
@@ -236,49 +234,12 @@ public class JanelaPrincipal extends JFrame implements ActionListener{
             //     janelaCadastro = new JanelaCadastro("Titulo", SYS);
             // }
             if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
-                //Opção de visualizar estoque
-                janelaVisualizacao = new JanelaVisualizacao("Loja - Visualizar estoque", SYS);
-            }
-            // if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
-            //     janelaCadastro = new JanelaCadastro("Titulo", SYS);
-            // }
-        }
-        if(e.getSource() == opcao4){
-            //Checar qual opção foi selecionada
-            // if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-            //     janelaCadastro = new JanelaCadastro("Titulo", SYS);
-            // }
-            if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
                 //Opção de editar dados da loja
-                janelaEdicao = new JanelaEdicao("Loja - Editar dados", SYS, null);
+            	janelaEdicao = new JanelaEdicao("Loja - Editar dados", SYS, null);
             }
             // if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
             //     janelaCadastro = new JanelaCadastro("Titulo", SYS);
             // }
         }
-        // if(e.getSource() == opcao5){
-        //     //Checar qual opção foi selecionada
-        //     if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-        //         new JanelaCadastro("Titulo", SYS);
-        //     }
-        //     if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
-        //         new JanelaCadastro("Titulo", SYS);
-        //     }
-        //     if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
-        //         new JanelaCadastro("Titulo", SYS);
-        //     }
-        // }
-        // if(e.getSource() == opcao6){
-        //     //Checar qual opção foi selecionada
-        //     if(barraSuperior.barraMenu.botaoSistema.getBorder() == selecionada){
-        //         new JanelaCadastro("Titulo", SYS);
-        //     }
-        //     if(barraSuperior.barraMenu.botaoLoja.getBorder() == selecionada){
-        //         new JanelaCadastro("Titulo", SYS);
-        //     }
-        //     if(barraSuperior.barraMenu.botaoClientes.getBorder() == selecionada){
-        //         new JanelaCadastro("Titulo", SYS);
-        //     }
-        // }
     }
 }
