@@ -79,7 +79,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
 
         if(titulo.equals("Loja - Editar dados")){
 
-            //----------------Instrução------------------
+            //----------------Instrucao------------------
             JOptionPane.showMessageDialog(null,
             "Para nao alterar os dados, deixar em branco"
             ,"Informativo"
@@ -147,7 +147,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
 
             //----------------Instrucao------------------
             JOptionPane.showMessageDialog(null,
-            "Para não alterar os dados, deixar em branco"
+            "Para nao alterar os dados, deixar em branco"
             ,"Informativo"
             ,JOptionPane.INFORMATION_MESSAGE);
 
@@ -212,7 +212,7 @@ public class JanelaEdicao extends JDialog implements ActionListener{
 
             //----------------Instrucao------------------
             JOptionPane.showMessageDialog(null,
-            "Para não alterar os dados, deixar em branco"
+            "Para nao alterar os dados, deixar em branco"
             ,"Informativo"
             ,JOptionPane.INFORMATION_MESSAGE);
 

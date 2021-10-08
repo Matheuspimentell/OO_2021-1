@@ -617,7 +617,7 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                 } else {
                     JOptionPane.showMessageDialog(null,
                      "Nenhum funcionario selecionado, selecione um funcionario para continuar.",
-                      "Atenção",
+                      "Atencao",
                        JOptionPane.WARNING_MESSAGE);
                 }
                 
@@ -716,7 +716,7 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                 if(tabelaClientes.getSelectedRow() == -1){
                     JOptionPane.showMessageDialog(null,
                     "Nenhum cliente selecionado, selecione um cliente para continuar",
-                    "Atenção",
+                    "Atencao",
                     JOptionPane.WARNING_MESSAGE);
                 } else {
                     //Obter o CPF do cliente selecionado
@@ -747,7 +747,7 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                 if(tabelaFuncionarios.getSelectedRow() == -1){
                     JOptionPane.showMessageDialog(null,
                     "Nenhum funcionario selecionado, selecione um funcionario para continuar",
-                    "Atenção",
+                    "Atencao",
                     JOptionPane.WARNING_MESSAGE);
                 } else {
                     //Obter o ID do funcionario selecionado
@@ -828,7 +828,6 @@ public class JanelaVisualizacao extends JDialog implements ActionListener{
                             qtd = Integer.parseInt(entrada) - brinquedo.getQuantidade();
                             editar.setQuantidade(editar.getQuantidade() + qtd);
                             qtd = qtd*(-1);
-                            System.out.println(qtd);
                             break;
                         }
                     }

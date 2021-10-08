@@ -69,7 +69,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             JLabel informacao = new JLabel();
             informacao.setText("(*) - Dados obrigatorios");
             informacao.setFont(new Font("Arial", Font.BOLD, 14));
-            informacao.setPreferredSize(new Dimension(400, 20));
+            informacao.setPreferredSize(new Dimension(380, 20));
             informacao.setVisible(true);
 
             //--------------Texto indicativo do primeiro campo-------------
@@ -150,9 +150,9 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             ,JOptionPane.INFORMATION_MESSAGE);
 
             JLabel informacao = new JLabel();
-            informacao.setText("(*) TODOS os dados saoo obrigatorios!");
+            informacao.setText("(*) TODOS os dados sao obrigatorios!");
             informacao.setFont(new Font("Arial", Font.BOLD, 14));
-            informacao.setPreferredSize(new Dimension(400, 20));
+            informacao.setPreferredSize(new Dimension(370, 20));
             informacao.setVisible(true);
 
             //--------------Texto indicativo do primeiro campo-------------
@@ -261,7 +261,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             conteudo.add(cancela);
         }
 
-        if(titulo.equals("Funcionário - Novo Cadastro")){
+        if(titulo.equals("Funcionario - Novo Cadastro")){
             //----------------Instrucao------------------
             JOptionPane.showMessageDialog(null,
             "Para nao alterar os dados, deixar em branco"
@@ -271,7 +271,7 @@ public class JanelaCadastro extends JDialog implements ActionListener{
             JLabel informacao = new JLabel();
             informacao.setText("(*) - Dados obrigatorios");
             informacao.setFont(new Font("Arial", Font.BOLD, 14));
-            informacao.setPreferredSize(new Dimension(400, 20));
+            informacao.setPreferredSize(new Dimension(380, 20));
             informacao.setVisible(true);
 
             //--------------Texto indicativo do primeiro campo-------------
