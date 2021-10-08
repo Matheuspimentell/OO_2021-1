@@ -1,18 +1,31 @@
-## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+# Sistema de loja de brinquedos
 
-## Folder Structure
+Sistema desenvolvido em java para a
+matéria de Orientação à objetos
+do curso de Engenharia de Software da Universidade
+de Brasília.
 
-The workspace contains two folders by default, where:
+### Manual de instrução
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
-## Dependency Management
+## Features
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- Conjunto de dados pré cadastrados (Hard Coded) para facilitar o teste do sistema
+- Visualizar e alterar dados cadastrados da loja
+- Visualizar dados cadastrados de clientes, funcionários e brinquedos
+- Cadastrar clientes, funcionários e brinquedos
+- Excluir cadastro de clientes funcionários e brinquedos
+- Alterar dados cadastrados dos clientes, funcionários e brinquedos
+- Cadastrar itens do estoque da loja no carrinho de um cliente cadastrado
+- Alterar quantidade adicionada de um item no carrinho de um cliente
+- Retirar itens do estoque
+
+  
+## Autores
+
+- [Matheus Pimentel Leal](https://github.com/Matheuspleal)
+- [Luana de Lima Medeiros](https://github.com/Matheuspleal)
+  
