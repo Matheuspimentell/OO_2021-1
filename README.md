@@ -34,5 +34,5 @@ de Brasília.
 ## Autores
 
 - [Matheus Pimentel Leal](https://github.com/Matheuspleal)
-- [Luana de Lima Medeiros](https://github.com/Matheuspleal)
+- [Luana de Lima Medeiros](https://github.com/LuaMedeiros)
   
